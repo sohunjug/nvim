@@ -1,10 +1,8 @@
 -----------------------------------------------------------
 -- Vista configuration file
 -----------------------------------------------------------
-
 -- Plugin: vista.vim
 --- https://github.com/liuchengxu/vista.vim
-
 local g = vim.g
 local cmd = vim.cmd
 
@@ -16,7 +14,7 @@ g.vista_icon_indent = '["╰─▸ ", "├─▸ "]'
 
 -- Executive used when opening vista sidebar without specifying it.
 --- See all the avaliable executives via `:echo g:vista#executives`.
-g.vista_default_executive = "ctags"
+g.vista_default_executive = "/opt/homebrew/bin/ctags"
 
 -- Ensure you have installed some decent font to show these prettysymbols,
 --- then you can enable icon for the kind.
