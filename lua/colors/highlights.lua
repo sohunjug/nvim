@@ -24,14 +24,14 @@ local yellow = colors.yellow
 -- @param group Group
 -- @param color Color
 local function bg(group, color)
-    cmd("hi " .. group .. " guibg=" .. color)
+   cmd("hi " .. group .. " guibg=" .. color)
 end
 
 -- Define fg color
 -- @param group Group
 -- @param color Color
 local function fg(group, color)
-    cmd("hi " .. group .. " guifg=" .. color)
+   cmd("hi " .. group .. " guifg=" .. color)
 end
 
 -- Define bg and fg color
@@ -39,14 +39,14 @@ end
 -- @param fgcol Fg Color
 -- @param bgcol Bg Color
 local function fg_bg(group, fgcol, bgcol)
-    cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
+   cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
 end
 
 -- Comments
 if vim.g.italic_comments then
-    fg("Comment", grey_fg .. " gui=italic")
+   fg("Comment", grey_fg .. " gui=italic")
 else
-    fg("Comment", grey_fg)
+   fg("Comment", grey_fg)
 end
 
 -- Disable cusror line
@@ -78,10 +78,10 @@ fg("VertSplit", one_bg2)
 -- fg_bg("Visual",light_grey, colors.lightbg)
 
 if vim.g.transparency then
-    bg("Normal", "NONE")
-    bg("Folded", "NONE")
-    fg("Folded", "NONE")
-    fg("Comment", grey)
+   bg("Normal", "NONE")
+   bg("Folded", "NONE")
+   fg("Folded", "NONE")
+   fg("Comment", grey)
 end
 
 -- [[ Plugin Highlights
@@ -137,10 +137,10 @@ fg_bg("NvimTreeWindowPicker", red, black2)
 
 -- Disable some highlight in nvim tree if transparency enabled
 if vim.g.transparency then
-    bg("NvimTreeNormal", "NONE")
-    bg("NvimTreeStatusLineNC", "NONE")
-    bg("NvimTreeVertSplit", "NONE")
-    fg("NvimTreeVertSplit", grey)
+   bg("NvimTreeNormal", "NONE")
+   bg("NvimTreeStatusLineNC", "NONE")
+   bg("NvimTreeVertSplit", "NONE")
+   fg("NvimTreeVertSplit", grey)
 end
 
 -- Telescope

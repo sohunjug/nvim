@@ -16,8 +16,8 @@ g.vista_icon_indent = '["╰─▸ ", "├─▸ "]'
 
 -- Executive used when opening vista sidebar without specifying it.
 --- See all the avaliable executives via `:echo g:vista#executives`.
-g.vista_default_executive = 'ctags'
+g.vista_default_executive = "ctags"
 
 -- Ensure you have installed some decent font to show these prettysymbols,
 --- then you can enable icon for the kind.
-cmd[[let g:vista#renderer#enable_icon = 1]] 
+cmd [[let g:vista#renderer#enable_icon = 1]]
