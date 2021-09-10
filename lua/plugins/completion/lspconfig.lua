@@ -50,7 +50,7 @@ lspconfig.gopls.setup {
    init_options = { usePlaceholders = true, completeUnimported = true },
 }
 
-if vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server") then
+if vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server") == 1 then
    lspconfig.sumneko_lua.setup {
       cmd = {
          global.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server",
@@ -75,7 +75,7 @@ if vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-
          },
       },
    }
-elseif vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server") then
+elseif vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server") == 1 then
    lspconfig.sumneko_lua.setup {
       cmd = {
          global.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server",
@@ -102,7 +102,7 @@ elseif vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/linux/
    }
 end
 
-if vim.fn.executable "lua-format" then
+if vim.fn.executable "lua-format" == 1 then
    lspconfig.efm.setup {
       init_options = { documentFormatting = true },
       filetypes = { "lua" },
