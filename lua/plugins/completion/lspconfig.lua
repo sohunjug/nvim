@@ -102,7 +102,7 @@ elseif vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/linux/
    }
 end
 
-if vim.fn.executable("lua-format") == 1 then
+if vim.fn.executable "lua-format" == 1 then
    lspconfig.efm.setup {
       init_options = { documentFormatting = true },
       filetypes = { "lua" },
