@@ -15,7 +15,6 @@ completion["neovim/nvim-lspconfig"] = {
    config = conf.nvim_lsp,
    requires = {
       {
-
          "jose-elias-alvarez/null-ls.nvim",
          config = conf.nullls,
       },
