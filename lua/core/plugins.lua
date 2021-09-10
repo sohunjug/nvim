@@ -21,7 +21,7 @@ function Packer:load_plugins()
 
     local plugins_file = get_plugins_list()
     for _, m in ipairs(plugins_file) do
-        print(m)
+        -- print(m)
         local repos = require(m:sub(0, #m - 4))
         for repo, conf in pairs(repos) do self.repos[#self.repos + 1] = vim.tbl_extend('force', {repo}, conf) end
     end
@@ -40,7 +40,7 @@ function Packer:load_packer()
             prompt_border = "single"
         },
         compile_path = packer_compiled,
-        git = {depth = 1, clone_timeout = 600, default_url_format = "git@github.com:%s"},
+        git = {depth = 1, clone_timeout = 600}, --, default_url_format = "git@github.com:%s"},
         auto_clean = true,
         compile_on_sync = true,
         disable_commands = true,
