@@ -3,7 +3,7 @@ if not present then
    return
 end
 
-local global = require("core.global")
+local global = require "core.global"
 
 if not packer_plugins["plenary.nvim"].loaded then
    vim.cmd [[packadd plenary.nvim]]
@@ -61,8 +61,8 @@ telescope.setup {
          workspaces = {
             dotfiles = global.home .. "Code/dotfiles",
             nvim = global.vim_path,
-         }
-      }
+         },
+      },
       --         fzf = {
       --             fuzzy = true, -- false will only do exact matching
       --             override_generic_sorter = false, -- override the generic sorter
@@ -77,24 +77,24 @@ telescope.setup {
    },
    pickers = {
       keymaps = {
-         initial_mode = "insert"
+         initial_mode = "insert",
       },
       git_files = {
-         initial_mode = "insert"
+         initial_mode = "insert",
       },
       git_bcommits = {
-         initial_mode = "insert"
+         initial_mode = "insert",
       },
       git_commits = {
-         initial_mode = "insert"
+         initial_mode = "insert",
       },
       find_files = {
-         initial_mode = "insert"
+         initial_mode = "insert",
       },
-   }
+   },
 }
 
-local extensions = { "themes", "terms", "fzy_native", "project", "frecency"}
+local extensions = { "themes", "terms", "fzy_native", "project", "frecency" }
 -- local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
 
 -- if vim.fn.executable "ueberzug" == 1 then

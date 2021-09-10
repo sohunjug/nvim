@@ -6,7 +6,7 @@ function config.nvim_treesitter()
    if vim.loop.os_uname().sysname == "Darwin" then
       local compile = "/usr/local/bin/gcc-11"
       if vim.loop.os_uname().machine == "arm64" then
-         compile = "/opt/homebrew/bin/gcc-11" 
+         compile = "/opt/homebrew/bin/gcc-11"
       end
       require("nvim-treesitter.install").compilers = { compile }
    end

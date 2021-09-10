@@ -26,11 +26,11 @@ completion["nvim-telescope/telescope.nvim"] = {
       { "nvim-lua/plenary.nvim", opt = true },
       { "jremmen/vim-ripgrep", opt = true },
       { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
-      { 'nvim-telescope/telescope-project.nvim' }
+      { "nvim-telescope/telescope-project.nvim" },
    },
 }
 completion["nvim-telescope/telescope-frecency.nvim"] = {
-  requires = {"tami5/sqlite.lua"}
+   requires = { "tami5/sqlite.lua" },
 }
 completion["TimUntersberger/neogit"] = {
    requires = { "nvim-lua/plenary.nvim" },
