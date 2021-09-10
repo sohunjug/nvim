@@ -1,15 +1,15 @@
 local completion = {}
 local conf = require "plugins.completion.config"
-completion["kabouzeid/nvim-lspinstall"] = {
-    opt = true,
-    setup = function()
-        require("core.utils").packer_lazy_load "nvim-lspinstall"
-        -- reload the current file so lsp actually starts for it
-        vim.defer_fn(function()
-            vim.cmd "silent! e %"
-        end, 0)
-    end
-}
+-- completion["kabouzeid/nvim-lspinstall"] = {
+--     opt = true,
+--     setup = function()
+--         require("core.utils").packer_lazy_load "nvim-lspinstall"
+--         -- reload the current file so lsp actually starts for it
+--         vim.defer_fn(function()
+--             vim.cmd "silent! e %"
+--         end, 0)
+--     end
+-- }
 completion["neovim/nvim-lspconfig"] = {event = "BufReadPre", config = conf.nvim_lsp}
 
 completion["glepnir/lspsaga.nvim"] = {cmd = "Lspsaga"}
@@ -31,6 +31,12 @@ completion["TimUntersberger/neogit"] = {
     config = function()
         require('neogit').setup {integrations = {diffview = true}}
     end
+}
+completion["AckslD/nvim-neoclip.lua"] = {
+    config = function()
+        require("neoclip").setup()
+    end
+
 }
 
 

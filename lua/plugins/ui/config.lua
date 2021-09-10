@@ -24,7 +24,7 @@ end
 
 function config.gitsigns()
     if not packer_plugins["plenary.nvim"].loaded then vim.cmd [[packadd plenary.nvim]] end
-    require("gitsigns").setup {require "custom.gitsigns"}
+    require("gitsigns").setup {require "custom.git"}
 end
 
 function config.indent_blakline()

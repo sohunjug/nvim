@@ -24,13 +24,6 @@ tools["iamcco/markdown-preview.nvim"] = {
         vim.g.mkdp_auto_start = 0
     end
 }
-tools["AckslD/nvim-neoclip.lua"] = {
-    config = function()
-        require("neoclip").setup()
-    end
-
-}
-
 tools["andymass/vim-matchup"] = {
     opt = true,
     setup = function()
