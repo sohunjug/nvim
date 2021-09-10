@@ -3,7 +3,7 @@ local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 local map_args = bind.map_args
-local global = require "core.global"
+-- local global = require "core.global"
 require "keymap.config"
 
 local plug_map = {
@@ -103,7 +103,13 @@ local plug_map = {
    ["n|<leader>sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
    ["n|<leader>sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
 
-   ["n|<leader>tt"] = map_cu("Telescope highlights"):with_silent(),
+   ["n|<leader>tc"] = map_cmd(
+      "<cmd>lua require('modules.themes').toggle_theme(require('core.utils').load_config().ui.theme_toggler.fav_themes) <CR>"
+   ):with_silent(),
+   ["n|<leader>tt"] = map_cu("Telescope themes"):with_silent(),
+   ["n|<leader>zz"] = map_cu("TZAtaraxis"):with_silent(),
+   ["n|<leader>zf"] = map_cu("TZFocus"):with_silent(),
+   ["n|<leader>zm"] = map_cu("TZMinimalist"):with_silent(),
    -- Plugin hrsh7th/vim-eft
    ["n|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
    ["x|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),

@@ -1,10 +1,11 @@
 local core_modules = {
+   "core.events",
    "core.options",
    "core.mapping",
    "keymap",
-   "core.events",
 }
 
+vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 local global = require 'core.global'
 
 -- Create cache dir and subs dir
@@ -29,9 +30,6 @@ local createdir = function ()
 end
 
 createdir()
-local plugin = require("core.plugins")
-
-plugin.ensure_plugins()
 
 for _, module in ipairs(core_modules) do
    local ok, err = pcall(require, module)
@@ -40,6 +38,9 @@ for _, module in ipairs(core_modules) do
    end
 end
 
+local plugin = require("core.plugins")
+
+plugin.ensure_plugins()
 -- set all the non plugin mappings
 -- require("core.mappings").misc()
 plugin.load_compile()

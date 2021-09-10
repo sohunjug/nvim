@@ -1,15 +1,13 @@
 local M = {}
 
-M.theme = "onejelly"
-
 -- if theme given, load given theme if given, otherwise nvchad_theme
 M.init = function(theme)
    if not theme then
-      theme = M.theme
+      theme = require("core.utils").load_config().ui.theme
    end
 
    -- set the global theme, used at various places like theme switcher, highlights
-   vim.g.theme = theme
+   vim.g.custom_theme = theme
 
    local present, base16 = pcall(require, "base16")
 
@@ -29,7 +27,11 @@ end
 -- returns a table of colors for givem or current theme
 M.get = function(theme)
    if not theme then
-      theme = M.theme
+      theme = vim.g.custom_theme
+   end
+
+   if not theme then
+      theme = require("core.utils").load_config().ui.theme
    end
 
    return require("colors.themes." .. theme)

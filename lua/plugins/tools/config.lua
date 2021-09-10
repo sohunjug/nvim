@@ -54,4 +54,8 @@ function config.vim_vista()
    }
 end
 
+function config.zenmode()
+   require "custom.zenmode"
+end
+
 return config

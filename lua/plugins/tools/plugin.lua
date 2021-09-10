@@ -47,4 +47,13 @@ tools["terrortylor/nvim-comment"] = {
       require("custom.others").comment()
    end,
 }
+
+tools["Pocco81/TrueZen.nvim"] = {
+   cmd = {
+      "TZAtaraxis",
+      "TZMinimalist",
+      "TZFocus",
+   },
+   config = conf.zenmode,
+}
 return tools

@@ -1,5 +1,5 @@
 local lsp = vim.lsp
-local format = {}
+local M = {}
 
 local function nvim_create_augroup(group_name, definitions)
    vim.api.nvim_command("augroup " .. group_name)
@@ -11,10 +11,11 @@ local function nvim_create_augroup(group_name, definitions)
    vim.api.nvim_command "augroup END"
 end
 
-function format.lsp_before_save()
+function M.lsp_before_save()
    local defs = {}
    local ext = vim.fn.expand "%:e"
    table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.formatting_sync(nil,1000)" })
+   -- table.insert(defs, { "BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()" })
    if ext == "go" then
       table.insert(
          defs,
@@ -26,7 +27,7 @@ end
 
 -- Synchronously organise (Go) imports. Taken from
 -- https://github.com/neovim/nvim-lsp/issues/115#issuecomment-654427197.
-function format.go_organize_imports_sync(timeout_ms)
+function M.go_organize_imports_sync(timeout_ms)
    local context = { source = { organizeImports = true } }
    vim.validate { context = { context, "t", true } }
    local params = vim.lsp.util.make_range_params()
@@ -59,4 +60,4 @@ function format.go_organize_imports_sync(timeout_ms)
    end
 end
 
-return format
+return M

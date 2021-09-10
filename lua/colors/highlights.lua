@@ -20,6 +20,8 @@ local red = colors.red
 local white = colors.white
 local yellow = colors.yellow
 
+local ui = require("core.utils").load_config().ui
+
 -- Define bg color
 -- @param group Group
 -- @param color Color
@@ -43,7 +45,7 @@ local function fg_bg(group, fgcol, bgcol)
 end
 
 -- Comments
-if vim.g.italic_comments then
+if ui.italic_comments then
    fg("Comment", grey_fg .. " gui=italic")
 else
    fg("Comment", grey_fg)
@@ -77,7 +79,7 @@ fg("StatusLineNC", one_bg2 .. " gui=underline")
 fg("VertSplit", one_bg2)
 -- fg_bg("Visual",light_grey, colors.lightbg)
 
-if vim.g.transparency then
+if ui.transparency then
    bg("Normal", "NONE")
    bg("Folded", "NONE")
    fg("Folded", "NONE")
@@ -136,7 +138,7 @@ bg("NvimTreeVertSplit", darker_black)
 fg_bg("NvimTreeWindowPicker", red, black2)
 
 -- Disable some highlight in nvim tree if transparency enabled
-if vim.g.transparency then
+if ui.transparency then
    bg("NvimTreeNormal", "NONE")
    bg("NvimTreeStatusLineNC", "NONE")
    bg("NvimTreeVertSplit", "NONE")

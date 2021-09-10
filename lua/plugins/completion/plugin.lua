@@ -10,7 +10,26 @@ local conf = require "plugins.completion.config"
 --         end, 0)
 --     end
 -- }
-completion["neovim/nvim-lspconfig"] = { event = "BufReadPre", config = conf.nvim_lsp }
+completion["neovim/nvim-lspconfig"] = {
+   event = "BufReadPre",
+   config = conf.nvim_lsp,
+   requires = {
+      {
+
+         "jose-elias-alvarez/null-ls.nvim",
+         config = conf.nullls,
+      },
+      {
+         "jose-elias-alvarez/nvim-lsp-ts-utils",
+         ft = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+         },
+      },
+   },
+}
 
 completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga" }
 
@@ -26,11 +45,11 @@ completion["nvim-telescope/telescope.nvim"] = {
       { "nvim-lua/plenary.nvim", opt = true },
       { "jremmen/vim-ripgrep", opt = true },
       { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
-      { 'nvim-telescope/telescope-project.nvim' }
+      { "nvim-telescope/telescope-project.nvim" },
    },
 }
 completion["nvim-telescope/telescope-frecency.nvim"] = {
-  requires = {"tami5/sqlite.lua"}
+   requires = { "tami5/sqlite.lua" },
 }
 completion["TimUntersberger/neogit"] = {
    requires = { "nvim-lua/plenary.nvim" },

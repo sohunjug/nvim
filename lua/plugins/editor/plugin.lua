@@ -6,7 +6,7 @@ editor["Raimondi/delimitMate"] = { event = "InsertEnter", config = conf.delimima
 editor["rhysd/accelerated-jk"] = { opt = true }
 
 editor["norcalli/nvim-colorizer.lua"] = {
-   ft = { "html", "css", "sass", "vim", "typescript", "typescriptreact" },
+   ft = { "html", "css", "sass", "vim", "typescript", "typescriptreact", "terminal" },
    config = conf.nvim_colorizer,
 }
 

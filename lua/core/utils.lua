@@ -58,7 +58,7 @@ M.close_buffer = function(bufexpr, force)
             return
         end
 
-        local chad_term, type = pcall(function()
+        local chad_term, _ = pcall(function()
             return vim.api.nvim_buf_get_var(buf, "term_type")
         end)
 
@@ -130,6 +130,62 @@ M.hide_statusline = function()
     end
 end
 
+-- load config
+-- 1st arg = boolean - whether to force reload
+-- Modifies _G._NVCHAD_CONFIG global variable
+M.load_config = function(reload)
+   -- only do the stuff below one time, otherwise just return the set config
+   if _G.S_CONFIG_CONTENTS ~= nil and not (reload or false) then
+      return _G.S_CONFIG_CONTENTS
+   end
+
+   -- these are the table value which will be always prioritiezed to take user config value
+   local to_replace = {
+      "['mappings']['plugin']['esc_insertmode']",
+      "['mappings']['terminal']['esc_termmode']",
+      "['mappings']['terminal']['esc_hide_termmode']",
+   }
+
+   local default_config = "default"
+   local config_name = vim.g.custom_user_config or "sohunjug"
+   local config_file = vim.fn.stdpath "config" .. "/lua/config/" .. config_name .. ".lua"
+
+   -- unload the modules if force reload
+   if reload then
+      package.loaded[default_config or false] = nil
+      package.loaded[config_name or false] = nil
+   end
+
+   -- don't enclose in pcall, it better break when default config is faulty
+   _G.S_CONFIG_CONTENTS = require("config." .. default_config)
+
+   -- user config is not required to run but a optional
+   -- Make sure the config doesn't break the whole system if user config is not present or in bad state or not a table
+   -- print warning texts if user config file is  present
+   -- check if the user config is present
+   -- print(vim.inspect(_G.S_CONFIG_CONTENTS))
+   if vim.fn.filereadable(vim.fn.glob(config_file)) == 1 then
+      local present, config = pcall(require, "config." .. config_name)
+      if present then
+         -- make sure the returned value is table
+         if type(config) == "table" then
+            -- data = require(config_name)
+            _G.S_CONFIG_CONTENTS = M.merge_table(
+               _G.S_CONFIG_CONTENTS,
+               config,
+               to_replace
+            )
+         else
+            print("Warning: " .. config_name .. " sourced successfully but did not return a lua table.")
+         end
+      else
+         print("Warning: " .. config_file .. " is present but sourcing failed.")
+      end
+   end
+   return _G.S_CONFIG_CONTENTS
+end
+
+
 -- Base code: https://gist.github.com/revolucas/184aec7998a6be5d2f61b984fac1d7f7
 -- Changes over it: preserving table 1 contents and also update with table b, without duplicating
 -- 1st arg - base table
@@ -157,7 +213,10 @@ end]]
             -- replace the _node in base_fn to actual given node value
             local fn = base_fn:gsub("_node", node)
             -- if the node if found, it is replaced, otherwise table 1 is returned
-            table1 = loadstring(fn)()(table1, table2)
+            local present, table3 = pcall(loadstring(fn)(), table1, table2)
+            if present then
+               table1 = table3
+            end
         end
     end
 
