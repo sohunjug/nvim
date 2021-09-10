@@ -3,6 +3,8 @@ if not present then
    return
 end
 
+local global = require("core.global")
+
 if not packer_plugins["plenary.nvim"].loaded then
    vim.cmd [[packadd plenary.nvim]]
    vim.cmd [[packadd popup.nvim]]
@@ -23,7 +25,7 @@ telescope.setup {
       prompt_prefix = "   ",
       selection_caret = " ",
       entry_prefix = "  ",
-      initial_mode = "insert",
+      initial_mode = "normal",
       selection_strategy = "reset",
       sorting_strategy = "ascending",
       layout_strategy = "horizontal",
@@ -52,6 +54,15 @@ telescope.setup {
    },
    extensions = {
       fzy_native = { override_generic_sorter = false, override_file_sorter = true },
+      project = { hidden_files = true },
+      frecency = {
+         db_root = global.data_dir,
+         ignore_patterns = { "*.git/*", "*/tmp/*", "*/bin/*", "*/build/*" },
+         workspaces = {
+            dotfiles = global.home .. "Code/dotfiles",
+            nvim = global.vim_path,
+         }
+      }
       --         fzf = {
       --             fuzzy = true, -- false will only do exact matching
       --             override_generic_sorter = false, -- override the generic sorter
@@ -64,9 +75,26 @@ telescope.setup {
       --             find_cmd = "rg" -- find command (defaults to `fd`)
       --         }
    },
+   pickers = {
+      keymaps = {
+         initial_mode = "insert"
+      },
+      git_files = {
+         initial_mode = "insert"
+      },
+      git_bcommits = {
+         initial_mode = "insert"
+      },
+      git_commits = {
+         initial_mode = "insert"
+      },
+      find_files = {
+         initial_mode = "insert"
+      },
+   }
 }
 
-local extensions = { "themes", "terms", "fzy_native" }
+local extensions = { "themes", "terms", "fzy_native", "project", "frecency"}
 -- local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
 
 -- if vim.fn.executable "ueberzug" == 1 then
