@@ -23,8 +23,10 @@ function config.nvim_tree()
 end
 
 function config.gitsigns()
-    if not packer_plugins["plenary.nvim"].loaded then vim.cmd [[packadd plenary.nvim]] end
-    require("gitsigns").setup {require "custom.git"}
+   if not packer_plugins["plenary.nvim"].loaded then
+      vim.cmd [[packadd plenary.nvim]]
+   end
+   require("gitsigns").setup { require "custom.git" }
 end
 
 function config.indent_blakline()
