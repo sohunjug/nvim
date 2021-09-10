@@ -114,7 +114,6 @@ if vim.fn.executable("lua-format") then
         }
     }
 end
-
 lspconfig.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
@@ -131,3 +130,4 @@ lspconfig.rust_analyzer.setup {capabilities = capabilities}
 local servers = {"dockerls", "bashls", "pyright"}
 
 for _, server in ipairs(servers) do lspconfig[server].setup {on_attach = enhance_attach} end
+
