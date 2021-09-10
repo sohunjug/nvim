@@ -519,7 +519,7 @@ key_bindings:
   - { key: A,        mods: Command, chars: "\x1b[2;6~" }
   # Sends <C-Insert> for Paste, and Copy is sent as a custom escape
   # sequence
-  - { key: V,        mods: Command, chars: "\x1b[2;5~" }
+  # - { key: V,        mods: Command, chars: "\x1b[2;5~" }
   - { key: C,        mods: Command, chars: "\x1b[2;5+" }
   - { key: X,        mods: Command, chars: "x" }
   # Send <Esc>:tabp<Return> for tab switching

@@ -104,8 +104,9 @@ local function load_options()
         breakindentopt = "shift:2,min:20",
         wrap = false,
         linebreak = true,
-        number = true,
-        colorcolumn = "80",
+relativenumber = true,
+        number = false,
+        colorcolumn = "120",
         foldenable = true,
         signcolumn = "yes",
         conceallevel = 2,
@@ -130,6 +131,7 @@ local function load_options()
     bind_option(bw_local)
 
     vim.g.mapleader = " "
+    vim.g.maplocalleader = ";"
     vim.api.nvim_set_keymap('n', ' ', '', {noremap = true})
     vim.api.nvim_set_keymap('x', ' ', '', {noremap = true})
 

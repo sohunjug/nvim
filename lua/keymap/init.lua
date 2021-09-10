@@ -3,6 +3,7 @@ local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 local map_args = bind.map_args
+local global = require("core.global")
 require "keymap.config"
 
 local plug_map = {
@@ -15,7 +16,7 @@ local plug_map = {
         :with_noremap(),
     ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
     -- Packer
-    ["n|<leader>pu"] = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
+    ["n|<leader>pu"] = map_cr("PackerSync"):with_silent():with_noremap():with_nowait(),
     ["n|<leader>pi"] = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
     ["n|<leader>pc"] = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
     -- Lsp mapp work when insertenter and lsp start
@@ -42,8 +43,8 @@ local plug_map = {
     ["n|<Leader>ct"] = map_args "Template",
     ["n|<Leader>tf"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
     -- Plugin nvim-tree
-    ["n|<Leader>ft"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
-    ["n|<Leader>fo"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
+    ["n|<Leader>fo"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
+    ["n|<Leader>ft"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
     -- Plugin MarkdownPreview
     ["n|<Leader>om"] = map_cu("MarkdownPreview"):with_noremap():with_silent(),
     -- Plugin DadbodUI
@@ -51,30 +52,34 @@ local plug_map = {
     -- Plugin Floaterm
     ["n|<A-d>"] = map_cu("Lspsaga open_floaterm"):with_noremap():with_silent(),
     ["t|<A-d>"] = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
-    ["n|<Leader>g"] = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
+    ["n|<Leader>gt"] = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
+    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
     -- Far.vim
     ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
     ["v|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
     -- Plugin Telescope
     ["n|<Leader>bb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
+    ["n|<Leader>bo"] = map_cmd("<cmd>lua require('custom.bufonly').buf_only()<CR>"):with_noremap():with_silent(),
+    ["n|<Localleader>n"] = map_cmd("<cmd>set number! relativenumber!<CR>"):with_noremap():with_silent(),
+    ["n|<Leader>bc"] = map_cu("Telescope neoclip"):with_noremap():with_silent(),
     ["n|<Leader>bf"] = map_cmd("<cmd>lua vim.lsp.buf.formatting()<CR>"):with_noremap():with_silent(),
+    ["n|<Leader>bd"] = map_cmd("<cmd>lua require('core.utils').close_buffer()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>fa"] = map_cu("DashboardFindWord"):with_noremap():with_silent(),
     ["n|<Leader>fb"] = map_cu("Telescope file_browser"):with_noremap():with_silent(),
     ["n|<Leader>ff"] = map_cu("DashboardFindFile"):with_noremap():with_silent(),
-    ["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
+    ["n|<Leader>fgi"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
     ["n|<Leader>fw"] = map_cu("Telescope grep_string"):with_noremap():with_silent(),
     ["n|<Leader>fh"] = map_cu("DashboardFindHistory"):with_noremap():with_silent(),
     ["n|<Leader>fl"] = map_cu("Telescope loclist"):with_noremap():with_silent(),
     ["n|<Leader>fc"] = map_cu("Telescope git_commits"):with_noremap():with_silent(),
     ["n|<Leader>fs"] = map_cu("Telescope help_tags"):with_noremap():with_silent(),
-    ["n|<Leader>fd"] = map_cu("Telescope dotfiles path=" .. os.getenv "HOME" .. "/.dotfiles"):with_noremap()
-        :with_silent(),
+    ["n|<Leader>fd"] = map_cu("Telescope dotfiles path=" .. global.home .. "Code/dotfiles"):with_noremap():with_silent(),
     ["n|<Leader>fgo"] = map_cu("Telescope gosource"):with_noremap():with_silent(),
     -- prodoc
     ["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
     ["x|gcc"] = map_cr "ProComment",
-    ["n|<leader>cl"] = map_cu("ProComment"):with_noremap():with_silent(),
-    ["x|<leader>cl"] = map_cr "ProComment",
+    ["n|<leader>cl"] = map_cu("CommentToggle"):with_noremap():with_silent(),
+    ["x|<leader>cl"] = map_cr "CommentToggle",
     ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
     -- Plugin acceleratedjk
     ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
@@ -82,11 +87,11 @@ local plug_map = {
     -- Plugin QuickRun
     ["n|<Leader>r"] = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
     -- Plugin Vista
-    ["n|<Leader>v"] = map_cu("Vista"):with_noremap():with_silent(),
+    ["n|<Leader>v"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
     -- Plugin vim-operator-surround
-    ["n|sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
-    ["n|sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
-    ["n|sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
+    ["n|<leader>sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
+    ["n|<leader>sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
+    ["n|<leader>sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
     -- Plugin hrsh7th/vim-eft
     ["n|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
     ["x|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
