@@ -14,8 +14,8 @@ local plug_map = {
       :with_expr()
       :with_nowait(),
    -- person keymap
-   ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap(),
-   ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
+   -- ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap(),
+   -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
    -- Packer
    ["n|<leader>pu"] = map_cr("PackerSync"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pi"] = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
@@ -32,31 +32,33 @@ local plug_map = {
       :with_silent()
       :with_noremap()
       :with_nowait(),
+   ["n|<Leader>en"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent(),
+   ["n|<Leader>ep"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent(),
    ["n|[e"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent(),
    ["n|]e"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent(),
-   ["n|K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
-   ["n|ga"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
-   ["v|ga"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-   ["n|gd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
-   ["n|gD"] = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
-   ["n|gs"] = map_cr("Lspsaga signature_help"):with_noremap():with_silent(),
-   ["n|gr"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
-   ["n|gh"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
-   ["n|gt"] = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
+   ["n|<Leader>K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
+   ["n|<Leader>lga"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
+   ["v|<Leader>lga"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
+   ["n|<Leader>lgd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
+   ["n|<Leader>lgD"] = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
+   ["n|<Leader>lgs"] = map_cr("Lspsaga signature_help"):with_noremap():with_silent(),
+   ["n|<Leader>lgr"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
+   ["n|<Leader>lgh"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
+   ["n|<Leader>lgt"] = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
    ["n|<Leader>cw"] = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
    ["n|<Leader>ce"] = map_cr("Lspsaga show_line_diagnostics"):with_noremap():with_silent(),
    ["n|<Leader>ct"] = map_args "Template",
    ["n|<Leader>tf"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
    -- Plugin nvim-tree
-   ["n|<Leader>fo"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
-   ["n|<Leader>ft"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
+   ["n|<Leader>ft"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
+   ["n|<Leader>fo"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
    -- Plugin MarkdownPreview
    ["n|<Leader>om"] = map_cu("MarkdownPreview"):with_noremap():with_silent(),
    -- Plugin DadbodUI
    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
-   ["n|<A-d>"] = map_cu("Lspsaga open_floaterm"):with_noremap():with_silent(),
-   ["t|<A-d>"] = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
+   ["n|<Leader>lt"] = map_cu("Lspsaga open_floaterm"):with_noremap():with_silent(),
+   ["t|<Leader>lc"] = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
    ["n|<Leader>gt"] = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
    -- Far.vim
@@ -98,6 +100,7 @@ local plug_map = {
    ["n|<Leader>r"] = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
    -- Plugin Vista
    ["n|<Leader>v"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
+   ["n|<Leader>ta"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
    -- Plugin vim-operator-surround
    ["n|<leader>sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
    ["n|<leader>sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
