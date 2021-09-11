@@ -47,8 +47,8 @@ ui["folke/which-key.nvim"] = {
    end,
 }
 ui["famiu/feline.nvim"] = {
-   requires = {"kyazdani42/nvim-web-devicons", "SmiteshP/nvim-gps" },
-	after = "nvim-gps",
+   requires = { "kyazdani42/nvim-web-devicons", "SmiteshP/nvim-gps" },
+   after = "nvim-gps",
    config = function()
       require "custom.statusline"
    end,
