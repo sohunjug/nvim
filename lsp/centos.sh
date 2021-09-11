@@ -1,2 +1,2 @@
 #!/bin/sh
-yum install gcc gcc-c++ libstdc++-static libstdc++ ninja-build
+yum --enablerepo=powertools install ninja-build gcc gcc-c++ libstdc++-static libstdc++
