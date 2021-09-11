@@ -144,6 +144,7 @@ components.active[2][1] = {
 components.active[2][2] = {
    provider = require("nvim-gps").get_location,
    enabled = require("nvim-gps").is_available,
+   hl = { fg = colors.pink },
 }
 
 components.active[3][1] = {

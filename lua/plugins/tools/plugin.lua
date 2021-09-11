@@ -71,7 +71,8 @@ tools["folke/trouble.nvim"] = {
 }
 
 tools["rcarriga/nvim-notify"] = {
-   opt = true,
+   -- opt = true,
+   -- event = "WinEnter",
    config = function()
       require("notify").setup {
          stages = "fade_in_slide_out",

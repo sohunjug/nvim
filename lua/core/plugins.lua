@@ -48,7 +48,7 @@ function Packer:load_packer()
       max_jobs = 10,
       compile_on_sync = true,
       disable_commands = true,
-      log = { level = "trace" },
+      log = { level = "warn" },
       profile = { enable = true },
    }
    packer.reset()
