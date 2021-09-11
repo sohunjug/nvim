@@ -55,7 +55,7 @@ servers.vuels = require("plugins.completion.lsp.vue").config
 servers.yamlls = require("plugins.completion.lsp.yaml").config
 
 servers.graphql = {
-   root_dir = require"lspconfig.util".root_pattern(".graphqlrc.yml", ".qraphqlrc"),
+   root_dir = require("lspconfig.util").root_pattern(".graphqlrc.yml", ".qraphqlrc"),
 }
 
 servers["null-ls"] = {}
