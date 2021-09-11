@@ -6,6 +6,8 @@ if not packer_plugins["lspsaga.nvim"].loaded then
 end
 
 local servers = {}
+local sumneko = require "plugins.completion.lsp.sumneko"
+
 servers.vimls = {}
 servers.vuels = {}
 servers.cssls = {}
@@ -46,7 +48,9 @@ end
 -- end
 servers.tsserver = { init_options = { documentFormatting = false } }
 
-servers.sumneko_lua = require("plugins.completion.lsp.sumneko").config
+if sumneko.enable then
+   servers.sumneko_lua = sumneko.config
+end
 
 servers.gopls = require("plugins.completion.lsp.golang").config
 

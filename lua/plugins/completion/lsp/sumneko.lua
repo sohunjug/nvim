@@ -4,12 +4,15 @@ local global = require "core.global"
 local config = require "plugins.completion.lsp.config"
 
 M.argv = global.vim_path .. "/lsp/lua-language-server/main.lua"
-
+M.enable = false
 if vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server") == 1 then
+   M.enable = true
    M.cmd = global.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server"
 elseif vim.fn.executable(global.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server") == 1 then
+   M.enable = true
    M.cmd = global.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server"
 end
+
 M.config = {
    cmd = {
       M.cmd,

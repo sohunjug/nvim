@@ -118,7 +118,7 @@ function config.vim_cursorwod()
 end
 
 function config.autopairs()
-   -- require("nvim-autopairs").setup { fast_wrap = {}, disable_filetype = { "TelescopePrompt" } }
+   require("nvim-autopairs").setup { fast_wrap = {}, disable_filetype = { "TelescopePrompt" } }
    require("nvim-autopairs.completion.compe").setup {
       map_cr = true,
       map_complete = true,
