@@ -30,11 +30,33 @@ completion["neovim/nvim-lspconfig"] = {
    },
 }
 
-completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga" }
+completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga", opt = true, after = "nvim-lspconfig" }
 
 completion["hrsh7th/nvim-compe"] = { event = "InsertEnter", config = conf.nvim_compe }
 
 completion["hrsh7th/vim-vsnip"] = { event = "InsertCharPre", config = conf.vim_vsnip }
+
+completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
+
+completion["hrsh7th/nvim-cmp"] = {
+   config = conf.cmp,
+   event = "InsertEnter",
+   requires = {
+      { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+      { "hrsh7th/cmp-buffer", after = "cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lsp", after = "cmp-buffer" },
+      { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
+      { "andersevenrud/compe-tmux", branch = "cmp", after = "cmp-nvim-lua" },
+      { "hrsh7th/cmp-path", after = "compe-tmux" },
+      { "f3fora/cmp-spell", after = "cmp-path" },
+      -- {
+      --     'tzachar/cmp-tabnine',
+      --     run = './install.sh',
+      --     after = 'cmp-spell',
+      --     config = conf.tabnine
+      -- }
+   },
+}
 
 completion["nvim-telescope/telescope.nvim"] = {
    cmd = "Telescope",
@@ -51,7 +73,8 @@ completion["nvim-telescope/telescope-frecency.nvim"] = {
    requires = { "tami5/sqlite.lua" },
 }
 completion["TimUntersberger/neogit"] = {
-   requires = { "nvim-lua/plenary.nvim" },
+   opt = true,
+   after = "plenary.nvim",
    config = function()
       if not packer_plugins["plenary.nvim"].loaded then
          vim.cmd [[packadd plenary.nvim]]

@@ -11,7 +11,7 @@ end
 function config.symbols()
    vim.g.symbols_outline = {
       highlight_hovered_item = true,
-      show_guides = false,
+      show_guides = true,
       auto_preview = true,
       position = "right",
       width = 25,
@@ -23,7 +23,7 @@ function config.symbols()
          goto_location = "<Cr>",
          focus_location = "o",
          hover_symbol = "h",
-         toggle_preview = "K",
+         toggle_preview = "t",
          rename_symbol = "r",
          code_actions = "a",
       },
@@ -76,6 +76,37 @@ function config.nvim_colorizer()
    }
 end
 
+function config.luasnip()
+   require("luasnip").config.set_config {
+      history = true,
+      updateevents = "TextChanged,TextChangedI",
+   }
+   require("luasnip/loaders/from_vscode").load()
+end
+
+function config.bqf()
+   require("bqf").setup {
+      auto_enable = true,
+      preview = {
+         win_height = 12,
+         win_vheight = 12,
+         delay_syntax = 80,
+         border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+      },
+      func_map = {
+         vsplit = "",
+         ptogglemode = "z,",
+         stoggleup = "",
+      },
+      filter = {
+         fzf = {
+            action_for = { ["ctrl-s"] = "split", ["ctrl-q"] = "signtoggle" },
+            extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+         },
+      },
+   }
+end
+
 function config.vim_cursorwod()
    vim.api.nvim_command "augroup user_plugin_cursorword"
    vim.api.nvim_command "autocmd!"
@@ -84,6 +115,15 @@ function config.vim_cursorwod()
    vim.api.nvim_command "autocmd InsertEnter * let b:cursorword = 0"
    vim.api.nvim_command "autocmd InsertLeave * let b:cursorword = 1"
    vim.api.nvim_command "augroup END"
+end
+
+function config.autopairs()
+   require("nvim-autopairs").setup { fast_wrap = {} }
+   require("nvim-autopairs.completion.cmp").setup {
+      map_cr = true,
+      map_complete = true,
+      auto_select = true,
+   }
 end
 
 return config

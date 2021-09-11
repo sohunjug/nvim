@@ -13,17 +13,29 @@ ui["glepnir/dashboard-nvim"] = { config = conf.dashboard }
 
 -- ui["glepnir/galaxyline.nvim"] = {branch = "main", config = conf.galaxyline, requires = "kyazdani42/nvim-web-devicons"}
 
-ui["lukas-reineke/indent-blankline.nvim"] = { event = "BufRead", config = conf.indent_blakline }
+ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blakline }
 
-ui["akinsho/nvim-bufferline.lua"] = { config = conf.nvim_bufferline, requires = "kyazdani42/nvim-web-devicons" }
+ui["akinsho/nvim-bufferline.lua"] = {
+   opt = true,
+   config = conf.nvim_bufferline,
+   requires = "kyazdani42/nvim-web-devicons",
+}
 
 ui["kyazdani42/nvim-tree.lua"] = {
+   opt = true,
    cmd = { "NvimTreeFindFile", "NvimTreeToggle", "NvimTreeOpen" },
    config = conf.nvim_tree,
    requires = "kyazdani42/nvim-web-devicons",
 }
 
+--[[ui["yamatsum/nvim-nonicons"] = {
+   opt = true,
+   after = "nvim-web-devicons",
+   requires = { "kyazdani42/nvim-web-devicons" },
+}]]
+
 ui["lewis6991/gitsigns.nvim"] = {
+   opt = true,
    event = { "BufRead", "BufNewFile" },
    config = conf.gitsigns,
    requires = { "nvim-lua/plenary.nvim", opt = true },

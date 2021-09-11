@@ -22,7 +22,6 @@ function Packer:load_plugins()
 
    local plugins_file = get_plugins_list()
    for _, m in ipairs(plugins_file) do
-      -- print(m)
       local repos = require(m:sub(0, #m - 4))
       for repo, conf in pairs(repos) do
          self.repos[#self.repos + 1] = vim.tbl_extend("force", { repo }, conf)
@@ -36,6 +35,7 @@ function Packer:load_packer()
       packer = require "packer"
    end
    packer.init {
+      ensure_dependencies = true,
       display = {
          open_fn = function()
             return require("packer.util").float { border = "single" }
@@ -43,8 +43,9 @@ function Packer:load_packer()
          prompt_border = "single",
       },
       compile_path = packer_compiled,
-      git = { depth = 1, clone_timeout = 600 }, --, default_url_format = "git@github.com:%s"},
+      git = { depth = 2, clone_timeout = 120 }, --, default_url_format = "git@github.com:%s"},
       auto_clean = true,
+      max_jobs = 10,
       compile_on_sync = true,
       disable_commands = true,
       log = { level = "trace" },
@@ -140,13 +141,12 @@ function plugins.load_compile()
       assert "Missing packer compile file Run PackerCompile Or PackerInstall to fix"
    end
    vim.cmd [[command! PackerCompile lua require('core.plugins').magic_compile()]]
-   vim.cmd [[command! PackerCompileO lua require('core.plugins').compile()]]
    vim.cmd [[command! PackerInstall lua require('core.plugins').install()]]
    vim.cmd [[command! PackerUpdate lua require('core.plugins').update()]]
    vim.cmd [[command! PackerSync lua require('core.plugins').sync()]]
    vim.cmd [[command! PackerClean lua require('core.plugins').clean()]]
-   vim.cmd [[autocmd User PackerComplete lua require('core.plugins').magic_compile()]]
    vim.cmd [[command! PackerStatus  lua require('core.plugins').status()]]
+   vim.cmd [[autocmd User PackerComplete lua require('core.plugins').magic_compile()]]
 end
 
 return plugins

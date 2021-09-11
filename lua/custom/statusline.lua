@@ -141,6 +141,18 @@ components.active[2][1] = {
    hl = { fg = colors.green },
 }
 
+components.active[2][2] = {
+   provider = function()
+      if require("nvim-gps").is_available() then
+         return require("nvim-gps").get_location()
+      end
+      return ""
+   end,
+   enabled = function()
+      return require("nvim-gps").is_available()
+   end,
+}
+
 components.active[3][1] = {
    provider = function()
       if next(vim.lsp.buf_get_clients()) ~= nil then
@@ -291,4 +303,4 @@ components.active[3][12] = {
    hl = { fg = colors.green, bg = colors.one_bg },
 }
 
-require("feline").setup { default_bg = colors.statusline_bg, default_fg = colors.fg, components = components }
+require("feline").setup { bg = colors.statusline_bg, fg = colors.fg, components = components }

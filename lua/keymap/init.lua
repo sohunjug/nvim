@@ -69,8 +69,11 @@ local plug_map = {
    ["n|<Leader>bo"] = map_cmd("<cmd>lua require('custom.bufonly').buf_only()<CR>"):with_noremap():with_silent(),
    ["n|<Localleader>n"] = map_cmd("<cmd>set number! relativenumber!<CR>"):with_noremap():with_silent(),
    ["n|<Leader>bc"] = map_cu("Telescope neoclip neoclip"):with_noremap():with_silent(),
-   ["n|<Leader>bf"] = map_cmd("<cmd>lua vim.lsp.buf.formatting()<CR>"):with_noremap():with_silent(),
+   -- ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
    ["n|<Leader>bd"] = map_cmd("<cmd>lua require('core.utils').close_buffer()<CR>"):with_noremap():with_silent(),
+   ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
+   ["n|<Leader>bp"] = map_cmd("BufferLineCyclePrev"):with_noremap():with_silent(),
+   ["n|<Leader>bf"] = map_cmd("<cmd>lua vim.lsp.buf.formatting()<CR>"):with_noremap():with_silent(),
    ["n|<Leader>fa"] = map_cu("DashboardFindWord"):with_noremap():with_silent(),
    ["n|<Leader>fb"] = map_cu("Telescope git_bcommits"):with_noremap():with_silent(),
    ["n|<Leader>fc"] = map_cu("Telescope git_commits"):with_noremap():with_silent(),
@@ -87,6 +90,13 @@ local plug_map = {
    ["n|<Leader>fr"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
    ["n|<Leader>fw"] = map_cu("Telescope grep_string"):with_noremap():with_silent(),
    ["n|<Leader><Leader>"] = map_cu("Telescope frecency frecency"):with_noremap():with_silent(),
+   -- Plugin trouble
+   ["n|tf"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
+   ["n|tR"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent(),
+   ["n|<leader>td"] = map_cr("TroubleToggle lsp_document_diagnostics"):with_noremap():with_silent(),
+   ["n|<leader>tw"] = map_cr("TroubleToggle lsp_workspace_diagnostics"):with_noremap():with_silent(),
+   ["n|<leader>tq"] = map_cr("TroubleToggle quickfix"):with_noremap():with_silent(),
+   ["n|<leader>tl"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent(),
    -- prodoc
    ["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
    ["x|gcc"] = map_cr "ProComment",
@@ -94,8 +104,8 @@ local plug_map = {
    ["x|<leader>cl"] = map_cr "CommentToggle",
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
    -- Plugin acceleratedjk
-   ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
-   ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
+   -- ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
+   -- ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
    -- Plugin QuickRun
    ["n|<Leader>r"] = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
    -- Plugin Vista
@@ -124,6 +134,15 @@ local plug_map = {
    ["x|I"] = map_cmd("v:lua.enhance_nice_block('I')"):with_expr(),
    ["x|gI"] = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),
    ["x|A"] = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
+   ["v|<M-A>c"] = map_cr('"+y'):with_noremap():with_silent(),
+   ["n|Q"] = map_cr "@@",
+   ["n|q"] = map_cr "quit",
+   ["v|<M-[>2;5+"] = map_cmd "y",
+   ["n|<C-S-Insert>"] = map_cmd "<ESC>ggVG",
+   ["i|<C-Insert>"] = map_cmd "<C-r>*",
+   ["c|<C-Insert>"] = map_cmd "<C-r>*",
+   ["n|<C-Insert>"] = map_cmd "P",
+   ["v|<C-Insert>"] = map_cmd '"_dP',
 }
 
 bind.nvim_load_mapping(plug_map)

@@ -90,6 +90,9 @@ M.lsp_on_init = function(client)
 end
 
 M.lsp_on_attach = function(client, bufnr)
+   if client.name == "vuels" then
+      client.resolved_capabilities.document_formatting = false
+   end
    if client.name == "svelte" then
       client.resolved_capabilities.document_formatting = false
    end

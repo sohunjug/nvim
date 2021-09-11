@@ -19,7 +19,11 @@ editor["hrsh7th/vim-eft"] = {
    end,
 }
 
-editor["simrat39/symbols-outline.nvim"] = { cmd = "SymbolsOutline", config = conf.symbols }
+editor["simrat39/symbols-outline.nvim"] = {
+   opt = true,
+   cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
+   config = conf.symbols,
+}
 
 editor["kana/vim-operator-replace"] = {
    keys = { { "x", "p" } },
@@ -32,5 +36,19 @@ editor["kana/vim-operator-replace"] = {
 editor["rhysd/vim-operator-surround"] = { event = "BufRead", requires = "kana/vim-operator-user" }
 
 editor["kana/vim-niceblock"] = { opt = true }
+
+editor["kevinhwang91/nvim-bqf"] = { opt = true, config = conf.bqf }
+
+editor["windwp/nvim-autopairs"] = {
+   config = conf.autopairs,
+   after = "nvim-cmp",
+}
+
+editor["L3MON4D3/LuaSnip"] = {
+   opt = true,
+   after = "nvim-cmp",
+   config = conf.luasnip,
+   requires = "rafamadriz/friendly-snippets",
+}
 
 return editor
