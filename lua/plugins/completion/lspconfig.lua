@@ -7,6 +7,7 @@ end
 
 local servers = {}
 servers.vimls = {}
+servers.vuels = {}
 servers.cssls = {}
 servers.dockerls = {}
 servers.bashls = {}
