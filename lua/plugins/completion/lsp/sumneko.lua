@@ -32,6 +32,13 @@ M.config = {
                table.insert(runtime_path, "lua/?/init.lua")
                table.insert(runtime_path, global.data_dir .. "pack/packer/opt/packer.nvim/lua/?.lua")
                table.insert(runtime_path, global.data_dir .. "pack/packer/opt/packer.nvim/lua/packer/?.lua")
+               if
+                  global.is_mac
+                  and vim.fn.filereadable "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/doc/init.lua"
+               then
+                  table.insert(runtime_path, "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/?/?.lua")
+                  table.insert(runtime_path, "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/?/?/?.lua")
+               end
                return runtime_path
             end)(),
          },
