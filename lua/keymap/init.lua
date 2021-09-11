@@ -24,6 +24,7 @@ local plug_map = {
    ["n|<leader>li"] = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
    ["n|<leader>ll"] = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
    ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
+   ["n|<leader>lu"] = map_cr("LspUpdate"):with_noremap():with_silent():with_nowait(),
    ["n|<C-f>"] = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
       :with_silent()
       :with_noremap()
@@ -48,7 +49,7 @@ local plug_map = {
    ["n|<Leader>cw"] = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
    ["n|<Leader>ce"] = map_cr("Lspsaga show_line_diagnostics"):with_noremap():with_silent(),
    ["n|<Leader>ct"] = map_args "Template",
-   ["n|<Leader>tf"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
+   ["n|<Leader>N"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
    -- Plugin nvim-tree
    ["n|<Leader>ft"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
    ["n|<Leader>fo"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
@@ -91,8 +92,8 @@ local plug_map = {
    ["n|<Leader>fw"] = map_cu("Telescope grep_string"):with_noremap():with_silent(),
    ["n|<Leader><Leader>"] = map_cu("Telescope frecency frecency"):with_noremap():with_silent(),
    -- Plugin trouble
-   ["n|tf"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
-   ["n|tR"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent(),
+   ["n|<Leader>tf"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
+   ["n|<Leader>tR"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent(),
    ["n|<leader>td"] = map_cr("TroubleToggle lsp_document_diagnostics"):with_noremap():with_silent(),
    ["n|<leader>tw"] = map_cr("TroubleToggle lsp_workspace_diagnostics"):with_noremap():with_silent(),
    ["n|<leader>tq"] = map_cr("TroubleToggle quickfix"):with_noremap():with_silent(),
@@ -103,13 +104,14 @@ local plug_map = {
    ["n|<leader>cl"] = map_cu("CommentToggle"):with_noremap():with_silent(),
    ["x|<leader>cl"] = map_cr "CommentToggle",
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
+   ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),
    -- Plugin acceleratedjk
-   -- ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
-   -- ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
+   ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
+   ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
    -- Plugin QuickRun
    ["n|<Leader>r"] = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
    -- Plugin Vista
-   ["n|<Leader>v"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
+   -- ["n|<Leader>v"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
    ["n|<Leader>ta"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
    -- Plugin vim-operator-surround
    ["n|<leader>sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),

@@ -8,17 +8,14 @@ lang["nvim-treesitter/nvim-treesitter"] = {
 }
 
 lang["nvim-treesitter/nvim-treesitter-textobjects"] = {
-   opt = true,
    after = "nvim-treesitter",
 }
 
 lang["JoosepAlviste/nvim-ts-context-commentstring"] = {
-   opt = true,
    after = "nvim-treesitter",
 }
 
 lang["SmiteshP/nvim-gps"] = {
-   opt = true,
    after = "nvim-treesitter",
    config = conf.nvim_gps,
 }

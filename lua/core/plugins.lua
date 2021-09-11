@@ -35,7 +35,7 @@ function Packer:load_packer()
       packer = require "packer"
    end
    packer.init {
-      ensure_dependencies = true,
+      -- ensure_dependencies = true,
       display = {
          open_fn = function()
             return require("packer.util").float { border = "single" }
@@ -43,7 +43,7 @@ function Packer:load_packer()
          prompt_border = "single",
       },
       compile_path = packer_compiled,
-      git = { depth = 2, clone_timeout = 120 }, --, default_url_format = "git@github.com:%s"},
+      git = { depth = 1, clone_timeout = 120 }, --, default_url_format = "git@github.com:%s"},
       auto_clean = true,
       max_jobs = 10,
       compile_on_sync = true,

@@ -6,7 +6,6 @@ local map_cmd = bind.map_cmd
 -- default map
 local def_map = {
    -- Vim map
-   ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
    ["n|<C-s>"] = map_cu("write"):with_noremap(),
    ["n|Y"] = map_cmd "y$",
    ["n|]w"] = map_cu("WhitespaceNext"):with_noremap(),
@@ -18,6 +17,10 @@ local def_map = {
    ["n|<C-l>"] = map_cmd("<C-w>l"):with_noremap(),
    ["n|<C-j>"] = map_cmd("<C-w>j"):with_noremap(),
    ["n|<C-k>"] = map_cmd("<C-w>k"):with_noremap(),
+   ["n|<Leader>wh"] = map_cmd("<C-w>h"):with_noremap(),
+   ["n|<Leader>wl"] = map_cmd("<C-w>l"):with_noremap(),
+   ["n|<Leader>wj"] = map_cmd("<C-w>j"):with_noremap(),
+   ["n|<Leader>wk"] = map_cmd("<C-w>k"):with_noremap(),
    ["n|<A-[>"] = map_cr("vertical resize -5"):with_silent(),
    ["n|<A-]>"] = map_cr("vertical resize +5"):with_silent(),
    ["n|<C-q>"] = map_cmd ":wq<CR>",

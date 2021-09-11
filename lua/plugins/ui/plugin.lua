@@ -28,11 +28,11 @@ ui["kyazdani42/nvim-tree.lua"] = {
    requires = "kyazdani42/nvim-web-devicons",
 }
 
---[[ui["yamatsum/nvim-nonicons"] = {
+ui["yamatsum/nvim-nonicons"] = {
    opt = true,
    after = "nvim-web-devicons",
    requires = { "kyazdani42/nvim-web-devicons" },
-}]]
+}
 
 ui["lewis6991/gitsigns.nvim"] = {
    opt = true,
@@ -47,7 +47,8 @@ ui["folke/which-key.nvim"] = {
    end,
 }
 ui["famiu/feline.nvim"] = {
-   requires = "kyazdani42/nvim-web-devicons",
+   requires = {"kyazdani42/nvim-web-devicons", "SmiteshP/nvim-gps" },
+	after = "nvim-gps",
    config = function()
       require "custom.statusline"
    end,

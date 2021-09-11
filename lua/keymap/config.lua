@@ -50,7 +50,7 @@ _G.enhance_ft_move = function(key)
    local map = {
       f = "<Plug>(eft-f)",
       F = "<Plug>(eft-F)",
-      [";"] = "<Plug>(eft-repeat)",
+      ["'"] = "<Plug>(eft-repeat)",
    }
    return t(map[key])
 end

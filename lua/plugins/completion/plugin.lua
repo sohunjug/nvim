@@ -1,15 +1,20 @@
 local completion = {}
 local conf = require "plugins.completion.config"
--- completion["kabouzeid/nvim-lspinstall"] = {
---     opt = true,
---     setup = function()
---         require("core.utils").packer_lazy_load "nvim-lspinstall"
---         -- reload the current file so lsp actually starts for it
---         vim.defer_fn(function()
---             vim.cmd "silent! e %"
---         end, 0)
---     end
--- }
+completion["kabouzeid/nvim-lspinstall"] = {
+   opt = true,
+   setup = function()
+      require("core.utils").packer_lazy_load "nvim-lspinstall"
+      -- reload the current file so lsp actually starts for it
+      vim.defer_fn(function()
+         vim.cmd "silent! e %"
+      end, 0)
+   end,
+}
+completion["alexaandru/nvim-lspupdate"] = {
+   opt = true,
+   cmd = "LspUpdate",
+}
+
 completion["neovim/nvim-lspconfig"] = {
    event = "BufReadPre",
    config = conf.nvim_lsp,
@@ -32,13 +37,13 @@ completion["neovim/nvim-lspconfig"] = {
 
 completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga", opt = true, after = "nvim-lspconfig" }
 
-completion["hrsh7th/nvim-compe"] = { event = "InsertEnter", config = conf.nvim_compe }
+completion["hrsh7th/nvim-compe"] = { opt = true, event = "InsertEnter", config = conf.nvim_compe }
 
-completion["hrsh7th/vim-vsnip"] = { event = "InsertCharPre", config = conf.vim_vsnip }
+completion["hrsh7th/vim-vsnip"] = { opt = true, event = "InsertCharPre", config = conf.vim_vsnip }
 
 completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
 
-completion["hrsh7th/nvim-cmp"] = {
+--[[completion["hrsh7th/nvim-cmp"] = {
    config = conf.cmp,
    event = "InsertEnter",
    requires = {
@@ -56,7 +61,7 @@ completion["hrsh7th/nvim-cmp"] = {
       --     config = conf.tabnine
       -- }
    },
-}
+}]]
 
 completion["nvim-telescope/telescope.nvim"] = {
    cmd = "Telescope",
@@ -74,6 +79,7 @@ completion["nvim-telescope/telescope-frecency.nvim"] = {
 }
 completion["TimUntersberger/neogit"] = {
    opt = true,
+   cmd = "Neogit",
    after = "plenary.nvim",
    config = function()
       if not packer_plugins["plenary.nvim"].loaded then
@@ -107,13 +113,13 @@ completion["mattn/emmet-vim"] = {
    config = conf.emmet,
 }
 
-completion["ray-x/go.nvim"] = {
+--[[completion["ray-x/go.nvim"] = {
    config = conf.go_nvim,
    requires = {
       { "mfussenegger/nvim-dap", opt = true },
       { "rcarriga/nvim-dap-ui", opt = true },
       { "theHamsta/nvim-dap-virtual-text", opt = true },
    },
-}
+}]]
 
 return completion

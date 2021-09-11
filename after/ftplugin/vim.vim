@@ -1,0 +1,9 @@
+setlocal colorcolumn=120
+setlocal iskeyword+=:,#
+setlocal tags+=$DATA_PATH/tags
+setlocal autoindent
+setlocal expandtab
+setlocal indentkeys-=<:>
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal tabstop=2

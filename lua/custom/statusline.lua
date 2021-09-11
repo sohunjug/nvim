@@ -142,15 +142,8 @@ components.active[2][1] = {
 }
 
 components.active[2][2] = {
-   provider = function()
-      if require("nvim-gps").is_available() then
-         return require("nvim-gps").get_location()
-      end
-      return ""
-   end,
-   enabled = function()
-      return require("nvim-gps").is_available()
-   end,
+   provider = require("nvim-gps").get_location,
+   enabled = require("nvim-gps").is_available,
 }
 
 components.active[3][1] = {

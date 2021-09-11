@@ -46,19 +46,20 @@ tools["terrortylor/nvim-comment"] = {
    config = require("custom.others").comment,
 }
 
---[[tools["Pocco81/TrueZen.nvim"] = {
+tools["Pocco81/TrueZen.nvim"] = {
    cmd = {
       "TZAtaraxis",
       "TZMinimalist",
       "TZFocus",
    },
    config = conf.zenmode,
-}]]
+}
 
 -- tools["dstein64/vim-startuptime"] = { opt = true, cmd = "StartupTime" }
 
 tools["gelguy/wilder.nvim"] = {
    event = "CmdlineEnter",
+   run = ":UpdateRemotePlugins",
    config = conf.wilder,
    requires = { { "romgrk/fzy-lua-native", after = "wilder.nvim" } },
 }
@@ -70,6 +71,7 @@ tools["folke/trouble.nvim"] = {
 }
 
 tools["rcarriga/nvim-notify"] = {
+   opt = true,
    config = function()
       require("notify").setup {
          stages = "fade_in_slide_out",
