@@ -36,7 +36,7 @@ M.config = {
             },
          },
       },
-    },
+   },
 }
 
 return M
