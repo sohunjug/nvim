@@ -137,6 +137,7 @@ local plug_map = {
    ["x|gI"] = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),
    ["x|A"] = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
    ["v|<M-A>c"] = map_cr('"+y'):with_noremap():with_silent(),
+   ["n|<Leader>tg"] = map_cr("highlight Normal guibg=NONE ctermbg=None"):with_noremap():with_silent(),
    ["n|Q"] = map_cr "@@",
    ["n|q"] = map_cr "quit",
    ["v|<M-[>2;5+"] = map_cmd "y",

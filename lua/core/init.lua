@@ -45,3 +45,5 @@ end
 -- set all the non plugin mappings
 -- require("core.mappings").misc()
 plugin.load_compile()
+
+vim.cmd [[highlight Normal guibg=NONE ctermbg=None]]

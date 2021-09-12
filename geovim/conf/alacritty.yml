@@ -12,14 +12,14 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 120
+    lines: 30
 
   # Window position (changes require restart)
   #
@@ -49,7 +49,7 @@
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -60,10 +60,10 @@
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  title: GVim
 
   # Window class (Linux/BSD only):
   #class:
@@ -78,26 +78,30 @@
   # Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 0
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
-  #multiplier: 3
+  multiplier: 5
 
 # Font configuration
 font:
   # Normal (roman) font face
-  #normal:
+  normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: monospace
+    # family: Fira Code
+    family: Hack Nerd Font Mono
+    # family: Iosevka
+    # style: Retina
+    style: Regular
   # Nerd Fonts patch fonts to include icon glyphs. Install a nerd font and put
   # the name here to use
   # family: Hack Nerd Font Mono
@@ -106,26 +110,30 @@ font:
     #style: Regular
 
   # Bold font face
-  #bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    # family: Fira Code
+    family: Hack Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold
+    style: Bold
+    # style: Medium
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    # family: Fira Code
+    family: Hack Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    # style: Light Italic
+    style: Italic
 
   # Bold italic font face
   #bold_italic:
@@ -139,7 +147,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -174,6 +182,29 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
+colors:                 
+  primary:              
+    foreground: '0xeeeeec'
+                        
+  normal:               
+     black:   '0x2e3436'
+     red:     '0xcc0000'
+     green:   '0x73d216'
+     yellow:  '0xedd400'
+     blue:    '0x3465a4'
+     magenta: '0x75507b'
+     cyan:    '0x06989a'
+     white:   '0xd3d7cf'
+                        
+  bright:               
+     black:   '0x2e3436'
+     red:     '0xef2929'
+     green:   '0x8ae234'
+     yellow:  '0xfce94f'
+     blue:    '0x729fcf'
+     magenta: '0xad7fa8'
+     cyan:    '0x34e2e2'
+     white:   '0xeeeeec'
 # colors:
   # Default colors
   #primary:
@@ -281,7 +312,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 0.95
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{ }<>\t"
@@ -290,7 +321,7 @@ font:
   #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+dynamic_title: true
 
 #cursor:
   # Cursor style
@@ -306,7 +337,7 @@ font:
   #unfocused_hollow: true
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -532,9 +563,9 @@ key_bindings:
   # Send Ctrl+A Meta+W (Meta is sent as ^[) to TMUX, which issues further Vim
   # commands, and send <Esc> :qa <Return> in case TMUX isn't running
   - { key: Q,      mods: Command,         chars: "\x01\x1bW\x1bq" }
-  - { key: Q,      mods: Command|Shift,         chars: "\x01\x11\x1b[qa!" }
+  # - { key: Q,      mods: Command|Alt,         chars: "\x01\x11\x1b[qa!" }
   # Quits Alacritty (will leave TMUX running)
-  # - { key: Q,   mods: Shift|Command,         action: Quit }
+  - { key: Q,   mods: Alt|Command,         action: Quit }
   # Sends Ctrl+A Ctrl+L which is mapped to clear lines in TMUX
   - { key: K,      mods: Command,         chars: "\x01\x0c" }
   - { key: Return,   mods: Command,           action: ToggleFullscreen }
