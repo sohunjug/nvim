@@ -17,7 +17,7 @@ ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", con
 
 ui["akinsho/nvim-bufferline.lua"] = {
    opt = true,
-	event = "BufRead",
+   event = "BufRead",
    config = conf.nvim_bufferline,
    requires = "kyazdani42/nvim-web-devicons",
 }
