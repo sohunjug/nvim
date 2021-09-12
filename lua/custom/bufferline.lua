@@ -10,7 +10,7 @@ vim.cmd "function! NvChad_bufferline_quitvim(a,b,c,d) \n qa \n endfunction"
 
 bufferline.setup {
    options = {
-      offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+      offsets = { { filetype = "NvimTree", text = "File Explorer", padding = 1 } },
       buffer_close_icon = "",
       modified_icon = "",
       -- close_icon = "%@NvChad_bufferline_quitvim@%X",

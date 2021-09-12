@@ -138,13 +138,26 @@ components.active[2][1] = {
       end
       return ""
    end,
-   hl = { fg = colors.green },
+   enabled = function()
+      local Lsp = vim.lsp.util.get_progress_messages()[1]
+      if Lsp then
+         return true
+      end
+      return false
+   end,
+   hl = { fg = colors.green, bg = colors.one_bg2 },
 }
 
 components.active[2][2] = {
    provider = require("nvim-gps").get_location,
    enabled = require("nvim-gps").is_available,
    hl = { fg = colors.pink },
+}
+
+components.active[2][3] = {
+   -- provider = require("custom.filename").get_current_ufn,
+   provider = require("custom.filename").get_filepath,
+   hl = { fg = colors.grey_fg2 },
 }
 
 components.active[3][1] = {
