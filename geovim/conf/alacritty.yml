@@ -100,6 +100,7 @@ font:
     # family: Fira Code
     family: Hack Nerd Font Mono
     # family: Iosevka
+    # family: monospace mono
     # style: Retina
     style: Regular
   # Nerd Fonts patch fonts to include icon glyphs. Install a nerd font and put
@@ -151,9 +152,9 @@ font:
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
+  # offset:
+    # x: 0
+    # y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
