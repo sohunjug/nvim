@@ -33,21 +33,22 @@ local plug_map = {
       :with_silent()
       :with_noremap()
       :with_nowait(),
-   ["n|<Leader>en"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent(),
-   ["n|<Leader>ep"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent(),
-   ["n|[e"] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap():with_silent(),
-   ["n|]e"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap():with_silent(),
-   ["n|<Leader>K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
-   ["n|<Leader>lga"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
-   ["v|<Leader>lga"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-   ["n|<Leader>lgd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
-   ["n|<Leader>lgD"] = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
-   ["n|<Leader>lgs"] = map_cr("Lspsaga signature_help"):with_noremap():with_silent(),
-   ["n|<Leader>lgr"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
-   ["n|<Leader>lgh"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
-   ["n|<Leader>lgt"] = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
-   ["n|<Leader>cw"] = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
-   ["n|<Leader>ce"] = map_cr("Lspsaga show_line_diagnostics"):with_noremap():with_silent(),
+   ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
+   ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
+   ["n|[e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
+   ["n|]e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
+   ["n|<Leader>K"] = map_cr("lua require'lspsaga.hover'.render_hover_doc"):with_noremap():with_silent(),
+   ["n|<Leader>lga"] = map_cr("lua require('lspsaga.codeaction').code_action()"):with_noremap():with_silent(),
+   ["v|<Leader>lga"] = map_cu("lua require('lspsaga.codeaction').range_code_action()"):with_noremap():with_silent(),
+   ["n|<Leader>lgd"] = map_cr("lua require'lspsaga.provider'.preview_definition()"):with_noremap():with_silent(),
+   ["n|<Leader>lgD"] = map_cr("lua vim.lsp.buf.implementation()"):with_noremap():with_silent(),
+   ["n|<Leader>lgs"] = map_cr("lua require('lspsaga.signaturehelp').signature_help()"):with_noremap():with_silent(),
+   ["n|<Leader>lgr"] = map_cr("lua require('lspsaga.rename').rename()"):with_noremap():with_silent(),
+   ["n|<Leader>lgh"] = map_cr("lua require'lspsaga.provider'.lsp_finder()"):with_noremap():with_silent(),
+   ["n|<Leader>lgt"] = map_cr("lua vim.lsp.buf.type_definition()"):with_noremap():with_silent(),
+   ["n|<Leader>cw"] = map_cr("lua vim.lsp.buf.workspace_symbol()"):with_noremap():with_silent(),
+   ["n|<Leader>ce"] = map_cr("lua require'lspsaga.diagnostic'.show_line_diagnostics()"):with_noremap():with_silent(),
+   ["n|<Leader>cs"] = map_cr("lua require'lspsaga.diagnostic'.show_cursor_diagnostics()"):with_noremap():with_silent(),
    ["n|<Leader>ct"] = map_args "Template",
    ["n|<Leader>N"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
    -- Plugin nvim-tree
@@ -58,9 +59,11 @@ local plug_map = {
    -- Plugin DadbodUI
    --    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
-   ["n|<Leader>lt"] = map_cu("Lspsaga open_floaterm"):with_noremap():with_silent(),
-   ["t|<Leader>lc"] = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
-   ["n|<Leader>gt"] = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
+   ["n|<Leader>lt"] = map_cr("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
+   ["t|<Leader>lc"] = map_cu([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
+      :with_noremap()
+      :with_silent(),
+   ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal(lazygit)"):with_noremap():with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
    -- Far.vim
    --    ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),

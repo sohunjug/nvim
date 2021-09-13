@@ -72,6 +72,8 @@ end
 
 function config.indent()
    require("indent_guides").setup {
+      indent_tab_guides = true,
+      indent_pretty_mode = true,
       exclude_filetyps = {
          "startify",
          "dashboard",

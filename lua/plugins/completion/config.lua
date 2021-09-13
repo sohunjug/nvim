@@ -73,7 +73,12 @@ function config.navigator()
 end
 
 function config.saga()
-   vim.api.nvim_command "autocmd CursorHold * Lspsaga show_line_diagnostics"
+   if not packer_plugins["lspsaga.nvim"].loaded then
+      vim.cmd [[packadd lspsaga.nvim]]
+   end
+   local saga = require "lspsaga"
+   saga.init_lsp_saga { code_action_icon = "💡" }
+   vim.api.nvim_command "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()"
 end
 
 function config.cmp()
