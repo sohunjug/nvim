@@ -51,11 +51,17 @@ function open_gui() {
     else
       GEOVIM=1 nohup kitty -d="`pwd`" -1 --instance-group="$session" --listen-on=unix:/tmp/geovim --config "$GEOVIM_PATH/conf/kitty.conf" $command >/dev/null 2>&1 &
     fi
-  else
+  elif [[ "$terminal_app" == "alacritty" ]]; then
     if [[ -z "$command" ]]; then
       echo 'Alacritty is already open. Check the window.'
     else
       GEOVIM=1 nohup alacritty --working-directory="`pwd`" --config-file="$GEOVIM_PATH/conf/alacritty.yml" -e sh -c "$command" >/dev/null 2>&1 &
+    fi
+  elif [[ "$terminal_app" == "wezterm" ]]; then
+    if [[ -z "$command" ]]; then
+      echo 'wezterm is already open. Check the window.'
+    else
+      GEOVIM=1 nohup wezterm --config-file "$GEOVIM_PATH/conf/wezterm.lua" start -- zsh -c "$command" >/dev/null 2>&1 &
     fi
   fi
 }

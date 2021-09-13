@@ -94,12 +94,12 @@ completion["AckslD/nvim-neoclip.lua"] = {
    end,
 }
 
-completion["ray-x/navigator.lua"] = {
+--[[completion["ray-x/navigator.lua"] = {
    config = conf.navigator,
    requires = { { "ray-x/guihua.lua", run = "cd lua/fzy && make" } },
-}
+}]]
 
-completion["glepnir/smartinput.nvim"] = { ft = "go", config = conf.smart_input }
+-- completion["glepnir/smartinput.nvim"] = { ft = "go", config = conf.smart_input }
 
 completion["mattn/vim-sonictemplate"] = {
    cmd = "Template",

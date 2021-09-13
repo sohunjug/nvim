@@ -35,7 +35,7 @@ editor["simrat39/symbols-outline.nvim"] = {
 
 --editor["rhysd/vim-operator-surround"] = { event = "BufRead", requires = "kana/vim-operator-user" }
 
-editor["kana/vim-niceblock"] = { opt = true }
+--editor["kana/vim-niceblock"] = { opt = true }
 
 editor["kevinhwang91/nvim-bqf"] = { opt = true, config = conf.bqf }
 
