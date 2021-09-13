@@ -36,7 +36,7 @@ function config.rooter()
       "go.mod",
       ".bzr",
       ".svn",
-		"pom.xml",
+      "pom.xml",
       "node_modules",
       "CMakeLists.txt",
    }
