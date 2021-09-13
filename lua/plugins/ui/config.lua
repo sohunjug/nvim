@@ -55,18 +55,18 @@ function config.neoscroll()
    }
 
    local t = {}
-   t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
-   t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
+   t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "100", "sine", [['cursorline']] } }
+   t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "100", "sine", [['cursorline']] } }
    -- Use the "circular" easing function
-   t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
-   t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
+   t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "120", [['circular']] } }
+   t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "120", [['circular']] } }
    -- Pass "nil" to disable the easing animation (constant scrolling speed)
-   t["<C-y>"] = { "scroll", { "-0.10", "false", "100", nil } }
-   t["<C-e>"] = { "scroll", { "0.10", "false", "100", nil } }
+   t["<C-y>"] = { "scroll", { "-0.10", "true", "100", [['cursorlar']] } }
+   t["<C-e>"] = { "scroll", { "0.10", "false", "100", [['cursorlar']] } }
    -- When no easing function is provided the default easing function (in this case "quadratic") will be used
-   t["zt"] = { "zt", { "300" } }
-   t["zz"] = { "zz", { "300" } }
-   t["zb"] = { "zb", { "300" } }
+   t["zt"] = { "zt", { "140" } }
+   t["zz"] = { "zz", { "140" } }
+   t["zb"] = { "zb", { "140" } }
    require("neoscroll.config").set_mappings(t)
 end
 
