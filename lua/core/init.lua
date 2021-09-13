@@ -46,4 +46,4 @@ end
 -- require("core.mappings").misc()
 plugin.load_compile()
 
-vim.cmd [[highlight Normal guibg=NONE ctermbg=None]]
+-- vim.cmd [[highlight Normal guibg=NONE ctermbg=None]]
