@@ -12,11 +12,11 @@ editor["norcalli/nvim-colorizer.lua"] = {
 }
 
 --editor["itchyny/vim-cursorword"] = { event = { "BufReadPre", "BufNewFile" }, config = conf.vim_cursorwod }
---[[editor["yamatsum/nvim-cursorline"] = {
+editor["yamatsum/nvim-cursorline"] = {
    opt = true,
    event = { "BufReadPre", "BufNewFile" },
-   config = conf.nvim_cursorline,
-}]]
+   setup = conf.nvim_cursorline,
+}
 
 editor["hrsh7th/vim-eft"] = {
    opt = true,

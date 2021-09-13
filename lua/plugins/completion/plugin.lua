@@ -14,6 +14,7 @@ completion["kabouzeid/nvim-lspinstall"] = {
 completion["alexaandru/nvim-lspupdate"] = {
    opt = true,
    cmd = "LspUpdate",
+   after = "nvim-lspconfig",
 }
 
 completion["jose-elias-alvarez/null-ls.nvim"] = {

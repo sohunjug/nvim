@@ -128,7 +128,7 @@ function config.bqf()
 end
 
 function config.nvim_cursorline()
-   config.vim_cursorwod()
+   -- config.vim_cursorwod()
 end
 
 function config.vim_cursorwod()
