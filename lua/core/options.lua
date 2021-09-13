@@ -105,7 +105,7 @@ local function load_options()
       synmaxcol = 2500,
       formatoptions = "1jcroql",
       textwidth = 80,
-      expandtab = true,
+      -- expandtab = true,
       autoindent = true,
       tabstop = 2,
       shiftwidth = 2,
