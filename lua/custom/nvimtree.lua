@@ -37,6 +37,18 @@ g.nvim_tree_special_files["MAKEFILE"] = 1
 g.nvim_tree_special_files["go.mod"] = 1
 g.nvim_tree_special_files["cargo.toml"] = 1
 g.nvim_tree_disable_default_keybindings = 1
+g.nvim_tree_window_picker_exclude = {
+   filetype = {
+      "notify",
+      "Trouble",
+      "packer",
+      "qf",
+      "",
+   },
+   buftype = {
+      "terminal",
+   },
+}
 
 g.nvim_tree_show_icons = {
    git = 1,
@@ -87,7 +99,7 @@ g.nvim_tree_bindings = {
    { key = { "H", "." }, cb = tree_cb "toggle_dotfiles" },
    { key = "r", cb = tree_cb "refresh" },
    { key = { "a", "N" }, cb = tree_cb "create" },
-   { key = "dd", cb = tree_cb "remove" },
+   { key = { "D", "dd" }, cb = tree_cb "remove" },
    { key = "R", cb = tree_cb "rename" },
    { key = "<C->", cb = tree_cb "full_rename" },
    { key = "x", cb = tree_cb "cut" },

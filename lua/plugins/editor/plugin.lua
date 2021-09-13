@@ -47,9 +47,15 @@ editor["edluffy/specs.nvim"] = {
 
 --editor["rhysd/vim-operator-surround"] = { event = "BufRead", requires = "kana/vim-operator-user" }
 
-editor["kana/vim-niceblock"] = { opt = true }
+editor["kana/vim-niceblock"] = { opt = true, event = "BufReadPre" }
 
-editor["kevinhwang91/nvim-bqf"] = { opt = true, config = conf.bqf }
+--[[editor["kevinhwang91/nvim-bqf"] = {
+   opt = true,
+   cmd = { "BqfAutoToggle", "BqfEnable", "BqfToggle" },
+   run = ":BqfAutoToggle",
+   event = "BufReadPost",
+   config = conf.bqf,
+}]]
 
 editor["windwp/nvim-autopairs"] = {
    opt = true,

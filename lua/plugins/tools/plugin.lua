@@ -98,6 +98,7 @@ tools["gelguy/wilder.nvim"] = {
 
 tools["folke/trouble.nvim"] = {
    opt = true,
+   event = "BufWritePost",
    cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
    config = conf.trouble,
 }
@@ -106,6 +107,7 @@ tools["rcarriga/nvim-notify"] = {
    -- opt = true,
    -- event = "WinEnter",
    config = conf.notify,
+   after = "feline.nvim",
 }
 
 return tools

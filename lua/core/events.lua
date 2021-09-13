@@ -30,7 +30,7 @@ function autocmd.load_autocmds()
          { "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
          { "BufWritePre", "*.tmp", "setlocal noundofile" },
          { "BufWritePre", "*.bak", "setlocal noundofile" },
-         { "BufWritePre", "*.tsx", "lua vim.api.nvim_command('Format')" },
+         -- { "BufWritePre", "*.tsx", "lua vim.api.nvim_command('Format')" },
          -- { "BufWritePre", "*.go", "lua require('go.format').goimport()" },
          { "BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]] },
       },

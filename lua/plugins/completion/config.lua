@@ -77,8 +77,8 @@ function config.saga()
       vim.cmd [[packadd lspsaga.nvim]]
    end
    local saga = require "lspsaga"
-   saga.init_lsp_saga { code_action_icon = "💡" }
-   vim.api.nvim_command "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()"
+   saga.init_lsp_saga { code_action_icon = "💡", use_saga_diagnostic_sign = false }
+   -- vim.api.nvim_command "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()"
 end
 
 function config.cmp()
@@ -199,6 +199,68 @@ function config.luasnip()
       updateevents = "TextChanged,TextChangedI",
    }
    require("luasnip/loaders/from_vscode").load()
+end
+
+function config.lspkind()
+   require("lspkind").init {
+      -- enables text annotations
+      --
+      -- default: true
+      with_text = true,
+
+      -- default symbol map
+      -- can be either 'default' (requires nerd-fonts font) or
+      -- 'codicons' for codicon preset (requires vscode-codicons font)
+      --
+      -- default: 'default'
+      preset = "codicons",
+
+      -- override preset symbols
+      --
+      -- default: {}
+      symbol_map = {
+         Text = "",
+         Method = "",
+         Function = "",
+         Constructor = "",
+         Field = "ﰠ",
+         Variable = "",
+         Class = "ﴯ",
+         Interface = "",
+         Module = "",
+         Property = "ﰠ",
+         Unit = "塞",
+         Value = "",
+         Enum = "",
+         Keyword = "",
+         Snippet = "",
+         Color = "",
+         File = "",
+         Reference = "",
+         Folder = "",
+         EnumMember = "",
+         Constant = "",
+         Struct = "פּ",
+         Event = "",
+         Operator = "",
+         TypeParameter = "",
+      },
+   }
+end
+
+function config.lsp_diag()
+   require("vimway-lsp-diag").init {
+      -- optional settings
+      -- below are defaults
+
+      -- increase for noisy servers
+      debounce_ms = 50,
+
+      -- list in quickfix only diagnostics from clients
+      -- attached to a current buffer
+      -- if false, all buffers' clients diagnostics is collected
+      buf_clients_only = false,
+   }
 end
 
 return config

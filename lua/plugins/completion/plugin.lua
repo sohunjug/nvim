@@ -38,6 +38,20 @@ completion["neovim/nvim-lspconfig"] = {
    },
 }
 
+--[[completion["onsails/vimway-lsp-diag.nvim"] = {
+   opt = true,
+   event = "BufReadPre",
+   after = "nvim-lspconfig",
+   config = conf.lsp_diag,
+}]]
+
+completion["onsails/lspkind-nvim"] = {
+   opt = true,
+   event = "BufReadPre",
+   after = "nvim-lspconfig",
+   config = conf.lspkind,
+}
+
 completion["glepnir/lspsaga.nvim"] = {
    opt = true,
    cmd = "Lspsaga",

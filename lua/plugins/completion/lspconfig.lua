@@ -1,9 +1,6 @@
 local lspconfig = require "lspconfig"
 local config = require "plugins.completion.lsp.config"
 
-if not packer_plugins["lspsaga.nvim"].loaded then
-   vim.cmd [[packadd lspsaga.nvim]]
-end
 if not packer_plugins["null-ls.nvim"].loaded then
    vim.cmd [[packadd null-ls.nvim]]
 end
@@ -22,9 +19,6 @@ M.servers.dockerls = {}
 M.servers.bashls = {}
 M.servers.pyright = {}
 M.servers.rnix = {}
-
-local saga = require "lspsaga"
-saga.init_lsp_saga { code_action_icon = "💡" }
 
 function _G.reload_lsp()
    vim.lsp.stop_client(vim.lsp.get_active_clients())
