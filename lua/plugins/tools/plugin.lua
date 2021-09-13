@@ -60,11 +60,9 @@ tools["jdhao/better-escape.vim"] = {
    config = require("custom.others").comment,
 }]]
 
-tools["winston0410/commented.nvim"] = {
-   opt = true,
-   after = { "nvim-treesitter", "nvim-ts-context-commentstring" },
+tools["b3nj5m1n/kommentary"] = {
    event = "BufReadPost",
-   config = conf.commented,
+   config = conf.kommentary,
 }
 
 --[[tools["ygm2/rooter.nvim"] = {

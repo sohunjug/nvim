@@ -18,6 +18,7 @@ local function load_options()
       -- macligatures = "",
       termguicolors = true,
       mouse = "nv",
+      cursorline = true,
       errorbells = true,
       visualbell = true,
       hidden = true,

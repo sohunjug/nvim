@@ -99,19 +99,11 @@ function config.rooter()
    vim.g.outermost_root = true
 end
 
-function config.commented()
-   require("nvim-treesitter.configs").setup {
-      context_commentstring = {
-         enable = true,
-         -- This plugin provided an autocommand option
-         enable_autocmd = true,
-      },
-   }
-   require("commented").setup {
-      hooks = {
-         before_comment = require("ts_context_commentstring.internal").update_commentstring,
-      },
-   }
+function config.kommentary()
+   require("kommentary.config").configure_language("rust", {
+      single_line_comment_string = "//",
+      multi_line_comment_strings = { "/*", "*/" },
+   })
 end
 
 function config.vim_dadbod_ui()

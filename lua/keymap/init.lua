@@ -104,8 +104,9 @@ local plug_map = {
    -- prodoc
    ["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
    ["x|gcc"] = map_cr "ProComment",
-   ["n|<leader>cl"] = map_cu("Comment"):with_noremap():with_silent(),
-   ["x|<leader>cl"] = map_cr "Comment",
+   ["n|<leader>cl"] = map_cmd("<Plug>kommentary_line_default"):with_noremap():with_silent(),
+   ["n|<leader>cc"] = map_cmd("<Plug>kommentary_motion_default"):with_noremap():with_silent(),
+   ["x|<leader>cl"] = map_cmd("<Plug>kommentary_visual_default"):with_noremap():with_silent(),
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
    ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),
    -- Plugin acceleratedjk
