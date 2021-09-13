@@ -52,7 +52,7 @@ else
 end
 
 -- Disable cusror line
-cmd "hi clear CursorLine"
+-- cmd "hi clear CursorLine"
 -- Line number
 fg("cursorlinenr", white)
 

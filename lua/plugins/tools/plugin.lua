@@ -7,9 +7,12 @@ local conf = require "plugins.tools.config"
    requires = { { "tpope/vim-dadbod", opt = true } },
 }]]
 
-tools["editorconfig/editorconfig-vim"] = { ft = { "go", "typescript", "javascript", "vim", "rust", "zig", "c", "cpp" } }
+tools["editorconfig/editorconfig-vim"] = {
+   opt = true,
+   ft = { "go", "typescript", "javascript", "vim", "rust", "zig", "c", "cpp" },
+}
 
-tools["glepnir/prodoc.nvim"] = { event = "BufReadPre" }
+tools["glepnir/prodoc.nvim"] = { opt = true, event = "BufReadPre" }
 
 --[[tools["brooth/far.vim"] = {
    cmd = { "Far", "Farp" },
@@ -27,7 +30,7 @@ tools["glepnir/prodoc.nvim"] = { event = "BufReadPre" }
 
 tools["ellisonleao/glow.nvim"] = {
    opt = true,
-   run = "vim.cmd [[GlowInstall]]",
+   run = ":GlowInstall",
    ft = "markdown",
    config = function()
       vim.g.glow_binary_path = require("core.global").home .. ".local/bin"
@@ -36,12 +39,14 @@ tools["ellisonleao/glow.nvim"] = {
 
 tools["andymass/vim-matchup"] = {
    opt = true,
+   event = "BufReadPre",
    after = "nvim-treesitter",
    config = function()
       vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
    end,
 }
 tools["jdhao/better-escape.vim"] = {
+   oopt = true,
    event = "InsertEnter",
    config = require("custom.others").better_escape,
    setup = function()
@@ -49,19 +54,33 @@ tools["jdhao/better-escape.vim"] = {
    end,
 }
 
-tools["terrortylor/nvim-comment"] = {
+--[[tools["terrortylor/nvim-comment"] = {
    opt = true,
    cmd = "CommentToggle",
    config = require("custom.others").comment,
+}]]
+
+tools["winston0410/commented.nvim"] = {
+   opt = true,
+   after = { "nvim-treesitter", "nvim-ts-context-commentstring" },
+   event = "BufReadPost",
+   config = conf.commented,
 }
 
-tools["ygm2/rooter.nvim"] = {
+--[[tools["ygm2/rooter.nvim"] = {
    event = "BufReadPost",
    opt = true,
    config = conf.rooter,
+}]]
+
+tools["ahmedkhalf/project.nvim"] = {
+   opt = true,
+   event = "BufReadPre",
+   config = conf.lsprooter,
 }
 
 tools["Pocco81/TrueZen.nvim"] = {
+   opt = true,
    cmd = {
       "TZAtaraxis",
       "TZMinimalist",
@@ -88,12 +107,7 @@ tools["folke/trouble.nvim"] = {
 tools["rcarriga/nvim-notify"] = {
    -- opt = true,
    -- event = "WinEnter",
-   config = function()
-      require("notify").setup {
-         stages = "fade_in_slide_out",
-      }
-      vim.notify = require "notify"
-   end,
+   config = conf.notify,
 }
 
 return tools

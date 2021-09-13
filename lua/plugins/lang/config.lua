@@ -12,6 +12,9 @@ function config.nvim_treesitter()
    end
    require("nvim-treesitter.configs").setup {
       -- ensure_installed = "maintained",
+      indent = {
+         enable = true,
+      },
       ensure_installed = {
          "go",
          "c",
@@ -35,7 +38,7 @@ function config.nvim_treesitter()
          "graphql",
          "dot",
       },
-      highlight = { enable = true },
+      highlight = { enable = true, additional_vim_regex_highlighting = false },
       textobjects = {
          select = {
             enable = true,

@@ -27,6 +27,62 @@ local function load_dbs()
    return dbs
 end
 
+function config.notify()
+   require("notify").setup {
+      stages = "fade_in_slide_out",
+      background_color = "NotifyBG",
+   }
+   vim.notify = require "notify"
+end
+
+function config.project()
+   require("project_nvim").setup {
+      -- Manual mode doesn't automatically change your root directory, so you have
+      -- the option to manually do so using `:ProjectRoot` command.
+      manual_mode = false,
+
+      -- Methods of detecting the root directory. **"lsp"** uses the native neovim
+      -- lsp, while **"pattern"** uses vim-rooter like glob pattern matching. Here
+      -- order matters: if one is not detected, the other is used as fallback. You
+      -- can also delete or rearangne the detection methods.
+      detection_methods = { "lsp", "pattern" },
+
+      -- All the patterns used to detect root dir, when **"pattern"** is in
+      -- detection_methods
+      patterns = {
+         ".git",
+         "_darcs",
+         ".hg",
+         ".bzr",
+         ".svn",
+         "Makefile",
+         "go.mod",
+         "pom.xml",
+         "CMakeLists.txt",
+         "package.json",
+      },
+
+      -- Table of lsp clients to ignore by name
+      -- eg: { "efm", ... }
+      ignore_lsp = {},
+
+      -- Don't calculate root dir on specific directories
+      -- Ex: { "~/.cargo/*", ... }
+      exclude_dirs = {},
+
+      -- Show hidden files in telescope
+      show_hidden = false,
+
+      -- When set to false, you will get a message when project.nvim changes your
+      -- directory.
+      silent_chdir = true,
+
+      -- Path where project.nvim will store the project history for use in
+      -- telescope
+      datapath = vim.fn.stdpath "data",
+   }
+end
+
 function config.rooter()
    vim.g.rooter_pattern = {
       ".git",
@@ -41,6 +97,21 @@ function config.rooter()
       "CMakeLists.txt",
    }
    vim.g.outermost_root = true
+end
+
+function config.commented()
+   require("nvim-treesitter.configs").setup {
+      context_commentstring = {
+         enable = true,
+         -- This plugin provided an autocommand option
+         enable_autocmd = true,
+      },
+   }
+   require("commented").setup {
+      hooks = {
+         before_comment = require("ts_context_commentstring.internal").update_commentstring,
+      },
+   }
 end
 
 function config.vim_dadbod_ui()

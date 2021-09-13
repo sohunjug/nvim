@@ -2,20 +2,24 @@ local lang = {}
 local conf = require "plugins.lang.config"
 
 lang["nvim-treesitter/nvim-treesitter"] = {
-   event = "BufRead",
+   opt = true,
+   event = { "VimEnter", "BufReadPre", "BufWritePost" },
    after = "telescope.nvim",
    config = conf.nvim_treesitter,
 }
 
 lang["nvim-treesitter/nvim-treesitter-textobjects"] = {
+   opt = true,
    after = "nvim-treesitter",
 }
 
 lang["JoosepAlviste/nvim-ts-context-commentstring"] = {
+   opt = true,
    after = "nvim-treesitter",
 }
 
 lang["SmiteshP/nvim-gps"] = {
+   opt = true,
    after = "nvim-treesitter",
    config = conf.nvim_gps,
 }

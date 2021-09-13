@@ -2,6 +2,7 @@ local completion = {}
 local conf = require "plugins.completion.config"
 completion["kabouzeid/nvim-lspinstall"] = {
    opt = true,
+   cmd = "LspInstall",
    setup = function()
       require("core.utils").packer_lazy_load "nvim-lspinstall"
       -- reload the current file so lsp actually starts for it
@@ -15,14 +16,15 @@ completion["alexaandru/nvim-lspupdate"] = {
    cmd = "LspUpdate",
 }
 
+completion["jose-elias-alvarez/null-ls.nvim"] = {
+   config = conf.nullls,
+}
+
 completion["neovim/nvim-lspconfig"] = {
    event = "BufReadPre",
+   after = "null-ls.nvim",
    config = conf.nvim_lsp,
    requires = {
-      {
-         "jose-elias-alvarez/null-ls.nvim",
-         config = conf.nullls,
-      },
       {
          "jose-elias-alvarez/nvim-lsp-ts-utils",
          ft = {
@@ -35,9 +37,9 @@ completion["neovim/nvim-lspconfig"] = {
    },
 }
 
-completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga", after = "nvim-lspconfig" }
+completion["glepnir/lspsaga.nvim"] = { opt = true, cmd = "Lspsaga", after = "nvim-lspconfig" }
 
-completion["hrsh7th/nvim-compe"] = { opt = true, event = "InsertEnter", config = conf.nvim_compe }
+completion["hrsh7th/nvim-compe"] = { opt = true, event = { "VimEnter", "BufReadPre" }, config = conf.nvim_compe }
 
 completion["hrsh7th/vim-vsnip"] = { opt = true, event = "InsertCharPre", config = conf.vim_vsnip }
 
@@ -64,6 +66,7 @@ completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" 
 }]]
 
 completion["nvim-telescope/telescope.nvim"] = {
+   opt = true,
    cmd = "Telescope",
    config = conf.telescope,
    requires = {
@@ -71,12 +74,15 @@ completion["nvim-telescope/telescope.nvim"] = {
       { "nvim-lua/plenary.nvim", opt = true },
       { "jremmen/vim-ripgrep", opt = true },
       { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
-      { "nvim-telescope/telescope-project.nvim" },
+      { "nvim-telescope/telescope-project.nvim", opt = true },
+      {
+         "nvim-telescope/telescope-frecency.nvim",
+         opt = true,
+         requires = { { "tami5/sqlite.lua", opt = true } },
+      },
    },
 }
-completion["nvim-telescope/telescope-frecency.nvim"] = {
-   requires = { "tami5/sqlite.lua" },
-}
+
 completion["TimUntersberger/neogit"] = {
    opt = true,
    cmd = "Neogit",
@@ -102,12 +108,14 @@ completion["AckslD/nvim-neoclip.lua"] = {
 -- completion["glepnir/smartinput.nvim"] = { ft = "go", config = conf.smart_input }
 
 completion["mattn/vim-sonictemplate"] = {
+   opt = true,
    cmd = "Template",
    ft = { "go", "typescript", "lua", "javascript", "vim", "rust", "markdown" },
    config = conf.vim_sonictemplate,
 }
 
 completion["mattn/emmet-vim"] = {
+   opt = true,
    event = "InsertEnter",
    ft = { "html", "css", "javascript", "javascriptreact", "vue", "typescript", "typescriptreact" },
    config = conf.emmet,

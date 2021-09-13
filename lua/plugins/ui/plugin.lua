@@ -13,7 +13,12 @@ ui["glepnir/dashboard-nvim"] = { config = conf.dashboard }
 
 -- ui["glepnir/galaxyline.nvim"] = {branch = "main", config = conf.galaxyline, requires = "kyazdani42/nvim-web-devicons"}
 
-ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blakline }
+--  ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blankline }
+ui["glepnir/indent-guides.nvim"] = {
+   opt = true,
+   event = "BufRead",
+   config = conf.indent,
+}
 
 ui["akinsho/nvim-bufferline.lua"] = {
    opt = true,
@@ -31,6 +36,7 @@ ui["kyazdani42/nvim-tree.lua"] = {
 
 ui["yamatsum/nvim-nonicons"] = {
    opt = true,
+   event = "BufRead",
    after = "nvim-web-devicons",
    requires = { "kyazdani42/nvim-web-devicons" },
 }
@@ -43,10 +49,13 @@ ui["lewis6991/gitsigns.nvim"] = {
 }
 
 ui["folke/which-key.nvim"] = {
+   opt = true,
+   event = "VimEnter",
    config = function()
       require("which-key").setup()
    end,
 }
+
 ui["famiu/feline.nvim"] = {
    requires = { "kyazdani42/nvim-web-devicons", "SmiteshP/nvim-gps" },
    after = "nvim-gps",
@@ -54,14 +63,23 @@ ui["famiu/feline.nvim"] = {
       require "custom.statusline"
    end,
 }
+
 ui["NvChad/nvim-base16.lua"] = {
    config = function()
       require("colors").init()
    end,
 }
+
+ui["karb94/neoscroll.nvim"] = {
+   opt = true,
+   event = "BufReadPre",
+   config = conf.neoscroll,
+}
 ui["nacro90/numb.nvim"] = {
+   opt = true,
+   event = "BufReadPost",
    config = function()
-      require("numb").setup { show_numbers = true, show_currorline = true }
+      require("numb").setup { show_numbers = true, show_currorline = true, number_only = false }
    end,
 }
 

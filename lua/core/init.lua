@@ -6,6 +6,8 @@ local core_modules = {
 }
 
 vim.cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
+vim.cmd [[ autocmd ColorScheme * highlight NotifyBG guibg=#3d3d3d guifg=#3e4451 ]]
+-- vim.cmd [[ highlight Normal guibg=#000000 ctermbg=#000000 ]]
 local global = require "core.global"
 
 -- Create cache dir and subs dir

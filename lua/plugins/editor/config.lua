@@ -60,6 +60,26 @@ function config.symbols()
    }
 end
 
+function config.specs()
+   require("specs").setup {
+      show_jumps = true,
+      min_jump = 30,
+      popup = {
+         delay_ms = 0, -- delay before popup displays
+         inc_ms = 10, -- time increments used for fade/resize effects
+         blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+         width = 10,
+         winhl = "PMenu",
+         fader = require("specs").linear_fader,
+         resizer = require("specs").shrink_resizer,
+      },
+      ignore_filetypes = {},
+      ignore_buftypes = {
+         nofile = true,
+      },
+   }
+end
+
 function config.nvim_colorizer()
    require("colorizer").setup {
       css = { rgb_fn = true },
@@ -107,6 +127,10 @@ function config.bqf()
    }
 end
 
+function config.nvim_cursorline()
+   config.vim_cursorwod()
+end
+
 function config.vim_cursorwod()
    vim.api.nvim_command "augroup user_plugin_cursorword"
    vim.api.nvim_command "autocmd!"
@@ -119,6 +143,9 @@ end
 
 function config.autopairs()
    require("nvim-autopairs").setup { fast_wrap = {}, disable_filetype = { "TelescopePrompt" } }
+   if not packer_plugins["nvim-compe"].loaded then
+      vim.cmd [[packadd nvim-compe]]
+   end
    require("nvim-autopairs.completion.compe").setup {
       map_cr = true,
       map_complete = true,

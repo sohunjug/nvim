@@ -70,8 +70,8 @@ local plug_map = {
    ["n|<Leader>bo"] = map_cmd("<cmd>lua require('custom.bufonly').buf_only()<CR>"):with_noremap():with_silent(),
    ["n|<Localleader>n"] = map_cmd("<cmd>set number! relativenumber!<CR>"):with_noremap():with_silent(),
    ["n|<Leader>bc"] = map_cu("Telescope neoclip neoclip"):with_noremap():with_silent(),
-   -- ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
-   ["n|<Leader>bd"] = map_cmd("lua require('core.utils').close_buffer()"):with_noremap():with_silent(),
+   ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
+   --    ["n|<Leader>bd"] = map_cmd("lua require('core.utils').close_buffer()"):with_noremap():with_silent(),
    ["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent(),
    ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
    ["n|<Leader>bp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
@@ -104,8 +104,8 @@ local plug_map = {
    -- prodoc
    ["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
    ["x|gcc"] = map_cr "ProComment",
-   ["n|<leader>cl"] = map_cu("CommentToggle"):with_noremap():with_silent(),
-   ["x|<leader>cl"] = map_cr "CommentToggle",
+   ["n|<leader>cl"] = map_cu("Comment"):with_noremap():with_silent(),
+   ["x|<leader>cl"] = map_cr "Comment",
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
    ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),
    -- Plugin acceleratedjk
