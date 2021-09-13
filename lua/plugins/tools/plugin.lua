@@ -46,6 +46,12 @@ tools["terrortylor/nvim-comment"] = {
    config = require("custom.others").comment,
 }
 
+tools["ygm2/rooter.nvim"] = {
+   event = "BufReadPost",
+   opt = true,
+   config = conf.rooter,
+}
+
 tools["Pocco81/TrueZen.nvim"] = {
    cmd = {
       "TZAtaraxis",

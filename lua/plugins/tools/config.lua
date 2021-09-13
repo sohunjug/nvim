@@ -27,6 +27,22 @@ local function load_dbs()
    return dbs
 end
 
+function config.rooter()
+   vim.g.rooter_pattern = {
+      ".git",
+      "Makefile",
+      "_darcs",
+      ".hg",
+      "go.mod",
+      ".bzr",
+      ".svn",
+		"pom.xml",
+      "node_modules",
+      "CMakeLists.txt",
+   }
+   vim.g.outermost_root = true
+end
+
 function config.vim_dadbod_ui()
    if packer_plugins["vim-dadbod"] and not packer_plugins["vim-dadbod"].loaded then
       vim.cmd [[packadd vim-dadbod]]

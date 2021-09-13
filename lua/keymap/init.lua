@@ -56,15 +56,15 @@ local plug_map = {
    -- Plugin MarkdownPreview
    ["n|<Leader>om"] = map_cu("MarkdownPreview"):with_noremap():with_silent(),
    -- Plugin DadbodUI
-   ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
+   --    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
    ["n|<Leader>lt"] = map_cu("Lspsaga open_floaterm"):with_noremap():with_silent(),
    ["t|<Leader>lc"] = map_cu([[<C-\><C-n>:Lspsaga close_floaterm<CR>]]):with_noremap():with_silent(),
    ["n|<Leader>gt"] = map_cu("Lspsaga open_floaterm lazygit"):with_noremap():with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
    -- Far.vim
-   ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
-   ["v|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
+   --    ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
+   --    ["v|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
    -- Plugin Telescope
    ["n|<Leader>bb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
    ["n|<Leader>bo"] = map_cmd("<cmd>lua require('custom.bufonly').buf_only()<CR>"):with_noremap():with_silent(),
