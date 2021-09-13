@@ -13,7 +13,8 @@ ui["glepnir/dashboard-nvim"] = { config = conf.dashboard }
 
 -- ui["glepnir/galaxyline.nvim"] = {branch = "main", config = conf.galaxyline, requires = "kyazdani42/nvim-web-devicons"}
 
---  ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blankline }
+-- ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blankline }
+
 ui["glepnir/indent-guides.nvim"] = {
    opt = true,
    event = "BufRead",

@@ -98,8 +98,9 @@ function config.indent()
 end
 
 function config.indent_blankline()
-   --  vim.g.indent_blankline_char = "│"
-   --  vim.g.indent_blankline_show_first_indent_level = false
+   vim.g.indent_blankline_char = "│"
+   vim.g.indent_blankline_space_char = "·"
+   vim.g.indent_blankline_show_first_indent_level = false
    vim.g.indent_blankline_filetype_exclude = {
       "startify",
       "dashboard",
@@ -123,10 +124,10 @@ function config.indent_blankline()
       "flutterToolsOutline",
       "", -- for all buffers without a file type
    }
-   --  vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+   vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
    vim.g.indent_blankline_show_trailing_blankline_indent = false
    vim.g.indent_blankline_show_current_context = true
-   --[[vim.g.indent_blankline_context_patterns = {
+   vim.g.indent_blankline_context_patterns = {
       "class",
       "function",
       "method",
@@ -138,10 +139,11 @@ function config.indent_blankline()
       "if_statement",
       "while",
       "for",
-   }]]
+   }
    -- because lazy load indent-blankline so need readd this autocmd
-   --  vim.cmd "autocmd CursorMoved * IndentBlanklineRefresh"
+   vim.cmd "autocmd CursorMoved * IndentBlanklineRefresh"
    vim.opt.listchars = {
+      space = "⋅",
       eol = "↴",
    }
    --  require("indent_blankline").setup {
