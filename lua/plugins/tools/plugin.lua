@@ -18,10 +18,19 @@ tools["glepnir/prodoc.nvim"] = { event = "BufReadPre" }
    end,
 }]]
 
-tools["iamcco/markdown-preview.nvim"] = {
+--[[tools["iamcco/markdown-preview.nvim"] = {
    ft = "markdown",
    config = function()
       vim.g.mkdp_auto_start = 0
+   end,
+}]]
+
+tools["ellisonleao/glow.nvim"] = {
+   opt = true,
+   run = "vim.cmd [[GlowInstall]]",
+   ft = "markdown",
+   config = function()
+      vim.g.glow_binary_path = require("core.global").home .. ".local/bin"
    end,
 }
 

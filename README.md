@@ -1,4 +1,4 @@
-<h1 align="center">NvChad</h1> 
+<h1 align="center">sohunjug</h1> 
 
 <div align="center">
 	<a href="https://nvchad.netlify.app/">Home</a>

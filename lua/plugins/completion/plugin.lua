@@ -35,7 +35,7 @@ completion["neovim/nvim-lspconfig"] = {
    },
 }
 
-completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga", opt = true, after = "nvim-lspconfig" }
+completion["glepnir/lspsaga.nvim"] = { cmd = "Lspsaga", after = "nvim-lspconfig" }
 
 completion["hrsh7th/nvim-compe"] = { opt = true, event = "InsertEnter", config = conf.nvim_compe }
 
