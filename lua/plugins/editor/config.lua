@@ -9,12 +9,12 @@ function config.delimimate()
 end
 
 function config.symbols()
-   vim.g.symbols_outline = {
-      highlight_hovered_item = false,
-      show_guides = false,
+   require("symbols-outline").setup {
+      highlight_hovered_item = true,
+      show_guides = true,
       auto_preview = false,
       position = "right",
-      width = 45,
+      width = 28,
       show_numbers = false,
       show_relative_numbers = false,
       show_symbol_details = false,

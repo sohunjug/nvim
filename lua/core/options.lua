@@ -2,11 +2,12 @@ local global = require "core.global"
 
 local function bind_option(options)
    for k, v in pairs(options) do
-      if v == true or v == false then
+      --[[if v == true or v == false then
          vim.cmd("set " .. k)
       else
          vim.cmd("set " .. k .. "=" .. v)
-      end
+      end]]
+		vim.opt[k] = v
    end
 end
 
@@ -30,7 +31,40 @@ local function load_options()
       sessionoptions = "curdir,help,tabpages,winsize",
       clipboard = "unnamedplus",
       wildignorecase = true,
-      wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
+      -- wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
+      wildignore = {
+         "*.o",
+         "*.a",
+         "*.out",
+         "*.class",
+         "*.mo",
+         "*.la",
+         "*.so",
+         "*.obj",
+         "*.swp",
+         ".tern-port",
+         "*.tmp",
+         "*.jpg",
+         "*.jpeg",
+         "*.png",
+         "*.xpm",
+         "*.gif",
+         "*.bmp",
+         "*.ico",
+         "*.pyc",
+         "*.zip",
+         ".git",
+         ".hg",
+         ".svn",
+         "CVS",
+         "**/node_modules/**",
+         "**/bower_modules/**",
+         "**/tmp/**",
+         "package-lock.json",
+         "yarn.lock",
+         "composer.lock",
+         "DS_Store",
+      },
       backup = false,
       writebackup = false,
       swapfile = false,
@@ -105,7 +139,7 @@ local function load_options()
       synmaxcol = 2500,
       formatoptions = "1jcroql",
       textwidth = 80,
-      -- expandtab = true,
+      expandtab = true,
       autoindent = true,
       tabstop = 2,
       shiftwidth = 2,
@@ -137,7 +171,7 @@ local function load_options()
       end
    end
    for name, value in pairs(global_local) do
-      vim.o[name] = value
+      vim.opt[name] = value
    end
    bind_option(bw_local)
 

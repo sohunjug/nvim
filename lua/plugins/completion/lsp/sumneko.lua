@@ -62,6 +62,7 @@ M.config = {
                "client",
                "P",
                "hs",
+               "spoon",
             },
          },
          workspace = {

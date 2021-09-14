@@ -8,6 +8,7 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities.textDocument.completion.completionItem.documentationFormat = {
    "markdown",
 }
+M.capabilities.textDocument.completion.completionItem.preselectSupport = true
 M.capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
 M.capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
 M.capabilities.textDocument.completion.completionItem.deprecatedSupport = true
