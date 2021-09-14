@@ -29,10 +29,6 @@ function config.nullls()
    vim.env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath "config" .. "/.prettierrc"
 end
 
-function config.vim_vsnip()
-   vim.g.vsnip_snippet_dir = os.getenv "HOME" .. "/.config/nvim/snippets"
-end
-
 function config.telescope()
    require "custom.telescope"
 end

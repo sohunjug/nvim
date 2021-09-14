@@ -66,11 +66,10 @@ completion["glepnir/lspsaga.nvim"] = {
 	opt = true,
 }]]
 
-completion["hrsh7th/vim-vsnip"] = { opt = true, event = "InsertCharPre", config = conf.vim_vsnip }
-
-completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
+completion["ray-x/lsp_signature.nvim"] = { opt = true, event = "BufRead", after = "nvim-lspconfig" }
 
 completion["hrsh7th/nvim-cmp"] = {
+   opt = true,
    config = conf.cmp,
    event = "InsertEnter",
    requires = {
@@ -81,6 +80,7 @@ completion["hrsh7th/nvim-cmp"] = {
       { "andersevenrud/compe-tmux", branch = "cmp", after = "cmp-nvim-lua" },
       { "hrsh7th/cmp-path", after = "compe-tmux" },
       { "f3fora/cmp-spell", after = "cmp-path" },
+      -- { "hrsh7th/vim-vsnip", after = "nvim-cmp" },
       -- {
       --     'tzachar/cmp-tabnine',
       --     run = './install.sh',
@@ -108,6 +108,14 @@ completion["nvim-telescope/telescope.nvim"] = {
    },
 }
 
+completion["AckslD/nvim-neoclip.lua"] = {
+   opt = true,
+   event = "VimEnter",
+   config = function()
+      require("neoclip").setup()
+   end,
+}
+
 completion["TimUntersberger/neogit"] = {
    opt = true,
    cmd = "Neogit",
@@ -117,11 +125,6 @@ completion["TimUntersberger/neogit"] = {
          vim.cmd [[packadd plenary.nvim]]
       end
       require("neogit").setup { integrations = { diffview = true } }
-   end,
-}
-completion["AckslD/nvim-neoclip.lua"] = {
-   config = function()
-      require("neoclip").setup()
    end,
 }
 

@@ -7,7 +7,7 @@ local function bind_option(options)
       else
          vim.cmd("set " .. k .. "=" .. v)
       end]]
-		vim.opt[k] = v
+      vim.opt[k] = v
    end
 end
 
@@ -177,6 +177,9 @@ local function load_options()
 
    vim.g.mapleader = " "
    vim.g.maplocalleader = ";"
+
+   vim.g.vsnip_snippet_dir = global.home .. ".config/nvim/snippets"
+
    -- vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
    -- vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 
