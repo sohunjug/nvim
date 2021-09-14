@@ -20,7 +20,7 @@ M.setup = function()
          b.formatting.shfmt.with {
             extra_args = { "-i", "2", "-ci" },
          },
-         b.formatting.prettierd.with {
+         b.formatting.prettier.with {
             filetypes = {
                "typescriptreact",
                "typescript",
