@@ -3,7 +3,7 @@ local conf = require "plugins.lang.config"
 
 lang["nvim-treesitter/nvim-treesitter"] = {
    opt = true,
-   event = { "VimEnter", "BufReadPre", "BufWritePost" },
+   event = { "BufReadPre", "BufWritePost", "SourceCmd" },
    after = "telescope.nvim",
    config = conf.nvim_treesitter,
 }

@@ -7,10 +7,10 @@ local conf = require "plugins.tools.config"
    requires = { { "tpope/vim-dadbod", opt = true } },
 }]]
 
-tools["editorconfig/editorconfig-vim"] = {
+--[[tools["editorconfig/editorconfig-vim"] = {
    opt = true,
    ft = { "go", "typescript", "javascript", "vim", "rust", "zig", "c", "cpp" },
-}
+}]]
 
 tools["glepnir/prodoc.nvim"] = { opt = true, event = "BufReadPre" }
 
@@ -46,7 +46,7 @@ tools["andymass/vim-matchup"] = {
    end,
 }
 tools["jdhao/better-escape.vim"] = {
-   oopt = true,
+   opt = true,
    event = "InsertEnter",
    config = require("custom.others").better_escape,
    setup = function()

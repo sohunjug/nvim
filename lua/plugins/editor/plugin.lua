@@ -1,13 +1,14 @@
 local editor = {}
 local conf = require "plugins.editor.config"
 
-editor["Raimondi/delimitMate"] = { opt = true, event = "InsertEnter", config = conf.delimimate }
+-- editor["Raimondi/delimitMate"] = { opt = true, event = "InsertEnter", config = conf.delimimate }
 
 editor["rhysd/accelerated-jk"] = { opt = true, event = { "VimEnter", "BufRead" } }
 
 editor["norcalli/nvim-colorizer.lua"] = {
    opt = true,
-   ft = { "html", "css", "sass", "vim", "typescript", "typescriptreact", "terminal" },
+   event = { "VimEnter", "BufReadPost" },
+   ft = { "lua", "go", "html", "css", "sass", "vim", "typescript", "typescriptreact", "terminal" },
    config = conf.nvim_colorizer,
 }
 
@@ -20,6 +21,7 @@ editor["yamatsum/nvim-cursorline"] = {
 
 editor["hrsh7th/vim-eft"] = {
    opt = true,
+   event = "BufRead",
    config = function()
       vim.g.eft_ignorecase = true
    end,
@@ -33,7 +35,7 @@ editor["simrat39/symbols-outline.nvim"] = {
 
 editor["edluffy/specs.nvim"] = {
    opt = true,
-   event = "InsertEnter",
+   event = "VimEnter",
    config = conf.specs,
 }
 
@@ -47,7 +49,7 @@ editor["edluffy/specs.nvim"] = {
 
 --editor["rhysd/vim-operator-surround"] = { event = "BufRead", requires = "kana/vim-operator-user" }
 
-editor["kana/vim-niceblock"] = { opt = true, event = "BufReadPre" }
+editor["kana/vim-niceblock"] = { opt = true, event = "VimEnter" }
 
 --[[editor["kevinhwang91/nvim-bqf"] = {
    opt = true,
@@ -66,6 +68,7 @@ editor["windwp/nvim-autopairs"] = {
 
 editor["L3MON4D3/LuaSnip"] = {
    opt = true,
+   event = "BufReadPost",
    after = "nvim-cmp",
    config = conf.luasnip,
    requires = "rafamadriz/friendly-snippets",
