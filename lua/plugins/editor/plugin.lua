@@ -3,7 +3,7 @@ local conf = require "plugins.editor.config"
 
 editor["Raimondi/delimitMate"] = { opt = true, event = "InsertEnter", config = conf.delimimate }
 
-editor["rhysd/accelerated-jk"] = { opt = true }
+editor["rhysd/accelerated-jk"] = { opt = true, event = { "VimEnter", "BufRead" } }
 
 editor["norcalli/nvim-colorizer.lua"] = {
    opt = true,

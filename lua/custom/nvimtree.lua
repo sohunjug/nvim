@@ -40,6 +40,7 @@ g.nvim_tree_disable_default_keybindings = 1
 g.nvim_tree_window_picker_exclude = {
    filetype = {
       "notify",
+      "Outline",
       "Trouble",
       "packer",
       "qf",

@@ -10,24 +10,24 @@ end
 
 function config.symbols()
    vim.g.symbols_outline = {
-      highlight_hovered_item = true,
-      show_guides = true,
-      auto_preview = true,
+      highlight_hovered_item = false,
+      show_guides = false,
+      auto_preview = false,
       position = "right",
-      width = 25,
+      width = 45,
       show_numbers = false,
       show_relative_numbers = false,
-      show_symbol_details = true,
+      show_symbol_details = false,
       keymaps = { -- These keymaps can be a string or a table for multiple keys
          close = { "<Esc>", "q" },
-         goto_location = "<Cr>",
+         goto_location = { "<Cr>", "<2-LeftMouse>" },
          focus_location = "o",
-         hover_symbol = "h",
+         hover_symbol = "s",
          toggle_preview = "t",
          rename_symbol = "r",
          code_actions = "a",
       },
-      lsp_blacklist = {},
+      lsp_blacklist = { "null-ls" },
       symbol_blacklist = {},
       symbols = {
          File = { icon = "", hl = "TSURI" },
