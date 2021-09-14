@@ -7,11 +7,6 @@ local conf = require "plugins.tools.config"
    requires = { { "tpope/vim-dadbod", opt = true } },
 }]]
 
---[[tools["editorconfig/editorconfig-vim"] = {
-   opt = true,
-   ft = { "go", "typescript", "javascript", "vim", "rust", "zig", "c", "cpp" },
-}]]
-
 tools["glepnir/prodoc.nvim"] = { opt = true, event = "BufReadPre" }
 
 --[[tools["brooth/far.vim"] = {
@@ -32,6 +27,7 @@ tools["ellisonleao/glow.nvim"] = {
    opt = true,
    run = ":GlowInstall",
    ft = "markdown",
+   cmd = "Glow",
    config = function()
       vim.g.glow_binary_path = require("core.global").home .. ".local/bin"
    end,
@@ -40,30 +36,43 @@ tools["ellisonleao/glow.nvim"] = {
 tools["andymass/vim-matchup"] = {
    opt = true,
    event = "BufReadPre",
-   after = "nvim-treesitter",
-   config = function()
-      vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
+   -- after = "nvim-treesitter",
+   setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
    end,
 }
-tools["jdhao/better-escape.vim"] = {
+
+tools["sindrets/diffview.nvim"] = {
+   opt = true,
+   cmd = { "DiffviewOpen", "DiffviewToggleFiles", "DiffviewRefresh" },
+   module = "neogit",
+   after = "neogit",
+   config = function()
+      require("diffview").setup()
+   end,
+}
+
+tools["TimUntersberger/neogit"] = {
+   opt = true,
+   cmd = "Neogit",
+   after = "plenary.nvim",
+   config = conf.neogit,
+}
+
+--[[tools["jdhao/better-escape.vim"] = {
    opt = true,
    event = "InsertEnter",
    config = require("custom.others").better_escape,
    setup = function()
       vim.g.better_escape_shortcut = "jk"
    end,
-}
+}]]
 
 --[[tools["terrortylor/nvim-comment"] = {
    opt = true,
    cmd = "CommentToggle",
    config = require("custom.others").comment,
 }]]
-
-tools["b3nj5m1n/kommentary"] = {
-   event = "BufReadPost",
-   config = conf.kommentary,
-}
 
 --[[tools["ygm2/rooter.nvim"] = {
    event = "BufReadPost",

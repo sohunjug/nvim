@@ -1,5 +1,6 @@
 local completion = {}
 local conf = require "plugins.completion.config"
+
 completion["kabouzeid/nvim-lspinstall"] = {
    opt = true,
    cmd = "LspInstall",
@@ -19,6 +20,7 @@ completion["alexaandru/nvim-lspupdate"] = {
 
 completion["jose-elias-alvarez/null-ls.nvim"] = {
    config = conf.nullls,
+   module = "lspconfig",
 }
 
 completion["neovim/nvim-lspconfig"] = {
@@ -49,7 +51,7 @@ completion["onsails/lspkind-nvim"] = {
    opt = true,
    event = "BufReadPre",
    after = "nvim-lspconfig",
-   config = conf.lspkind,
+   -- config = conf.lspkind,
 }
 
 completion["glepnir/lspsaga.nvim"] = {
@@ -66,7 +68,7 @@ completion["glepnir/lspsaga.nvim"] = {
 	opt = true,
 }]]
 
-completion["ray-x/lsp_signature.nvim"] = { opt = true, event = "BufRead", after = "nvim-lspconfig" }
+-- completion["ray-x/lsp_signature.nvim"] = { opt = true, event = "BufRead", after = "nvim-lspconfig" }
 
 completion["hrsh7th/nvim-cmp"] = {
    opt = true,
@@ -77,10 +79,13 @@ completion["hrsh7th/nvim-cmp"] = {
       { "hrsh7th/cmp-buffer", after = "cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp", after = "cmp-buffer" },
       { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
-      { "andersevenrud/compe-tmux", branch = "cmp", after = "cmp-nvim-lua" },
-      { "hrsh7th/cmp-path", after = "compe-tmux" },
+      -- { "andersevenrud/compe-tmux", branch = "cmp", after = "cmp-nvim-lua" },
+      {
+         "hrsh7th/cmp-path",
+         --after = "compe-tmux"
+      },
       { "f3fora/cmp-spell", after = "cmp-path" },
-      -- { "hrsh7th/vim-vsnip", after = "nvim-cmp" },
+      { "hrsh7th/vim-vsnip", after = "cmp-spell" },
       -- {
       --     'tzachar/cmp-tabnine',
       --     run = './install.sh',
@@ -95,15 +100,20 @@ completion["nvim-telescope/telescope.nvim"] = {
    cmd = "Telescope",
    config = conf.telescope,
    requires = {
-      { "nvim-lua/popup.nvim", opt = true },
+      -- { "nvim-lua/popup.nvim", opt = true },
       { "nvim-lua/plenary.nvim", opt = true },
-      { "jremmen/vim-ripgrep", opt = true },
+      -- { "jremmen/vim-ripgrep", opt = true },
       { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
       { "nvim-telescope/telescope-project.nvim", opt = true },
       {
          "nvim-telescope/telescope-frecency.nvim",
          opt = true,
-         requires = { { "tami5/sqlite.lua", opt = true } },
+         requires = { "tami5/sqlite.lua", opt = true },
+      },
+      {
+         "nvim-telescope/telescope-cheat.nvim",
+         opt = true,
+         requires = { "tami5/sql.nvim", opt = true },
       },
    },
 }
@@ -113,18 +123,6 @@ completion["AckslD/nvim-neoclip.lua"] = {
    event = "VimEnter",
    config = function()
       require("neoclip").setup()
-   end,
-}
-
-completion["TimUntersberger/neogit"] = {
-   opt = true,
-   cmd = "Neogit",
-   after = "plenary.nvim",
-   config = function()
-      if not packer_plugins["plenary.nvim"].loaded then
-         vim.cmd [[packadd plenary.nvim]]
-      end
-      require("neogit").setup { integrations = { diffview = true } }
    end,
 }
 
@@ -142,12 +140,12 @@ completion["mattn/vim-sonictemplate"] = {
    config = conf.vim_sonictemplate,
 }
 
-completion["mattn/emmet-vim"] = {
+--[[completion["mattn/emmet-vim"] = {
    opt = true,
    event = "InsertEnter",
    ft = { "html", "css", "javascript", "javascriptreact", "vue", "typescript", "typescriptreact" },
    config = conf.emmet,
-}
+}]]
 
 --[[completion["ray-x/go.nvim"] = {
    config = conf.go_nvim,

@@ -22,7 +22,7 @@ telescope.setup {
          "--column",
          "--smart-case",
       },
-      prompt_prefix = "   ",
+      prompt_prefix = " λ  ",
       selection_caret = " ",
       entry_prefix = "  ",
       initial_mode = "normal",
@@ -30,7 +30,7 @@ telescope.setup {
       sorting_strategy = "ascending",
       layout_strategy = "horizontal",
       layout_config = {
-         horizontal = { prompt_position = "top", preview_width = 0.55, results_width = 0.8 },
+         horizontal = { prompt_position = "bottom", preview_width = 0.55, results_width = 0.8 },
          vertical = { mirror = false },
          width = 0.87,
          height = 0.80,
@@ -51,6 +51,12 @@ telescope.setup {
       qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
       -- Developer configurations: Not meant for general override
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+      mappings = {
+         i = {
+            ["<C-j>"] = require("telescope.actions").move_selection_next,
+            ["<C-k>"] = require("telescope.actions").move_selection_previous,
+         },
+      },
    },
    extensions = {
       fzy_native = { override_generic_sorter = false, override_file_sorter = true },
@@ -94,7 +100,7 @@ telescope.setup {
    },
 }
 
-local extensions = { "themes", "terms", "fzy_native", "project", "frecency" }
+local extensions = { "themes", "terms", "fzy_native", "project", "frecency", "cheat" }
 -- local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
 
 -- if vim.fn.executable "ueberzug" == 1 then

@@ -35,7 +35,7 @@ function Packer:load_packer()
       packer = require "packer"
    end
    packer.init {
-      -- ensure_dependencies = true,
+      ensure_dependencies = true,
       display = {
          open_fn = function()
             return require("packer.util").float { border = "single" }
@@ -45,11 +45,11 @@ function Packer:load_packer()
       compile_path = packer_compiled,
       git = { depth = 1, clone_timeout = 120 }, --, default_url_format = "git@github.com:%s"},
       auto_clean = true,
-      max_jobs = 10,
+      max_jobs = 15,
       compile_on_sync = true,
-      disable_commands = true,
+      disable_commands = false,
       log = { level = "warn" },
-      profile = { enable = true },
+      profile = { enable = false },
    }
    packer.reset()
    local use = packer.use
@@ -58,6 +58,7 @@ function Packer:load_packer()
    for _, repo in ipairs(self.repos) do
       use(repo)
    end
+   -- print(vim.inspect(self.repos))
 end
 
 function Packer:init_ensure_plugins()

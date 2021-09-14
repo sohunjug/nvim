@@ -8,6 +8,13 @@ function config.delimimate()
    vim.api.nvim_command 'au FileType markdown let b:delimitMate_nesting_quotes = ["`"]'
 end
 
+function config.kommentary()
+   require("kommentary.config").configure_language("rust", {
+      single_line_comment_string = "//",
+      multi_line_comment_strings = { "/*", "*/" },
+   })
+end
+
 function config.symbols()
    require("symbols-outline").setup {
       highlight_hovered_item = true,
@@ -57,6 +64,70 @@ function config.symbols()
          Operator = { icon = "+", hl = "TSOperator" },
          TypeParameter = { icon = "𝙏", hl = "TSParameter" },
       },
+   }
+end
+
+function config.speed()
+   require("lightspeed").setup {
+      jump_to_first_match = true,
+      jump_on_partial_input_safety_timeout = 400,
+      -- This can get _really_ slow if the window has a lot of content,
+      -- turn it on only if your machine can always cope with it.
+      highlight_unique_chars = false,
+      grey_out_search_area = true,
+      match_only_the_start_of_same_char_seqs = true,
+      limit_ft_matches = 5,
+      x_mode_prefix_key = "<c-x>",
+      substitute_chars = { ["\r"] = "¬" },
+      instant_repeat_fwd_key = nil,
+      instant_repeat_bwd_key = nil,
+      -- If no values are given, these will be set at runtime,
+      -- based on `jump_to_first_match`.
+      labels = nil,
+      cycle_group_fwd_key = nil,
+      cycle_group_bwd_key = nil,
+   }
+   vim.api.nvim_set_keymap("n", "s", "s", { noremap = true })
+   vim.api.nvim_set_keymap("n", "S", "S", { noremap = true })
+end
+
+function config.hls()
+   vim.cmd [[hi default link HlSearchNear IncSearch]]
+   vim.cmd [[hi default link HlSearchLens WildMenu]]
+   vim.cmd [[hi default link HlSearchLensNear IncSearch]]
+   vim.cmd [[hi default link HlSearchFloat IncSearch]]
+   require("hlslens").setup {
+      auto_enable = true,
+      calm_down = true,
+      nearest_only = false,
+      nearest_float_when = "always",
+      override_lens = function(render, plist, nearest, idx, r_idx)
+         local sfw = vim.v.searchforward == 1
+         local indicator, text, chunks
+         local abs_r_idx = math.abs(r_idx)
+         if abs_r_idx > 1 then
+            indicator = ("%d%s"):format(abs_r_idx, sfw ~= (r_idx > 1) and "▲" or "▼")
+         elseif abs_r_idx == 1 then
+            indicator = sfw ~= (r_idx == 1) and "▲" or "▼"
+         else
+            indicator = ""
+         end
+
+         local lnum, col = unpack(plist[idx])
+         if nearest then
+            local cnt = #plist
+            if indicator ~= "" then
+               text = ("[%s %d/%d]"):format(indicator, idx, cnt)
+            else
+               text = ("[%d/%d]"):format(idx, cnt)
+            end
+            chunks = { { " ", "Ignore" }, { text, "HlSearchLensNear" } }
+         else
+            text = ("[%s %d]"):format(indicator, idx)
+            chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
+         end
+         render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
+      end,
    }
 end
 

@@ -7,25 +7,53 @@ editor["rhysd/accelerated-jk"] = { opt = true, event = { "VimEnter", "BufRead" }
 
 editor["norcalli/nvim-colorizer.lua"] = {
    opt = true,
-   event = { "VimEnter", "BufReadPost" },
-   ft = { "lua", "go", "html", "css", "sass", "vim", "typescript", "typescriptreact", "terminal" },
+   ft = {
+      "html",
+      "css",
+      "sass",
+      "vim",
+      "typescript",
+      "typescriptreact",
+      "terminal",
+      "lua",
+      "scss",
+      "javascript",
+      "javascriptreact",
+   },
    config = conf.nvim_colorizer,
 }
 
+editor["editorconfig/editorconfig-vim"] = {
+   opt = true,
+   ft = { "go", "typescript", "javascript", "vim", "rust", "c", "cpp", "lua", "vue", "rust" },
+}
+
 --editor["itchyny/vim-cursorword"] = { event = { "BufReadPre", "BufNewFile" }, config = conf.vim_cursorwod }
+
 editor["yamatsum/nvim-cursorline"] = {
    opt = true,
    event = { "BufReadPre", "BufNewFile" },
    setup = conf.nvim_cursorline,
 }
 
-editor["hrsh7th/vim-eft"] = {
+--[[editor["hrsh7th/vim-eft"] = {
    opt = true,
    event = "BufRead",
    config = function()
       vim.g.eft_ignorecase = true
    end,
+}]]
+
+editor["kevinhwang91/nvim-hlslens"] = {
+   opt = true,
+   event = { "BufReadPost" },
+   config = conf.hls,
 }
+
+--[[editor["tyru/caw.vim"] = {
+   opt = true,
+   event = { "BufReadPre", "BufNewFile" },
+}]]
 
 editor["simrat39/symbols-outline.nvim"] = {
    opt = true,
@@ -33,10 +61,23 @@ editor["simrat39/symbols-outline.nvim"] = {
    config = conf.symbols,
 }
 
+editor["b3nj5m1n/kommentary"] = {
+   event = "BufReadPost",
+   config = conf.kommentary,
+}
+
 editor["edluffy/specs.nvim"] = {
    opt = true,
    event = "VimEnter",
    config = conf.specs,
+}
+
+-- editor["phaazon/hop.nvim"] = { opt = true, branch = 'pre-extmarks' }
+
+editor["ggandor/lightspeed.nvim"] = {
+   opt = true,
+   event = { "BufReadPost" },
+   config = conf.speed,
 }
 
 --[[editor["kana/vim-operator-replace"] = {

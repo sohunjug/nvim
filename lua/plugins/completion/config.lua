@@ -15,7 +15,7 @@ function config.nvim_compe()
          path = true,
          buffer = true,
          calc = true,
-         vsnip = true,
+         vsnip = false,
          nvim_lsp = true,
          nvim_lua = true,
          spell = true,
@@ -72,8 +72,7 @@ function config.saga()
    if not packer_plugins["lspsaga.nvim"].loaded then
       vim.cmd [[packadd lspsaga.nvim]]
    end
-   local saga = require "lspsaga"
-   saga.init_lsp_saga { code_action_icon = "💡", use_saga_diagnostic_sign = false }
+   require("lspsaga").init_lsp_saga { code_action_icon = "", use_saga_diagnostic_sign = true }
    -- vim.api.nvim_command "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()"
 end
 
@@ -86,7 +85,7 @@ function config.cmp()
    cmp.setup {
       formatting = {
          format = function(entry, vim_item)
-            local lspkind_icons = {
+            --[[ local lspkind_icons = {
                Text = "",
                Method = "",
                Function = "",
@@ -114,7 +113,8 @@ function config.cmp()
                TypeParameter = "",
             }
             -- load lspkind icons
-            vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
+            vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind) ]]
+            vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. "" .. vim_item.kind
 
             vim_item.menu = ({
                -- cmp_tabnine = "[TN]",
@@ -187,6 +187,7 @@ function config.cmp()
          -- {name = 'cmp_tabnine'},
       },
    }
+   vim.cmd [[autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }]]
 end
 
 function config.luasnip()

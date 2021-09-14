@@ -15,6 +15,12 @@ function config.nvim_treesitter()
       indent = {
          enable = true,
       },
+      rainbow = {
+         enable = true,
+      },
+      context_commentstring = {
+         enable = true,
+      },
       ensure_installed = {
          "go",
          "c",

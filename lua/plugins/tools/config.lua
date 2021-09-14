@@ -27,6 +27,13 @@ local function load_dbs()
    return dbs
 end
 
+function config.neogit()
+   if not packer_plugins["plenary.nvim"].loaded then
+      vim.cmd [[packadd plenary.nvim]]
+   end
+   require("neogit").setup { integrations = { diffview = true, auto_refresh = true } }
+end
+
 function config.notify()
    require("notify").setup {
       stages = "fade_in_slide_out",
@@ -97,13 +104,6 @@ function config.rooter()
       "CMakeLists.txt",
    }
    vim.g.outermost_root = true
-end
-
-function config.kommentary()
-   require("kommentary.config").configure_language("rust", {
-      single_line_comment_string = "//",
-      multi_line_comment_strings = { "/*", "*/" },
-   })
 end
 
 function config.vim_dadbod_ui()
@@ -185,12 +185,10 @@ function config.trouble()
 end
 
 function config.wilder()
-   vim.cmd [[
-call wilder#setup({'modes': [':', '/', '?']})
-call wilder#set_option('use_python_remote_plugin', 0)
-call wilder#set_option('pipeline', [wilder#branch(wilder#cmdline_pipeline({'use_python': 0,'fuzzy': 1, 'fuzzy_filter': wilder#lua_fzy_filter()}),wilder#vim_search_pipeline(), [wilder#check({_, x -> empty(x)}), wilder#history(), wilder#result({'draw': [{_, x -> ' ' . x}]})])])
-call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()]}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))
-]]
+   vim.cmd [[call wilder#setup({'modes': [':', '/', '?']})]]
+   vim.cmd [[call wilder#set_option('use_python_remote_plugin', 0)]]
+   vim.cmd [[call wilder#set_option('pipeline', [wilder#branch(wilder#cmdline_pipeline({'use_python': 0,'fuzzy': 1, 'fuzzy_filter': wilder#lua_fzy_filter()}),wilder#vim_search_pipeline(), [wilder#check({_, x -> empty(x)}), wilder#history(), wilder#result({'draw': [{_, x -> ' ' . x}]})])])]]
+   vim.cmd [[call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()], 'highlights': {'accent': wilder#make_hl('WiderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])}}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))]]
 end
 
 return config

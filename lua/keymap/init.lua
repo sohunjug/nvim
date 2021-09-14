@@ -9,10 +9,12 @@ require "keymap.config"
 local plug_map = {
    ["i|<TAB>"] = map_cmd("v:lua.tab_complete()"):with_expr():with_silent(),
    ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
-   ["i|<CR>"] = map_cmd([[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]])
-      :with_noremap()
-      :with_expr()
-      :with_nowait(),
+   ["i|<CR>"] = map_cmd("v:lua.tab_confirm()"):with_noremap():with_expr():with_nowait(),
+   -- ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
+   -- ["i|<CR>"] = map_cmd([[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]])
+   --    :with_noremap()
+   --    :with_expr()
+   --    :with_nowait(),
    -- person keymap
    -- ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap(),
    -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
@@ -25,11 +27,11 @@ local plug_map = {
    ["n|<leader>ll"] = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
    ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
    ["n|<leader>lu"] = map_cr("LspUpdate"):with_noremap():with_silent():with_nowait(),
-   ["n|<C-f>"] = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
+   ["n|<C-f>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)")
       :with_silent()
       :with_noremap()
       :with_nowait(),
-   ["n|<C-b>"] = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
+   ["n|<C-b>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(-1)")
       :with_silent()
       :with_noremap()
       :with_nowait(),
@@ -70,8 +72,8 @@ local plug_map = {
    --    ["v|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
    -- Plugin Telescope
    ["n|<Leader>bb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
-   ["n|<Leader>bo"] = map_cmd("<cmd>lua require('custom.bufonly').buf_only()<CR>"):with_noremap():with_silent(),
-   ["n|<Localleader>n"] = map_cmd("<cmd>set number! relativenumber!<CR>"):with_noremap():with_silent(),
+   ["n|<Leader>bo"] = map_cr("lua require('custom.bufonly').buf_only()"):with_noremap():with_silent(),
+   ["n|<Localleader>n"] = map_cr("set number! relativenumber!"):with_noremap():with_silent(),
    ["n|<Leader>bc"] = map_cu("Telescope neoclip neoclip"):with_noremap():with_silent(),
    ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
    --    ["n|<Leader>bd"] = map_cmd("lua require('core.utils').close_buffer()"):with_noremap():with_silent(),
@@ -107,16 +109,20 @@ local plug_map = {
    -- prodoc
    ["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
    ["x|gcc"] = map_cr "ProComment",
-   ["n|<leader>cl"] = map_cmd("<Plug>kommentary_line_default"):with_silent(),
+   ["n|<leader>cl"] = map_cmd("<Plug>(caw:hatpos:toggle)"):with_silent(),
+   ["x|<leader>cl"] = map_cmd("<Plug>(caw:hatpos:toggle)"):with_silent(),
+   ["n|<leader>cc"] = map_cmd("<Plug>(caw:wrap:toggle)"):with_silent(),
+   ["x|<leader>cc"] = map_cmd("<Plug>(caw:wrap:toggle)"):with_silent(),
+   --[[ ["n|<leader>cl"] = map_cmd("<Plug>kommentary_line_default"):with_silent(),
    ["n|<leader>cc"] = map_cmd("<Plug>kommentary_motion_default"):with_silent(),
    ["x|<leader>cl"] = map_cmd("<Plug>kommentary_visual_default"):with_silent(),
-   ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
+   ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(), ]]
    ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),
    -- Plugin acceleratedjk
    ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
    ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
    -- Plugin QuickRun
-   ["n|<Leader>r"] = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
+   -- ["n|<Leader>r"] = map_cr("lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
    -- Plugin Vista
    -- ["n|<Leader>v"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
    ["n|<Leader>ta"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
@@ -125,20 +131,22 @@ local plug_map = {
    ["n|<leader>sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
    ["n|<leader>sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
 
-   ["n|<leader>tc"] = map_cmd(
-      "<cmd>lua require('modules.themes').toggle_theme(require('core.utils').load_config().ui.theme_toggler.fav_themes) <CR>"
+   ["n|<leader>cs"] = map_cmd("<Plug>Lightspeed_s"):with_silent(),
+   ["n|<leader>cb"] = map_cmd("<Plug>Lightspeed_S"):with_silent(),
+   ["n|<leader>tc"] = map_cr(
+      "lua require('modules.themes').toggle_theme(require('core.utils').load_config().ui.theme_toggler.fav_themes)"
    ):with_silent(),
    ["n|<leader>tt"] = map_cu("Telescope themes"):with_silent(),
    ["n|<leader>zz"] = map_cu("TZAtaraxis"):with_silent(),
    ["n|<leader>zf"] = map_cu("TZFocus"):with_silent(),
    ["n|<leader>zm"] = map_cu("TZMinimalist"):with_silent(),
    -- Plugin hrsh7th/vim-eft
-   ["n|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
-   ["x|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
-   ["o|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
-   ["n|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
-   ["x|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
-   ["o|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
+   -- ["n|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
+   -- ["x|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
+   -- ["o|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
+   -- ["n|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
+   -- ["x|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
+   -- ["o|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
    -- Plugin vim_niceblock
    ["x|I"] = map_cmd("v:lua.enhance_nice_block('I')"):with_expr(),
    ["x|gI"] = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),

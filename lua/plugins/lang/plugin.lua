@@ -3,19 +3,15 @@ local conf = require "plugins.lang.config"
 
 lang["nvim-treesitter/nvim-treesitter"] = {
    opt = true,
-   event = { "BufReadPre", "BufWritePost", "SourceCmd" },
+   event = { "BufRead", "SourceCmd" },
    after = "telescope.nvim",
+   run = ":TSUpdate",
    config = conf.nvim_treesitter,
-}
-
-lang["nvim-treesitter/nvim-treesitter-textobjects"] = {
-   opt = true,
-   after = "nvim-treesitter",
-}
-
-lang["JoosepAlviste/nvim-ts-context-commentstring"] = {
-   opt = true,
-   after = "nvim-treesitter",
+   requires = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "p00f/nvim-ts-rainbow" },
+      { "JoosepAlviste/nvim-ts-context-commentstring" },
+   },
 }
 
 lang["SmiteshP/nvim-gps"] = {
