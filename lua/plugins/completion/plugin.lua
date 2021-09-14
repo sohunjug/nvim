@@ -60,13 +60,17 @@ completion["glepnir/lspsaga.nvim"] = {
    config = conf.saga,
 }
 
-completion["hrsh7th/nvim-compe"] = { opt = true, event = { "VimEnter", "BufReadPre" }, config = conf.nvim_compe }
+-- completion["hrsh7th/nvim-compe"] = { opt = true, event = { "VimEnter", "BufReadPre" }, config = conf.nvim_compe }
+
+--[[completion['nvim-lua/completion-nvim'] = {
+	opt = true,
+}]]
 
 completion["hrsh7th/vim-vsnip"] = { opt = true, event = "InsertCharPre", config = conf.vim_vsnip }
 
 completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
 
---[[completion["hrsh7th/nvim-cmp"] = {
+completion["hrsh7th/nvim-cmp"] = {
    config = conf.cmp,
    event = "InsertEnter",
    requires = {
@@ -84,7 +88,7 @@ completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" 
       --     config = conf.tabnine
       -- }
    },
-}]]
+}
 
 completion["nvim-telescope/telescope.nvim"] = {
    opt = true,

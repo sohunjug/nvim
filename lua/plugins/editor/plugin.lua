@@ -61,14 +61,14 @@ editor["windwp/nvim-autopairs"] = {
    opt = true,
    event = "BufReadPost",
    config = conf.autopairs,
-   after = "nvim-compe",
+   after = "nvim-cmp",
 }
 
---[[editor["L3MON4D3/LuaSnip"] = {
+editor["L3MON4D3/LuaSnip"] = {
    opt = true,
    after = "nvim-cmp",
    config = conf.luasnip,
    requires = "rafamadriz/friendly-snippets",
-}]]
+}
 
 return editor

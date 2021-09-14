@@ -76,7 +76,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(M.on_publish_
    virtual_text = true,
    signs = { enable = true, priority = 20 },
    -- Disable a feature
-   update_in_insert = false,
+   update_in_insert = true,
 })
 vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })

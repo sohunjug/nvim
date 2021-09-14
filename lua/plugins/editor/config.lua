@@ -143,10 +143,10 @@ end
 
 function config.autopairs()
    require("nvim-autopairs").setup { fast_wrap = {}, disable_filetype = { "TelescopePrompt" } }
-   if not packer_plugins["nvim-compe"].loaded then
-      vim.cmd [[packadd nvim-compe]]
+   if not packer_plugins["nvim-cmp"].loaded then
+      vim.cmd [[packadd nvim-cmp]]
    end
-   require("nvim-autopairs.completion.compe").setup {
+   require("nvim-autopairs.completion.cmp").setup {
       map_cr = true,
       map_complete = true,
       auto_select = true,

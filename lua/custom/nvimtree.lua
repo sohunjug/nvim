@@ -43,7 +43,6 @@ g.nvim_tree_window_picker_exclude = {
       "Trouble",
       "packer",
       "qf",
-      "",
    },
    buftype = {
       "terminal",

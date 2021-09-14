@@ -17,6 +17,9 @@ M.setup = function()
                "-",
             },
          },
+         b.formatting.shfmt.with {
+            extra_args = { "-i", "2", "-ci" },
+         },
          b.formatting.prettierd.with {
             filetypes = {
                "typescriptreact",
@@ -27,6 +30,8 @@ M.setup = function()
                "json",
                "jsonc",
                "css",
+               "yaml",
+               "markdown",
                "html",
             },
          },
