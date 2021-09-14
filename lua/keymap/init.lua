@@ -33,11 +33,11 @@ local plug_map = {
       :with_silent()
       :with_noremap()
       :with_nowait(),
-   ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
+   --[[ ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
    ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
    ["n|[e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
-   ["n|]e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
-   ["n|<Leader>K"] = map_cr("lua require'lspsaga.hover'.render_hover_doc"):with_noremap():with_silent(),
+   ["n|]e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(), ]]
+   --[[ ["n|<Leader>K"] = map_cr("lua require'lspsaga.hover'.render_hover_doc"):with_noremap():with_silent(),
    ["n|<Leader>lga"] = map_cr("lua require('lspsaga.codeaction').code_action()"):with_noremap():with_silent(),
    ["v|<Leader>lga"] = map_cu("lua require('lspsaga.codeaction').range_code_action()"):with_noremap():with_silent(),
    ["n|<Leader>lgd"] = map_cr("lua require'lspsaga.provider'.preview_definition()"):with_noremap():with_silent(),
@@ -48,7 +48,7 @@ local plug_map = {
    ["n|<Leader>lgt"] = map_cr("lua vim.lsp.buf.type_definition()"):with_noremap():with_silent(),
    ["n|<Leader>cw"] = map_cr("lua vim.lsp.buf.workspace_symbol()"):with_noremap():with_silent(),
    ["n|<Leader>ce"] = map_cr("lua require'lspsaga.diagnostic'.show_line_diagnostics()"):with_noremap():with_silent(),
-   ["n|<Leader>cs"] = map_cr("lua require'lspsaga.diagnostic'.show_cursor_diagnostics()"):with_noremap():with_silent(),
+   ["n|<Leader>cs"] = map_cr("lua require'lspsaga.diagnostic'.show_cursor_diagnostics()"):with_noremap():with_silent(), ]]
    ["n|<Leader>ct"] = map_args "Template",
    ["n|<Leader>N"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
    -- Plugin nvim-tree

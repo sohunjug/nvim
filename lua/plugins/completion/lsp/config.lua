@@ -77,7 +77,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(M.on_publish_
    virtual_text = true,
    signs = { enable = true, priority = 20 },
    -- Disable a feature
-   update_in_insert = true,
+   update_in_insert = false,
 })
 vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
@@ -133,30 +133,38 @@ M.borders = {
 }
 
 M.lsp_mappings = function()
-   local map_cmd = bind.map_cmd
+   local map_cr = bind.map_cr
    local mappings = {
-      ["i|<C-s>"] = map_cmd("<cmd>lua vim.lsp.buf.signature_help()<CR>"):with_noremap():with_silent(),
-      ["n|K"] = map_cmd("<cmd>lua vim.lsp.buf.hover()<CR>"):with_noremap():with_silent(),
-      ["n|<Leader>ga"] = map_cmd("<cmd>lua telescope.lsp_code_actions()<CR>"):with_noremap():with_silent(),
-      ["n|<Leader>gf"] = map_cmd("<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>"):with_noremap():with_silent(),
-      ["v|<Leader>gf"] = map_cmd("<cmd>lua vim.lsp.buf.range_formatting()<CR>"):with_noremap():with_silent(),
-      ["n|<Leader>gd"] = map_cmd("<cmd>lua vim.lsp.buf.definition()<CR>"):with_noremap():with_silent(),
-      ["n|<Leader>gl"] = map_cmd("<cmd>lua vim.lsp.codelens.run()<CR>"):with_noremap():with_silent(),
+      ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
+      ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
+      ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
+         :with_noremap()
+         :with_silent(),
+      ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()")
+         :with_noremap()
+         :with_silent(),
+      ["n|[e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
+      ["n|]e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
+      ["n|<Leader>ga"] = map_cr("lua telescope.lsp_code_actions()"):with_noremap():with_silent(),
+      ["n|<Leader>gf"] = map_cr("lua vim.lsp.buf.formatting_seq_sync()"):with_noremap():with_silent(),
+      ["v|<Leader>gf"] = map_cr("lua vim.lsp.buf.range_formatting()"):with_noremap():with_silent(),
+      ["n|<Leader>gd"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
+      ["n|<Leader>gl"] = map_cr("lua vim.lsp.codelens.run()"):with_noremap():with_silent(),
 
-      ["n|<Leader>gD"] = map_cmd(
-         "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics { show_header = false, border = require 'plugins.completion.lsp.config' .borders }<CR>"
+      ["n|<Leader>gD"] = map_cr(
+         "lua vim.lsp.diagnostic.show_line_diagnostics { show_header = false, border = require 'plugins.completion.lsp.config' .borders }"
       )
          :with_noremap()
          :with_silent(),
-      ["n|<Leader>gr"] = map_cmd("<cmd>lua telescope.lsp_references()<CR>"):with_noremap():with_silent(),
-      ["n|<Leader>gR"] = map_cmd("<cmd>lua vim.lsp.buf.rename()<CR>"):with_noremap():with_silent(),
-      ["n|<Leader>g]"] = map_cmd(
-         "<cmd>lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'plugins.completion.lsp.config' .borders } }<CR>"
+      ["n|<Leader>gr"] = map_cr("lua telescope.lsp_references()"):with_noremap():with_silent(),
+      ["n|<Leader>gR"] = map_cr("lua vim.lsp.buf.rename()"):with_noremap():with_silent(),
+      ["n|<Leader>g]"] = map_cr(
+         "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'plugins.completion.lsp.config' .borders } }"
       )
          :with_noremap()
          :with_silent(),
-      ["n|<Leader>g["] = map_cmd(
-         "<cmd>lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'plugins.completion.lsp.config' .borders } }<CR>"
+      ["n|<Leader>g["] = map_cr(
+         "lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'plugins.completion.lsp.config' .borders } }"
       )
          :with_noremap()
          :with_silent(),

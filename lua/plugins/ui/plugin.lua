@@ -13,13 +13,13 @@ ui["glepnir/dashboard-nvim"] = { config = conf.dashboard }
 
 -- ui["glepnir/galaxyline.nvim"] = {branch = "main", config = conf.galaxyline, requires = "kyazdani42/nvim-web-devicons"}
 
--- ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blankline }
+ui["lukas-reineke/indent-blankline.nvim"] = { opt = true, event = "BufRead", config = conf.indent_blankline }
 
-ui["glepnir/indent-guides.nvim"] = {
+--[[ui["glepnir/indent-guides.nvim"] = {
    opt = true,
    event = "BufRead",
    config = conf.indent,
-}
+}]]
 
 ui["akinsho/nvim-bufferline.lua"] = {
    opt = true,
@@ -71,11 +71,11 @@ ui["NvChad/nvim-base16.lua"] = {
    end,
 }
 
-ui["karb94/neoscroll.nvim"] = {
+--[[ui["karb94/neoscroll.nvim"] = {
    opt = true,
    event = "BufReadPre",
    config = conf.neoscroll,
-}
+}]]
 ui["nacro90/numb.nvim"] = {
    opt = true,
    event = "BufReadPost",

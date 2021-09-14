@@ -102,60 +102,58 @@ function config.indent()
    }
 end
 
-function config.indent_blankline()
-   vim.g.indent_blankline_char = "│"
-   vim.g.indent_blankline_space_char = "·"
-   vim.g.indent_blankline_show_first_indent_level = false
-   vim.g.indent_blankline_filetype_exclude = {
-      "startify",
-      "dashboard",
-      "dotooagenda",
-      "log",
-      "fugitive",
-      "gitcommit",
-      "packer",
-      "vimwiki",
-      "markdown",
-      "json",
-      "txt",
-      "vista",
-      "help",
-      "todoist",
-      "NvimTree",
-      "peekaboo",
-      "git",
-      "TelescopePrompt",
-      "undotree",
-      "flutterToolsOutline",
-      "", -- for all buffers without a file type
-   }
-   vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
-   vim.g.indent_blankline_show_trailing_blankline_indent = false
-   vim.g.indent_blankline_show_current_context = true
-   vim.g.indent_blankline_context_patterns = {
-      "class",
-      "function",
-      "method",
-      "block",
-      "list_literal",
-      "selector",
-      "^if",
-      "^table",
-      "if_statement",
-      "while",
-      "for",
-   }
+function config.blankline()
    -- because lazy load indent-blankline so need readd this autocmd
-   vim.cmd "autocmd CursorMoved * IndentBlanklineRefresh"
    vim.opt.listchars = {
       space = "⋅",
       eol = "↴",
    }
-   --  require("indent_blankline").setup {
-   --  space_char_blankline = " ",
-   --  show_current_context = true,
-   --  show_trailing_blankline_indent = false,
-   --  }
+   require("indent_blankline").setup {
+      filetype_exclude = {
+         "startify",
+         "dashboard",
+         "dotooagenda",
+         "log",
+         "fugitive",
+         "gitcommit",
+         "packer",
+         "vimwiki",
+         "markdown",
+         "json",
+         "txt",
+         "vista",
+         "help",
+         "todoist",
+         "NvimTree",
+         "peekaboo",
+         "git",
+         "TelescopePrompt",
+         "undotree",
+         "flutterToolsOutline",
+         "", -- for all buffers without a file type
+      },
+      buftype_exclude = { "terminal", "nofile" },
+      context_patterns = {
+         "class",
+         "function",
+         "method",
+         "block",
+         "list_literal",
+         "selector",
+         "^if",
+         "^table",
+         "if_statement",
+         "while",
+         "for",
+      },
+      char = "┊",
+      space_char_blankline = " ",
+      space_char = "·",
+      show_first_indent_level = false,
+      show_current_context = true,
+      show_trailing_blankline_indent = false,
+   }
+   vim.cmd "autocmd CursorMoved * IndentBlanklineRefresh"
 end
 
 return config
