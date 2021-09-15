@@ -172,7 +172,7 @@ function config.luasnip()
       history = true,
       updateevents = "TextChanged,TextChangedI",
    }
-   require("luasnip/loaders/from_vscode").load()
+   require("luasnip.loaders.from_vscode").load()
 end
 
 function config.bqf()

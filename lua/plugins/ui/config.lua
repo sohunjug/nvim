@@ -105,7 +105,7 @@ end
 function config.blankline()
    -- because lazy load indent-blankline so need readd this autocmd
    vim.opt.listchars = {
-      space = "⋅",
+      -- space = "⋅",
       eol = "↴",
    }
    require("indent_blankline").setup {
@@ -148,7 +148,8 @@ function config.blankline()
       },
       char = "┊",
       space_char_blankline = " ",
-      space_char = "·",
+      -- space_char = "·",
+      space_char = " ",
       show_first_indent_level = false,
       show_current_context = true,
       show_trailing_blankline_indent = false,

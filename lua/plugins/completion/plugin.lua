@@ -137,7 +137,7 @@ completion["mattn/vim-sonictemplate"] = {
    opt = true,
    cmd = "Template",
    ft = { "go", "typescript", "lua", "javascript", "vim", "rust", "markdown" },
-   config = conf.vim_sonictemplate,
+   setup = conf.vim_sonictemplate,
 }
 
 --[[completion["mattn/emmet-vim"] = {

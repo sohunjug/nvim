@@ -33,7 +33,7 @@ editor["editorconfig/editorconfig-vim"] = {
 editor["yamatsum/nvim-cursorline"] = {
    opt = true,
    event = { "BufReadPre", "BufNewFile" },
-   setup = conf.nvim_cursorline,
+   -- setup = conf.nvim_cursorline,
 }
 
 --[[editor["hrsh7th/vim-eft"] = {
