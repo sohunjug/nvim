@@ -61,10 +61,10 @@ local plug_map = {
    -- Plugin DadbodUI
    --    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
-   ["n|<Leader>lt"] = map_cr("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
-   ["t|<Leader>lc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
-      :with_noremap()
-      :with_silent(),
+   -- ["n|<Leader>lt"] = map_cr("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
+   -- ["t|<Leader>lc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
+   -- :with_noremap()
+   -- :with_silent(),
    ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal(lazygit)"):with_noremap():with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
    -- Far.vim
@@ -80,6 +80,8 @@ local plug_map = {
    ["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent(),
    ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
    ["n|<Leader>bp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
+   ["n|<C-[>"] = map_cu("bp"):with_noremap(),
+   ["n|<C-]>"] = map_cu("bn"):with_noremap(),
    -- ["n|<Leader>bn"] = map_cr("bnext"):with_noremap():with_silent(),
    -- ["n|<Leader>bp"] = map_cr("bprev"):with_noremap():with_silent(),
    ["n|<Leader>fa"] = map_cu("DashboardFindWord"):with_noremap():with_silent(),
@@ -113,8 +115,8 @@ local plug_map = {
    -- ["x|<leader>cl"] = map_cmd("<Plug>(caw:hatpos:toggle)"):with_silent(),
    -- ["n|<leader>cc"] = map_cmd("<Plug>(caw:wrap:toggle)"):with_silent(),
    -- ["x|<leader>cc"] = map_cmd("<Plug>(caw:wrap:toggle)"):with_silent(),
-   ["n|<leader>cl"] = map_cmd("<Plug>kommentary_line_default"):with_silent(),
-   ["n|<leader>cc"] = map_cmd("<Plug>kommentary_motion_default"):with_silent(),
+   ["n|<leader>cl"] = map_cmd("<Plug>(kommentary_line_default)"):with_silent(),
+   ["n|<leader>cc"] = map_cmd("<Plug>(kommentary_motion_default)"):with_silent(),
    ["x|<leader>cl"] = map_cmd("<Plug>kommentary_visual_default"):with_silent(),
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
    ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),

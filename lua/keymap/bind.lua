@@ -77,13 +77,17 @@ function pbind.map_args(cmd_string)
    return ro:map_args(cmd_string)
 end
 
-function pbind.nvim_load_mapping(mapping)
+function pbind.nvim_load_mapping(mapping, opt)
+   local action = vim.api.nvim_set_keymap
+   if opt or opt == "buf" then
+      action = vim.api.nvim_buf_set_keymap
+   end
    for key, value in pairs(mapping) do
       local mode, keymap = key:match "([^|]*)|?(.*)"
       if type(value) == "table" then
          local rhs = value.cmd
          local options = value.options
-         vim.api.nvim_set_keymap(mode, keymap, rhs, options)
+         action(mode, keymap, rhs, options)
       end
    end
 end

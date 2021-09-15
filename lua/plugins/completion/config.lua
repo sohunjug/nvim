@@ -133,14 +133,25 @@ function config.cmp()
       },
       -- You can set mappings if you want
       mapping = {
-         ["<C-p>"] = cmp.mapping.select_prev_item(),
-         ["<C-n>"] = cmp.mapping.select_next_item(),
+         ["<C-k>"] = cmp.mapping.select_prev_item(),
+         ["<C-j>"] = cmp.mapping.select_next_item(),
          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
          ["<C-f>"] = cmp.mapping.scroll_docs(4),
          ["<C-e>"] = cmp.mapping.close(),
          ["<Tab>"] = function(fallback)
             if vim.fn.pumvisible() == 1 then
                vim.fn.feedkeys(t "<C-n>", "n")
+            elseif require("luasnip").expand_or_jumpable() then
+               vim.fn.feedkeys(t "<Plug>luasnip-expand-or-jump", "")
+            else
+               fallback()
+            end
+         end,
+         ["<S-Tab>"] = function(fallback)
+            if vim.fn.pumvisible() == 1 then
+               vim.fn.feedkeys(t "<C-p>", "n")
+            elseif require("luasnip").jumpable(-1) then
+               vim.fn.feedkeys(t "<Plug>luasnip-jump-prev", "")
             else
                fallback()
             end
@@ -149,13 +160,6 @@ function config.cmp()
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
          },
-         ["<S-Tab>"] = function(fallback)
-            if vim.fn.pumvisible() == 1 then
-               vim.fn.feedkeys(t "<C-p>", "n")
-            else
-               fallback()
-            end
-         end,
          ["<C-h>"] = function(fallback)
             if require("luasnip").jumpable(-1) then
                vim.fn.feedkeys(t "<Plug>luasnip-jump-prev", "")
