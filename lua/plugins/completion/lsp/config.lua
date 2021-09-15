@@ -3,6 +3,9 @@ local format = require "plugins.completion.format"
 local bind = require "keymap.bind"
 -- local telescope = require("telescope.builtin")
 
+if not packer_plugins["telescope"] or not packer_plugins["telescope"].loaded then
+   vim.cmd [[packadd telescope]]
+end
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities.textDocument.completion.completionItem.documentationFormat = {
@@ -134,8 +137,30 @@ M.borders = {
 
 M.lsp_mappings = function()
    local map_cr = bind.map_cr
+   local map_cu = bind.map_cu
    local mappings = {
-      ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
+      ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
+         :with_noremap()
+         :with_silent(),
+      ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()")
+         :with_noremap()
+         :with_silent(),
+      ["n|ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
+      ["n|en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
+      ["n|K"] = map_cr("lua require'lspsaga.hover'.render_hover_doc"):with_noremap():with_silent(),
+      ["n|ga"] = map_cr("lua require('lspsaga.codeaction').code_action()"):with_noremap():with_silent(),
+      ["v|ga"] = map_cu("lua require('lspsaga.codeaction').range_code_action()"):with_noremap():with_silent(),
+      ["n|gd"] = map_cr("lua require'telescope.builtin.lsp'.definitions()"):with_noremap():with_silent(),
+      ["n|gr"] = map_cr("lua require'telescope.builtin.lsp'.references()"):with_noremap():with_silent(),
+      ["n|gi"] = map_cr("lua vim.lsp.buf.implementation()"):with_noremap():with_silent(),
+      ["n|gs"] = map_cr("lua require('lspsaga.signaturehelp').signature_help()"):with_noremap():with_silent(),
+      ["n|gR"] = map_cr("lua require('lspsaga.rename').rename()"):with_noremap():with_silent(),
+      ["n|gh"] = map_cr("lua require'lspsaga.provider'.lsp_finder()"):with_noremap():with_silent(),
+      ["n|gD"] = map_cr("lua vim.lsp.buf.type_definition()"):with_noremap():with_silent(),
+      ["n|gS"] = map_cr("lua vim.lsp.buf.workspace_symbol()"):with_noremap():with_silent(),
+      ["n|gl"] = map_cr("lua require'lspsaga.diagnostic'.show_line_diagnostics()"):with_noremap():with_silent(),
+      ["n|gw"] = map_cr("lua require'lspsaga.diagnostic'.show_cursor_diagnostics()"):with_noremap():with_silent(),
+      --[[ ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
          :with_noremap()
@@ -145,7 +170,7 @@ M.lsp_mappings = function()
          :with_silent(),
       ["n|[e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
       ["n|]e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
-      ["n|<Leader>ga"] = map_cr("lua telescope.lsp_code_actions()"):with_noremap():with_silent(),
+      ["n|<Leader>ga"] = map_cr("lua require'telescope'.lsp_code_actions()"):with_noremap():with_silent(),
       ["n|<Leader>gf"] = map_cr("lua vim.lsp.buf.formatting_seq_sync()"):with_noremap():with_silent(),
       ["v|<Leader>gf"] = map_cr("lua vim.lsp.buf.range_formatting()"):with_noremap():with_silent(),
       ["n|<Leader>gd"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
@@ -156,7 +181,7 @@ M.lsp_mappings = function()
       )
          :with_noremap()
          :with_silent(),
-      ["n|<Leader>gr"] = map_cr("lua telescope.lsp_references()"):with_noremap():with_silent(),
+      ["n|<Leader>gr"] = map_cr("lua require'telescope'.lsp_references()"):with_noremap():with_silent(),
       ["n|<Leader>gR"] = map_cr("lua vim.lsp.buf.rename()"):with_noremap():with_silent(),
       ["n|<Leader>g]"] = map_cr(
          "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'plugins.completion.lsp.config' .borders } }"
@@ -167,7 +192,7 @@ M.lsp_mappings = function()
          "lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'plugins.completion.lsp.config' .borders } }"
       )
          :with_noremap()
-         :with_silent(),
+         :with_silent(), ]]
    }
 
    bind.nvim_load_mapping(mappings)

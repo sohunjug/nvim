@@ -101,7 +101,7 @@ local function load_options()
       switchbuf = "useopen",
       backspace = "indent,eol,start",
       diffopt = "filler,iwhite,internal,algorithm:patience",
-      completeopt = "menuone,noselect",
+      completeopt = "menu,menuone,noselect",
       jumpoptions = "stack",
       showmode = false,
       shortmess = "aoOTIcF",
@@ -176,7 +176,7 @@ local function load_options()
    bind_option(bw_local)
 
    vim.g.mapleader = " "
-   vim.g.maplocalleader = ";"
+   vim.g.maplocalleader = "\\"
 
    vim.g.vsnip_snippet_dir = global.home .. ".config/nvim/snippets"
 

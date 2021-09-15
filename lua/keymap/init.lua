@@ -7,9 +7,9 @@ local map_args = bind.map_args
 require "keymap.config"
 
 local plug_map = {
-   ["i|<TAB>"] = map_cmd("v:lua.tab_complete()"):with_expr():with_silent(),
-   ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
-   ["i|<CR>"] = map_cmd("v:lua.tab_confirm()"):with_noremap():with_expr():with_nowait(),
+   -- ["i|<TAB>"] = map_cmd("v:lua.tab_complete()"):with_expr():with_silent(),
+   -- ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
+   -- ["i|<CR>"] = map_cmd("v:lua.tab_confirm()"):with_noremap():with_expr():with_nowait(),
    -- ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
    -- ["i|<CR>"] = map_cmd([[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]])
    --    :with_noremap()
@@ -62,7 +62,7 @@ local plug_map = {
    --    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
    ["n|<Leader>lt"] = map_cr("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
-   ["t|<Leader>lc"] = map_cu([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
+   ["t|<Leader>lc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
       :with_noremap()
       :with_silent(),
    ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal(lazygit)"):with_noremap():with_silent(),
@@ -127,9 +127,9 @@ local plug_map = {
    -- ["n|<Leader>v"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
    ["n|<Leader>ta"] = map_cu("SymbolsOutline"):with_noremap():with_silent(),
    -- Plugin vim-operator-surround
-   ["n|<leader>sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
-   ["n|<leader>sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
-   ["n|<leader>sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
+   -- ["n|<leader>sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
+   -- ["n|<leader>sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
+   -- ["n|<leader>sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
 
    ["n|<leader>cs"] = map_cmd("<Plug>Lightspeed_s"):with_silent(),
    ["n|<leader>cb"] = map_cmd("<Plug>Lightspeed_S"):with_silent(),
@@ -153,7 +153,8 @@ local plug_map = {
    ["x|A"] = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
    ["v|<M-A>c"] = map_cr('"+y'):with_noremap():with_silent(),
    ["n|<Leader>tg"] = map_cr("highlight Normal guibg=NONE ctermbg=None"):with_noremap():with_silent(),
-   ["n|Q"] = map_cr "@@",
+   ["n|Q"] = map_cr "q",
+   ["n|<LocalLeader>q"] = map_cr "q",
    ["n|q"] = map_cr "quit",
    ["v|<M-[>2;5+"] = map_cmd "y",
    ["n|<C-S-Insert>"] = map_cmd "<ESC>ggVG",

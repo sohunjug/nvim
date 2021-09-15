@@ -14,29 +14,31 @@ end
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
-   -- if vim.fn.pumvisible() == 1 then
-   --    return t "<C-n>"
-   -- elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
-   --    return t "<Plug>(vsnip-expand-or-jump)"
-   -- elseif check_back_space() then
-   --    return t "<Tab>"
-   -- else
-   --    return vim.fn["compe#complete"]()
-   -- end
-   local cmp = require "cmp"
-   return cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" })
+   if vim.fn.pumvisible() == 1 then
+      return t "<C-n>"
+      -- elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
+      --    return t "<Plug>(vsnip-expand-or-jump)"
+   elseif check_back_space() then
+      return t "<Tab>"
+      -- else
+      --    return vim.fn["compe#complete"]()
+      -- end
+   else
+      local cmp = require "cmp"
+      return cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" })
+   end
 end
 
 _G.s_tab_complete = function()
-   -- if vim.fn.pumvisible() == 1 then
-   --    return t "<C-p>"
-   -- elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
-   --    return t "<Plug>(vsnip-jump-prev)"
-   -- else
-   --    return t "<S-Tab>"
-   -- end
-   local cmp = require "cmp"
-   return cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" })
+   if vim.fn.pumvisible() == 1 then
+      return t "<C-p>"
+      -- elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
+      --    return t "<Plug>(vsnip-jump-prev)"
+   else
+      -- return t "<S-Tab>"
+      local cmp = require "cmp"
+      return cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" })
+   end
 end
 
 _G.tab_confirm = function()

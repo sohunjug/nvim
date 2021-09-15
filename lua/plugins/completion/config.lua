@@ -145,6 +145,10 @@ function config.cmp()
                fallback()
             end
          end,
+         ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+         },
          ["<S-Tab>"] = function(fallback)
             if vim.fn.pumvisible() == 1 then
                vim.fn.feedkeys(t "<C-p>", "n")
