@@ -120,7 +120,7 @@ M.lsp_on_attach = function(client, bufnr)
     augroup END
     ]]
    end
-   M.lsp_mappings()
+   M.lsp_mappings(bufnr)
 end
 
 M.borders = {
@@ -135,7 +135,7 @@ M.borders = {
    { "▏", "FloatBorder" },
 }
 
-M.lsp_mappings = function()
+M.lsp_mappings = function(bufnr)
    local map_cr = bind.map_cr
    local map_cu = bind.map_cu
    local map_cmd = bind.map_cu
@@ -169,9 +169,9 @@ M.lsp_mappings = function()
       )
          :with_noremap()
          :with_silent(),
-      ["n|<ESC>"] = map_cmd("<Nop>"):with_noremap():with_silent(),
-      ["x|<ESC>"] = map_cmd("<Nop>"):with_noremap():with_silent(),
-      ["v|<ESC>"] = map_cmd("<Nop>"):with_noremap():with_silent(),
+      ["n|<Esc>"] = map_cmd "<nop>",
+      ["x|<Esc>"] = map_cmd "<nop>",
+      ["v|<Esc>"] = map_cmd "<nop>",
       --[[ ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
@@ -207,7 +207,7 @@ M.lsp_mappings = function()
          :with_silent(), ]]
    }
 
-   bind.nvim_load_mapping(mappings)
+   bind.nvim_load_mapping(mappings, true, bufnr)
 end
 
 return M

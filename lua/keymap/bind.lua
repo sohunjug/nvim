@@ -77,10 +77,12 @@ function pbind.map_args(cmd_string)
    return ro:map_args(cmd_string)
 end
 
-function pbind.nvim_load_mapping(mapping, opt)
+function pbind.nvim_load_mapping(mapping, opt, bufnr)
    local action = vim.api.nvim_set_keymap
    if opt or opt == "buf" then
-      action = vim.api.nvim_buf_set_keymap
+      action = function(a, b, c, d)
+         vim.api.nvim_buf_set_keymap(bufnr, a, b, c, d)
+      end
    end
    for key, value in pairs(mapping) do
       local mode, keymap = key:match "([^|]*)|?(.*)"
