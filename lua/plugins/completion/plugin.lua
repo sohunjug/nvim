@@ -85,7 +85,7 @@ completion["hrsh7th/nvim-cmp"] = {
          --after = "compe-tmux"
       },
       { "f3fora/cmp-spell", after = "cmp-path" },
-      { "hrsh7th/vim-vsnip", after = "cmp-spell" },
+      -- { "hrsh7th/vim-vsnip", after = "cmp-spell" },
       -- {
       --     'tzachar/cmp-tabnine',
       --     run = './install.sh',
@@ -96,24 +96,21 @@ completion["hrsh7th/nvim-cmp"] = {
 }
 
 completion["nvim-telescope/telescope.nvim"] = {
-   opt = true,
    cmd = "Telescope",
    config = conf.telescope,
    requires = {
-      -- { "nvim-lua/popup.nvim", opt = true },
-      { "nvim-lua/plenary.nvim", opt = true },
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
       -- { "jremmen/vim-ripgrep", opt = true },
-      { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
-      { "nvim-telescope/telescope-project.nvim", opt = true },
+      { "nvim-telescope/telescope-fzy-native.nvim" },
+      { "nvim-telescope/telescope-project.nvim" },
       {
          "nvim-telescope/telescope-frecency.nvim",
-         opt = true,
-         requires = { "tami5/sqlite.lua", opt = true },
+         requires = { "tami5/sqlite.lua" },
       },
       {
          "nvim-telescope/telescope-cheat.nvim",
-         opt = true,
-         requires = { "tami5/sql.nvim", opt = true },
+         -- requires = { "tami5/sqlite.nvim", opt = true },
       },
    },
 }

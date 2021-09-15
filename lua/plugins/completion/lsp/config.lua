@@ -138,6 +138,7 @@ M.borders = {
 M.lsp_mappings = function()
    local map_cr = bind.map_cr
    local map_cu = bind.map_cu
+   local map_cmd = bind.map_cu
    local mappings = {
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_silent(),
       ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_silent(),
@@ -168,6 +169,9 @@ M.lsp_mappings = function()
       )
          :with_noremap()
          :with_silent(),
+      ["n|<ESC>"] = map_cmd("<Nop>"):with_noremap():with_silent(),
+      ["x|<ESC>"] = map_cmd("<Nop>"):with_noremap():with_silent(),
+      ["v|<ESC>"] = map_cmd("<Nop>"):with_noremap():with_silent(),
       --[[ ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")

@@ -5,10 +5,19 @@ end
 
 local global = require "core.global"
 
-if not packer_plugins["plenary.nvim"].loaded then
+if
+   not packer_plugins["plenary.nvim"]
+   or not packer_plugins["telescope-cheat"]
+   or not packer_plugins["plenary.nvim"].loaded
+   or not packer_plugins["telescope-cheat"].loaded
+then
    vim.cmd [[packadd plenary.nvim]]
    vim.cmd [[packadd popup.nvim]]
    vim.cmd [[packadd telescope-fzy-native.nvim]]
+   vim.cmd [[packadd telescope-project.nvim]]
+   vim.cmd [[packadd telescope-frecency.nvim]]
+   vim.cmd [[packadd telescope-cheat.nvim]]
+   vim.cmd [[packadd sqlite.lua]]
 end
 
 telescope.setup {
