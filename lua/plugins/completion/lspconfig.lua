@@ -75,7 +75,7 @@ M.servers.rust_analyzer = { capabilities = config.capabilities }
 
 M.servers.denols = {
    filetypes = { "javascript", "typescript", "typescriptreact" },
-   root_dir = vim.loop.cwd,
+   -- root_dir = vim.loop.cwd,
    settings = {
       documentFormatting = false,
       lint = true,
