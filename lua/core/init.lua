@@ -4,7 +4,7 @@ M.core_modules = {
    "core.options",
    "core.packer",
    "core.events",
-   "core.filetype",
+   -- "core.filetype",
    "keymap",
 }
 

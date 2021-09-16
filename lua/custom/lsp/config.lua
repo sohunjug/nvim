@@ -113,6 +113,7 @@ M.lsp_on_attach = function(client, bufnr)
       format.lsp_before_save()
    end
    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+   vim.api.nvim_buf_set_option(bufnr, "expandtab", true)
    if client.resolved_capabilities.code_lens then
       vim.cmd [[
     augroup CodeLens
