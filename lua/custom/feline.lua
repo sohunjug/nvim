@@ -295,11 +295,10 @@ M.config = function()
 
    components.active[3][9] = { provider = statusline_style.left, hl = { fg = colors.green, bg = colors.grey } }
 
-   components.active[3][10] =
-      {
-         provider = statusline_style.position_icon,
-         hl = { fg = colors.black, bg = colors.green },
-      }
+   components.active[3][10] = {
+      provider = statusline_style.position_icon,
+      hl = { fg = colors.black, bg = colors.green },
+   }
 
    components.active[3][11] = { provider = "position", hl = { fg = colors.green, bg = colors.one_bg } }
 
@@ -323,4 +322,3 @@ M.config = function()
    require("feline").setup { bg = colors.statusline_bg, fg = colors.fg, components = components }
 end
 return M
-
