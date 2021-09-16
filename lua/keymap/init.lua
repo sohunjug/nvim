@@ -163,6 +163,7 @@ M.plug_map = {
    ["n|<Leader>tg"] = map_cr("highlight Normal guibg=NONE ctermbg=None"):with_noremap():with_silent(),
    ["n|Q"] = map_cr "q",
    ["n|<LocalLeader>q"] = map_cr "q",
+   ["n|<LocalLeader>w"] = map_cu "set wrap!",
    ["n|q"] = map_cr "quit",
    ["v|<M-[>2;5+"] = map_cmd "y",
    ["n|<C-S-Insert>"] = map_cmd "<ESC>ggVG",
