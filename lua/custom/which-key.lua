@@ -7,4 +7,3 @@ local M = {
 }
 
 return M
-
