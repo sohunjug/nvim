@@ -11,4 +11,4 @@ _G.SNVIM_Loading = function(module)
    end
 end
 
-SNVIM_Loading("core")
+SNVIM_Loading "core"
