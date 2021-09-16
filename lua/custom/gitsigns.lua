@@ -1,42 +1,53 @@
-local present, gitsigns = pcall(require, "gitsigns")
-if not present then
-   return
+local M = {
+   opt = true,
+   event = { "BufRead", "BufNewFile" },
+   requires = { "nvim-lua/plenary.nvim", opt = true },
+}
+
+M.config = function()
+   local present, gitsigns = pcall(require, "gitsigns")
+   if not present then
+      return
+   end
+
+   gitsigns.setup {
+      keymaps = {
+         -- Default keymap options
+         buffer = true,
+         noremap = true,
+         ["n ]c"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
+         ["n [c"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
+         ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+         ["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+         ["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+         ["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+         ["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+         -- Text objects
+         ["o ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+         ["x ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+      },
+      numhl = true,
+
+      sign_priority = 5,
+      signs = {
+         add = { hl = "DiffAdd", text = "▋", numhl = "GitSignsAddNr" },
+         change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
+         -- changedelete = { hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr" },
+         changedelete = { hl = "GitGutterChange", text = "▎", numhl = "GitSignsChangeNr" },
+         delete = { hl = "DiffDelete", text = "_", numhl = "GitSignsDeleteNr" },
+         topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
+      },
+
+      current_line_blame = true,
+      current_line_blame_opts = {
+         delay = 100,
+         virt_text_pos = "eol",
+      },
+
+      status_formatter = nil, -- Use default
+      watch_index = { interval = 100 },
+   }
 end
 
-gitsigns.setup {
-   keymaps = {
-      -- Default keymap options
-      buffer = true,
-      noremap = true,
-      ["n ]c"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
-      ["n [c"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
-      ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-      ["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-      ["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-      ["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-      ["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line()<CR>',
-      -- Text objects
-      ["o ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-      ["x ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-   },
-   numhl = true,
+return M
 
-   sign_priority = 5,
-   signs = {
-      add = { hl = "DiffAdd", text = "▋", numhl = "GitSignsAddNr" },
-      change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
-      -- changedelete = { hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr" },
-      changedelete = { hl = "GitGutterChange", text = "▎", numhl = "GitSignsChangeNr" },
-      delete = { hl = "DiffDelete", text = "_", numhl = "GitSignsDeleteNr" },
-      topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
-   },
-
-   current_line_blame = true,
-   current_line_blame_opts = {
-      delay = 100,
-      virt_text_pos = "eol",
-   },
-
-   status_formatter = nil, -- Use default
-   watch_index = { interval = 100 },
-}

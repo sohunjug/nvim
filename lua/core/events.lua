@@ -1,7 +1,7 @@
 local vim = vim
-local autocmd = {}
+local M = {}
 
-function autocmd.nvim_create_augroups(definitions)
+function M.nvim_create_augroups(definitions)
    for group_name, definition in pairs(definitions) do
       vim.api.nvim_command("augroup " .. group_name)
       vim.api.nvim_command "autocmd!"
@@ -13,8 +13,11 @@ function autocmd.nvim_create_augroups(definitions)
    end
 end
 
-function autocmd.load_autocmds()
+function M.load_autocmds()
    local definitions = {
+
+      color = { { "ColorScheme", "*", "highlight NotifyBG guibg=#3d3d3d guifg=#3e4451" } },
+
       packer = { { "BufWritePost", "plugin.lua", "lua require('core.plugins').auto_compile()" } },
       bufs = {
          -- Reload vim config automatically
@@ -68,7 +71,11 @@ function autocmd.load_autocmds()
       yank = { { "TextYankPost", [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]] } },
    }
 
-   autocmd.nvim_create_augroups(definitions)
+   M.nvim_create_augroups(definitions)
 end
 
-autocmd.load_autocmds()
+M.setup = function()
+   M.load_autocmds()
+end
+
+return M

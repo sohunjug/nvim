@@ -1,5 +1,4 @@
-local global = require "core.global"
-
+local M = {}
 local function bind_option(options)
    for k, v in pairs(options) do
       --[[if v == true or v == false then
@@ -11,14 +10,14 @@ local function bind_option(options)
    end
 end
 
-local function load_options()
+M.load_options = function()
    local global_local = {
       -- font = "Fira Code Mono:h13",
       -- guifont = "FiraCode Nerd Font:h12",
       -- font = "FiraCode Nerd Font:h12",
       -- macligatures = "",
       termguicolors = true,
-      mouse = "nv",
+      mouse = "nvi",
       cursorline = true,
       errorbells = true,
       visualbell = true,
@@ -28,7 +27,7 @@ local function load_options()
       virtualedit = "block",
       encoding = "utf-8",
       viewoptions = "folds,cursor,curdir,slash,unix",
-      sessionoptions = "curdir,help,tabpages,winsize",
+      sessionoptions = "blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos",
       clipboard = "unnamedplus",
       wildignorecase = true,
       -- wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
@@ -68,11 +67,11 @@ local function load_options()
       backup = false,
       writebackup = false,
       swapfile = false,
-      directory = global.cache_dir .. "swag/",
-      undodir = global.cache_dir .. "undo/",
-      backupdir = global.cache_dir .. "backup/",
-      viewdir = global.cache_dir .. "view/",
-      spellfile = global.cache_dir .. "spell/en.uft-8.add",
+      directory = S_NVIM.cache_dir .. "swag/",
+      undodir = S_NVIM.cache_dir .. "undo/",
+      backupdir = S_NVIM.cache_dir .. "backup/",
+      viewdir = S_NVIM.cache_dir .. "view/",
+      spellfile = S_NVIM.cache_dir .. "spell/en.uft-8.add",
       history = 2000,
       shada = "!,'300,<50,@100,s10,h",
       backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
@@ -127,11 +126,22 @@ local function load_options()
       pumblend = 10,
       winblend = 10,
       cul = true,
-      fillchars = "eob: ",
+      fillchars = { eob = " " },
    }
 
+   --[[ vim.opt.formatoptions = vim.opt.formatoptions
+      - "a" -- Auto formatting is BAD.
+      - "t" -- Don't auto format my code. I got linters for that.
+      + "c" -- In general, I like it when comments respect textwidth
+      + "q" -- Allow formatting comments w/ gq
+      - "o" -- O and o, don't continue comments
+      - "r" -- Don't insert comment after <Enter>
+      + "n" -- Indent past the formatlistpat, not underneath it.
+      + "j" -- Auto-remove comments if possible.
+      - "2" -- I'm not in gradeschool anymore ]]
+
    if vim.fn.has "gui" then
-      global.guifont = "FiraCode Nerd Mono:h12"
+      vim.g.guifont = "FiraCode Nerd Mono:h12"
    end
 
    local bw_local = {
@@ -156,14 +166,14 @@ local function load_options()
       concealcursor = "niv",
    }
 
-   if global.is_mac then
+   if S_NVIM.is_mac then
       vim.g.clipboard = {
          name = "macOS-clipboard",
          copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
          paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
          cache_enabled = 0,
       }
-      local asdf = global.home .. ".asdf/shims/python3"
+      local asdf = S_NVIM.home .. ".asdf/shims/python3"
       if vim.fn.executable(asdf) then
          vim.g.python3_host_prog = asdf
       else
@@ -178,10 +188,12 @@ local function load_options()
    vim.g.mapleader = " "
    vim.g.maplocalleader = "\\"
 
-   vim.g.vsnip_snippet_dir = global.home .. ".config/nvim/snippets"
+   vim.g.vsnip_snippet_dir = S_NVIM.home .. ".config/nvim/snippets"
 
-   -- vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
-   -- vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
+   vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
+   vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
+
+   -- vim.cmd [[filetype plugin indent on]]
 
    -- disable some builtin vim plugins
    local disabled_built_ins = {
@@ -211,4 +223,8 @@ local function load_options()
    end
 end
 
-load_options()
+M.setup = function()
+   M.load_options()
+end
+
+return M

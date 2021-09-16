@@ -1,153 +1,206 @@
-local fn, uv, api = vim.fn, vim.loop, vim.api
-local data_dir = require("core.global").data_dir
-local plugin_dir = require("core.global").plugin_dir
-local packer_compiled = data_dir .. "packer_compiled.vim"
-local compile_to_lua = data_dir .. "lua/_compiled.lua"
-local packer = nil
+local M = {}
 
-local Packer = {}
-Packer.__index = Packer
-
-function Packer:load_plugins()
-   self.repos = {}
-
-   local get_plugins_list = function()
-      local list = {}
-      local tmp = vim.split(fn.globpath(plugin_dir, "*/plugin.lua"), "\n")
-      for _, f in ipairs(tmp) do
-         list[#list + 1] = f:sub(#plugin_dir - 6, -1)
-      end
-      return list
-   end
-
-   local plugins_file = get_plugins_list()
-   for _, m in ipairs(plugins_file) do
-      local repos = require(m:sub(0, #m - 4))
-      for repo, conf in pairs(repos) do
-         self.repos[#self.repos + 1] = vim.tbl_extend("force", { repo }, conf)
-      end
-   end
-end
-
-function Packer:load_packer()
-   if not packer then
-      api.nvim_command "packadd packer.nvim"
-      packer = require "packer"
-   end
-   packer.init {
-      ensure_dependencies = true,
-      display = {
-         open_fn = function()
-            return require("packer.util").float { border = "single" }
-         end,
-         prompt_border = "single",
-      },
-      compile_path = packer_compiled,
-      git = { depth = 1, clone_timeout = 120 }, --, default_url_format = "git@github.com:%s"},
-      auto_clean = true,
-      max_jobs = 15,
-      compile_on_sync = true,
-      disable_commands = false,
-      log = { level = "warn" },
-      profile = { enable = false },
-   }
-   packer.reset()
-   local use = packer.use
-   self:load_plugins()
-   use { "wbthomason/packer.nvim", opt = true }
-   for _, repo in ipairs(self.repos) do
-      use(repo)
-   end
-   -- print(vim.inspect(self.repos))
-end
-
-function Packer:init_ensure_plugins()
-   local packer_dir = data_dir .. "pack/packer/opt/packer.nvim"
-   local state = uv.fs_stat(packer_dir)
-   if not state then
-      local cmd = "!git clone https://github.com/wbthomason/packer.nvim " .. packer_dir
-      api.nvim_command(cmd)
-      uv.fs_mkdir(data_dir .. "lua", 511, function()
-         assert "make compile path dir faield"
-      end)
-      self:load_packer()
-      packer.install()
-   end
-end
-
-local plugins = setmetatable({}, {
-   __index = function(_, key)
-      if not packer then
-         Packer:load_packer()
-      end
-      return packer[key]
-   end,
-})
-
-function plugins.ensure_plugins()
-   Packer:init_ensure_plugins()
-end
-
-function plugins.convert_compile_file()
-   local lines = {}
-   local lnum = 1
-   lines[#lines + 1] = "vim.cmd [[packadd packer.nvim]]\n"
-
-   for line in io.lines(packer_compiled) do
-      lnum = lnum + 1
-      if lnum > 15 then
-         lines[#lines + 1] = line .. "\n"
-         if line == "END" then
-            break
+local function use(name, opts)
+   local custom = ""
+   local opt = opts or {}
+   if opts == nil then
+      local tmp = vim.split(name, "/", true)
+      if tmp[2] ~= nil then
+         custom = vim.split(tmp[2], ".", true)[1]
+         if custom == nil then
+            custom = tmp[2]
+         end
+         local ok, opttmp = pcall(require, "custom." .. custom)
+         -- print(custom, vim.inspect(opttmp))
+         if not ok then
+            opt = {}
+         else
+            opt = opttmp
          end
       end
    end
-   table.remove(lines, #lines)
-
-   if vim.fn.isdirectory(data_dir .. "lua") ~= 1 then
-      os.execute("mkdir -p " .. data_dir .. "lua")
-   end
-
-   if vim.fn.filereadable(compile_to_lua) == 1 then
-      os.remove(compile_to_lua)
-   end
-
-   local file = io.open(compile_to_lua, "w")
-   for _, line in ipairs(lines) do
-      file:write(line)
-   end
-   file:close()
-
-   os.remove(packer_compiled)
+   M[name] = opt
 end
 
-function plugins.magic_compile()
-   plugins.compile()
-   plugins.convert_compile_file()
-end
+use "kabouzeid/nvim-lspinstall"
 
-function plugins.auto_compile()
-   local file = vim.fn.expand "%:p"
-   if file:match(plugin_dir) then
-      plugins.clean()
-      plugins.compile()
-      plugins.convert_compile_file()
-   end
-end
+use("alexaandru/nvim-lspupdate", {
+   opt = true,
+   cmd = "LspUpdate",
+   after = "nvim-lspconfig",
+})
 
-function plugins.load_compile()
-   if vim.fn.filereadable(compile_to_lua) == 1 then
-      require "_compiled"
-   else
-      assert "Missing packer compile file Run PackerCompile Or PackerInstall to fix"
-   end
-   vim.cmd [[command! PackerCompile lua require('core.plugins').magic_compile()]]
-   vim.cmd [[command! PackerInstall lua require('core.plugins').install()]]
-   vim.cmd [[command! PackerUpdate lua require('core.plugins').update()]]
-   vim.cmd [[command! PackerSync lua require('core.plugins').sync()]]
-   vim.cmd [[command! PackerClean lua require('core.plugins').clean()]]
-   vim.cmd [[command! PackerStatus  lua require('core.plugins').status()]]
-   vim.cmd [[autocmd User PackerComplete lua require('core.plugins').magic_compile()]]
-end
+use "neovim/nvim-lspconfig"
 
-return plugins
+use("onsails/lspkind-nvim", {
+   opt = true,
+   after = "nvim-lspconfig",
+})
+
+use("mg979/vim-visual-multi", { opt = true, event = "InsertEnter" })
+
+use("glepnir/lspsaga.nvim", {
+   opt = true,
+   cmd = "Lspsaga",
+   after = "nvim-lspconfig",
+   config = function()
+      require("lspsaga").init_lsp_saga {
+         -- code_action_icon = "💡",
+      }
+   end,
+})
+
+use("ray-x/lsp_signature.nvim", {
+   opt = true,
+   event = "BufRead",
+   after = "nvim-lspconfig",
+   config = function()
+      require("lsp_signature").setup {
+         bind = true, -- This is mandatory, otherwise border config won't get registered.
+         handler_opts = {
+            border = "single",
+         },
+      }
+   end,
+})
+
+use "hrsh7th/nvim-cmp"
+
+use "nvim-telescope/telescope.nvim"
+
+use("AckslD/nvim-neoclip.lua", {
+   opt = true,
+   config = function()
+      require("neoclip").setup()
+   end,
+})
+
+use("mattn/vim-sonictemplate", {
+   opt = true,
+   cmd = "Template",
+   ft = { "go", "typescript", "lua", "javascript", "vim", "rust", "markdown" },
+})
+
+use "L3MON4D3/LuaSnip"
+
+use "kyazdani42/nvim-web-devicons"
+
+use "glepnir/dashboard-nvim"
+
+use "lukas-reineke/indent-blankline.nvim"
+
+use "akinsho/nvim-bufferline.lua"
+
+use "kyazdani42/nvim-tree.lua"
+
+use("yamatsum/nvim-nonicons", {
+   opt = true,
+   event = "BufRead",
+   after = "nvim-web-devicons",
+   requires = { "kyazdani42/nvim-web-devicons" },
+})
+
+use "lewis6991/gitsigns.nvim"
+
+use "folke/which-key.nvim"
+
+use "famiu/feline.nvim"
+
+use("NvChad/nvim-base16.lua", {
+   config = function()
+      require("colors").init()
+   end,
+})
+
+use("nacro90/numb.nvim", {
+   opt = true,
+   event = "CmdlineEnter",
+   config = function()
+      require("numb").setup { show_numbers = true, show_currorline = true, number_only = false }
+   end,
+})
+
+use "nvim-treesitter/nvim-treesitter"
+
+use "SmiteshP/nvim-gps"
+
+use("glepnir/prodoc.nvim", { opt = true, event = "BufReadPre" })
+
+use("ellisonleao/glow.nvim", {
+   opt = true,
+   run = ":GlowInstall",
+   ft = "markdown",
+   cmd = "Glow",
+   config = function()
+      vim.g.glow_binary_path = require("core.global").home .. ".local/bin"
+   end,
+})
+
+use("andymass/vim-matchup", {
+   opt = true,
+   after = "nvim-treesitter",
+   setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+   end,
+})
+
+use("sindrets/diffview.nvim", {
+   opt = true,
+   cmd = { "DiffviewOpen", "DiffviewToggleFiles", "DiffviewRefresh" },
+   module = "neogit",
+   after = "neogit",
+   config = function()
+      require("diffview").setup()
+   end,
+})
+
+use "TimUntersberger/neogit"
+
+use "ahmedkhalf/project.nvim"
+
+use "Pocco81/TrueZen.nvim"
+
+use "gelguy/wilder.nvim"
+
+use "folke/trouble.nvim"
+
+use "rcarriga/nvim-notify"
+
+use("jdhao/better-escape.vim", { opt = true, event = "InsertEnter" })
+
+use "norcalli/nvim-colorizer.lua"
+
+use("editorconfig/editorconfig-vim", {
+   opt = true,
+   ft = { "go", "typescript", "javascript", "vim", "rust", "c", "cpp", "lua", "vue", "rust" },
+})
+
+use("yamatsum/nvim-cursorline", {
+   opt = true,
+   event = { "BufReadPre", "BufNewFile" },
+})
+
+use "kevinhwang91/nvim-hlslens"
+
+use "simrat39/symbols-outline.nvim"
+
+use "b3nj5m1n/kommentary"
+
+use "edluffy/specs.nvim"
+
+use "ggandor/lightspeed.nvim"
+
+use("kana/vim-niceblock", { opt = true, event = "VimEnter" })
+
+use "windwp/nvim-autopairs"
+
+use("brooth/far.vim", {
+   opt = true,
+   cmd = { "F", "Far", "Farr" },
+   setup = function()
+      vim.g["far#enable_undo"] = 1
+      vim.g["far#source"] = "rg"
+   end,
+})
+
+return M

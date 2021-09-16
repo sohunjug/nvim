@@ -3,10 +3,11 @@ local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 local map_args = bind.map_args
--- local global = require "core.global"
 require "keymap.config"
 
-local plug_map = {
+local M = {}
+
+M.plug_map = {
    -- ["i|<TAB>"] = map_cmd("v:lua.tab_complete()"):with_expr():with_silent(),
    -- ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
    -- ["i|<CR>"] = map_cmd("v:lua.tab_confirm()"):with_noremap():with_expr():with_nowait(),
@@ -62,10 +63,12 @@ local plug_map = {
    --    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
    -- ["n|<Leader>lt"] = map_cr("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
-   -- ["t|<Leader>lc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
    -- :with_noremap()
    -- :with_silent(),
-   ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal(lazygit)"):with_noremap():with_silent(),
+   ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
+   ["t|<Leader>gc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
+      :with_noremap()
+      :with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
    -- Far.vim
    --    ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
@@ -80,10 +83,10 @@ local plug_map = {
    ["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent(),
    ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
    ["n|<Leader>bp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
-   ["n|<C-[>"] = map_cu("bp"):with_noremap(),
-   ["n|<C-]>"] = map_cu("bn"):with_noremap(),
-   ["v|<C-[>"] = map_cu("bp"):with_noremap(),
-   ["v|<C-]>"] = map_cu("bn"):with_noremap(),
+   -- ["n|<C-[>"] = map_cu("bp"):with_noremap(),
+   -- ["n|<C-]>"] = map_cu("bn"):with_noremap(),
+   -- ["v|<C-[>"] = map_cu("bp"):with_noremap(),
+   -- ["v|<C-]>"] = map_cu("bn"):with_noremap(),
    -- ["n|<Leader>bn"] = map_cr("bnext"):with_noremap():with_silent(),
    -- ["n|<Leader>bp"] = map_cr("bprev"):with_noremap():with_silent(),
    ["n|<Leader>fa"] = map_cu("DashboardFindWord"):with_noremap():with_silent(),
@@ -123,8 +126,8 @@ local plug_map = {
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
    ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),
    -- Plugin acceleratedjk
-   ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
-   ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
+   -- ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
+   -- ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
    -- Plugin QuickRun
    -- ["n|<Leader>r"] = map_cr("lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
    -- Plugin Vista
@@ -169,4 +172,8 @@ local plug_map = {
    ["v|<C-Insert>"] = map_cmd '"_dP',
 }
 
-bind.nvim_load_mapping(plug_map)
+M.setup = function()
+   bind.nvim_load_mapping(M.plug_map)
+end
+
+return M
