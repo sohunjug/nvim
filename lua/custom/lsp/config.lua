@@ -80,10 +80,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
    -- Enable underline, use default values
    underline = true,
    -- Enable virtual text, override spacing to 4
-   virtual_text = true,
+   virtual_text = {
+      prefix = "> ",
+      spacing = 0,
+   },
    signs = true,
    -- Disable a feature
-   update_in_insert = true,
+   update_in_insert = false,
 })
 vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
@@ -127,7 +130,7 @@ M.lsp_on_attach = function(client, bufnr)
     augroup END
     ]]
    end
-   M.lsp_mappings(bufnr)
+   M.add_mappings(bufnr)
 end
 
 M.borders = {
@@ -142,6 +145,32 @@ M.borders = {
    { "▏", "FloatBorder" },
 }
 
+M.add_mappings = function(bufnr)
+   local status_ok, wk = pcall(require, "which-key")
+   if not status_ok then
+      return
+   end
+
+   local keys = {
+      ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show hover" },
+      ["ga"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+      ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+      ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
+      ["gr"] = { "<cmd>lua require'telescope.builtin.lsp'.references()<CR>", "Goto References" },
+      ["gI"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
+      ["gR"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
+      ["gs"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show Signature Help" },
+      ["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
+      -- ["gp"] = { "<cmd>lua require'lsp.peek'.Peek('definition')<CR>", "Peek definition" },
+      ["gl"] = { "<cmd>lua vim.lsp.buf.diagnostic.show_line_diagnostics()<CR>", "Show Line Diagnostics" },
+      ["ep"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
+      ["en"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+      ["<Leader>ep"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
+      ["<Leader>en"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+   }
+   wk.register(keys, { mode = "n", buffer = bufnr })
+end
+
 M.lsp_mappings = function(bufnr)
    local map_cr = bind.map_cr
    local map_cu = bind.map_cu
@@ -154,7 +183,7 @@ M.lsp_mappings = function(bufnr)
          :with_silent(),
       ["n|ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
       ["n|en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
-      ["n|K"] = map_cr("lua require'lspsaga.hover'.render_hover_doc"):with_noremap():with_silent(),
+      ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
       ["n|ga"] = map_cr("lua require('lspsaga.codeaction').code_action()"):with_noremap():with_silent(),
       ["v|ga"] = map_cu("lua require('lspsaga.codeaction').range_code_action()"):with_noremap():with_silent(),
       ["n|gd"] = map_cr("lua require'telescope.builtin.lsp'.definitions()"):with_noremap():with_silent(),

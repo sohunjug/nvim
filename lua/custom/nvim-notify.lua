@@ -1,7 +1,7 @@
 local M = {
    opt = true,
    -- event = "VimEnter",
-   after = "nvim-nonicons",
+   after = "nvim-base16.lua",
 }
 
 M.config = function()

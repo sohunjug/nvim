@@ -39,7 +39,7 @@ use("onsails/lspkind-nvim", {
 
 use("mg979/vim-visual-multi", { opt = true, event = "InsertEnter" })
 
-use("glepnir/lspsaga.nvim", {
+--[[ use("glepnir/lspsaga.nvim", {
    opt = true,
    cmd = "Lspsaga",
    after = "nvim-lspconfig",
@@ -49,7 +49,7 @@ use("glepnir/lspsaga.nvim", {
          code_action_icon = "",
       }
    end,
-})
+}) ]]
 
 use("ray-x/lsp_signature.nvim", {
    opt = true,
@@ -64,6 +64,8 @@ use("ray-x/lsp_signature.nvim", {
       }
    end,
 })
+
+use "ray-x/navigator.lua"
 
 use "hrsh7th/nvim-cmp"
 
