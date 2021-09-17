@@ -20,6 +20,8 @@ M.plug_map = {
    -- ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap(),
    -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
    -- Packer
+   ["n|k"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "k"'):with_noremap():with_expr(),
+   ["n|j"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "j"'):with_noremap():with_expr(),
    ["n|<leader>pu"] = map_cr("PackerSync"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pi"] = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pc"] = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
@@ -163,6 +165,7 @@ M.plug_map = {
    ["v|<M-A>c"] = map_cr('"+y'):with_noremap():with_silent(),
    ["n|<Leader>tg"] = map_cr("highlight Normal guibg=NONE ctermbg=None"):with_noremap():with_silent(),
    ["n|Q"] = map_cr "q",
+   ["n|W"] = map_cu(":w!"):with_silent(),
    ["n|<LocalLeader>fa"] = map_args "Far",
    ["n|<LocalLeader>ff"] = map_args "Farf",
    ["n|<LocalLeader>q"] = map_cr "q",
@@ -178,6 +181,9 @@ M.plug_map = {
 
 M.setup = function()
    bind.nvim_load_mapping(M.plug_map)
+   local wk = require "which-key"
+   local keys = { ["<Leader>sr"] = { ":%s/\\<<c-r><c-w>\\>/", "Replace Cursor Word" } }
+   wk.register(keys, { mode = "n" })
 end
 
 return M

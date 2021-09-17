@@ -123,6 +123,10 @@ M.config = function()
          end,
       },
 
+      documentation = {
+         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      },
+
       snippet = {
          expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -139,6 +143,7 @@ M.config = function()
          { name = "spell" },
          { name = "tmux" },
          { name = "orgmode" },
+         { name = "treesitter" },
          -- {name = 'cmp_tabnine'},
       },
    }

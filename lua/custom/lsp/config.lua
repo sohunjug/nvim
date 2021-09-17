@@ -52,27 +52,16 @@ vim.cmd "command! -nargs=0 LspRestart call v:lua.reload_lsp()"
 M.on_publish_diagnostics = function(_, result, ctx, config)
    local uri = result.uri
    local bufnr = vim.uri_to_bufnr(uri)
-
    if not bufnr then
       return
    end
 
    local diagnostics = result.diagnostics
-
    vim.lsp.diagnostic.save(diagnostics, bufnr, ctx.client_id)
-
    if not vim.api.nvim_buf_is_loaded(bufnr) then
       return
    end
-
-   -- don't mutate the original diagnostic because it would interfere with
-   -- code action (and probably other stuff, too)
-   local prefixed_diagnostics = vim.deepcopy(diagnostics)
-   for i, v in pairs(diagnostics) do
-      prefixed_diagnostics[i].message = string.format("%s: %s", v.source, v.message)
-   end
-   -- print(vim.inspect(vim.lsp.diagnostic))
-   vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, ctx.client_id, config)
+   vim.lsp.diagnostic.display(diagnostics, bufnr, ctx.client_id, config)
 end
 
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(M.on_publish_diagnostics, {
@@ -92,6 +81,69 @@ vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagn
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
 vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", texthl = "LspDiagnosticsDefaultInformation" })
 vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", texthl = "LspDiagnosticsDefaultHint" })
+
+function M.show_line_diagnostics()
+   local diagnostics = vim.lsp.diagnostic.get_line_diagnostics()
+   local diags = vim.deepcopy(diagnostics)
+   local height = #diagnostics
+   local width = 0
+   local opts = {}
+   local close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" }
+   local diagnostic_severities = {
+      "Error",
+      "Warning",
+      "Information",
+      "Hint",
+   }
+   if height == 0 then
+      return
+   end
+   local bufnr = vim.api.nvim_create_buf(false, true)
+
+   for i, diagnostic in ipairs(diagnostics) do
+      local source = diagnostic.source
+      if source then
+         if string.find(source, "/") then
+            source = string.sub(diagnostic.source, string.find(diagnostic.source, "([%w-_]+)$"))
+         end
+         diags[i].message = string.format("%s: %s", source, diagnostic.message)
+      else
+         diags[i].message = string.format("%s", diagnostic.message)
+      end
+
+      if diagnostic.code then
+         diags[i].message = string.format("%s [%s]", diags[i].message, diagnostic.code)
+      end
+      if diags[i].message:len() > width then
+         width = string.len(diags[i].message)
+      end
+   end
+
+   opts = vim.lsp.util.make_floating_popup_options(width, height, opts)
+   opts["style"] = "minimal"
+   opts["border"] = "rounded"
+
+   vim.api.nvim_buf_set_option(bufnr, "bufhidden", "wipe")
+   local winnr = vim.api.nvim_open_win(bufnr, false, opts)
+   vim.api.nvim_win_set_option(winnr, "winblend", 0)
+   vim.api.nvim_buf_set_var(bufnr, "lsp_floating_window", winnr)
+   for i, diag in ipairs(diags) do
+      local message = diag.message:gsub("[\n\r]", " ")
+      vim.api.nvim_buf_set_lines(bufnr, i - 1, i - 1, 0, { message })
+      vim.api.nvim_buf_add_highlight(
+         bufnr,
+         -1,
+         "LspDiagnosticsFloating" .. diagnostic_severities[diag.severity],
+         i - 1,
+         0,
+         diag.message:len()
+      )
+   end
+   vim.api.nvim_command(
+      "autocmd QuitPre <buffer> ++nested ++once lua pcall(vim.api.nvim_win_close, " .. winnr .. ", true)"
+   )
+   vim.lsp.util.close_preview_autocmd(close_events, winnr)
+end
 
 M.lsp_on_init = function(client)
    vim.notify("Language Server Client successfully started!", "info", {
@@ -161,8 +213,8 @@ M.add_mappings = function(bufnr)
       ["gR"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
       ["gs"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show Signature Help" },
       ["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
-      -- ["gp"] = { "<cmd>lua require'lsp.peek'.Peek('definition')<CR>", "Peek definition" },
-      ["gl"] = { "<cmd>lua vim.lsp.buf.diagnostic.show_line_diagnostics()<CR>", "Show Line Diagnostics" },
+      ["gp"] = { "<cmd>lua require'custom.lsp.peek'.Peek('definition')<CR>", "Peek definition" },
+      ["gl"] = { "<cmd>lua require'custom.lsp.config'.show_line_diagnostics()<CR>", "Show Line Diagnostics" },
       ["ep"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
       ["en"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_next()<CR>", "Diagnostic Next" },
       ["<Leader>ep"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
