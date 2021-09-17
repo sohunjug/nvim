@@ -41,8 +41,8 @@ function M.load_autocmds()
       number = {
          -- {"InsertEnter","*", "set nornu | set nu"},
          -- {"InsertLeave", "*","set rnu | set nonu"},
-         { "InsertLeave", "*", "set nornu | set nu" },
-         { "InsertEnter", "*", "set rnu | set nonu" },
+         { "InsertLeave", "*", "set rnu! | set nu!" },
+         { "InsertEnter", "*", "set rnu! | set nu!" },
       },
 
       wins = {

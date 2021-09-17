@@ -110,8 +110,8 @@ use "folke/which-key.nvim"
 use "famiu/feline.nvim"
 
 use("NvChad/nvim-base16.lua", {
-	opt = true,
-	event = "VimEnter",
+   opt = true,
+   event = "VimEnter",
    config = require("colors").init,
 })
 
@@ -135,7 +135,7 @@ use("ellisonleao/glow.nvim", {
    ft = "markdown",
    cmd = "Glow",
    config = function()
-      vim.g.glow_binary_path = require("core.global").home .. ".local/bin"
+      vim.g.glow_binary_path = S_NVIM.home .. ".local/bin"
    end,
 })
 

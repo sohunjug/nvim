@@ -23,7 +23,7 @@ vendor/
 # OS General
 Thumbs.db
 .DS_Store
-
+lua/config/sohunjug.lua
 # project
 *.cert
 *.key

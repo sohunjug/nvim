@@ -22,6 +22,9 @@ M.setup = function()
                "-",
             },
          },
+         b.formatting.nixfmt,
+         b.formatting.yarf,
+         b.formatting.black,
          b.formatting.shfmt.with {
             extra_args = { "-i", "2", "-ci" },
          },
@@ -35,6 +38,8 @@ M.setup = function()
                "json",
                "jsonc",
                "css",
+               "scss",
+               "vue",
                "yaml",
                "markdown",
                "html",

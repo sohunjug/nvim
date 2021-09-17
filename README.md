@@ -1,43 +1,10 @@
-<h1 align="center">sohunjug</h1> 
-
-<div align="center">
-	<a href="https://nvchad.netlify.app/">Home</a>
-  <span> • </span>
-    	<a href="https://nvchad.netlify.app/getting-started/setup">Install</a>
-  <span> • </span>
-       	<a href="https://nvchad.netlify.app/contribute">Contribute</a>
-  <span> • </span>
-	<a href="https://github.com/siduck76/NvChad#gift_heart-support">Support</a>
-  <span> • </span>
-      	<a href="https://github.com/siduck76/NvChad/wiki/Chad-user-configs">Extras</a>
-  <p></p>
-</div>
+<h1 align="center">S_NVIM</h1> 
 
 <div align="center">
 	
 [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)](https://lua.org)
 	
 </div>
-
-<div align="center">
-	
-[![Super Linter](https://img.shields.io/github/workflow/status/siduck76/NvChad/Super-Linter/main?style=flat-square&logo=github&label=Build&color=green)]()
-<a href="https://github.com/siduck76/NvChad"
-        ><img
-            src="https://img.shields.io/github/repo-size/siduck76/NvChad?style=flat-square&label=Repo"
-            alt="GitHub repository size"
-    /></a>
-      <a href="https://github.com/siduck76/NvChad/blob/main/LICENSE"
-        ><img
-            src="https://img.shields.io/github/license/siduck76/NvChad?style=flat-square&logo=GNU&label=License"
-            alt="License"
-    />
-[![Discord](https://img.shields.io/discord/869557815780470834?color=738adb&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/gADmkJb9Fb)
-[![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.5+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white)](https://github.com/neovim/neovim)
-[![GitHub Issues](https://img.shields.io/github/issues/siduck76/NvChad.svg?style=flat-square&label=Issues&color=fc0330)](https://github.com/siduck76/NvChad/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/siduck76/NvChad.svg?style=flat-square&label=Last%20Commit&color=58eb34)](https://github.com/siduck76/NvChad/pulse) 
-	      
-  </div>
 
 ## Showcase
 
@@ -116,16 +83,11 @@ Without/with Treesitter:
 
 ## Credits
 
-- [Elianiva](https://github.com/elianiva) helped me with NeoVim Lua related issues many times, NvChad wouldnt exist without his help at all.
-- @lorvethe for making the beautiful NvChad logo.
+- @NvChad I Used The NvChad with Template
 
 ## Features
 
-- Many beautiful themes to choose from.
-- Distraction free modes.
 - Fast plugin loading.
-- Smooth scrolling.
-- Autosaving.
 - File navigation with [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua).
 - Managing tabs, buffers with [bufferline.nvim](https://github.com/akinsho/bufferline.nvim).
 - Beautiful and configurable icons with [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons).
@@ -138,53 +100,12 @@ Without/with Treesitter:
 - Syntax highlighting with [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
 - Autoclosing braces and html tags with [nvim-autopairs](https://github.com/windwp/nvim-autopairs).
 - Formatting code with [neoformat](https://github.com/sbdchd/neoformat).
-- Indentlines with [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim).
+<!-- - Indentlines with [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim). -->
 - Useful snippets with [LuaSnip](https://github.com/L3MON4D3/LuaSnip).
-
-## Bloat
-	
-To everyone who thinks that NvChad is bloat: Bloat means different things to everyone.
-
-NvChad has 38 plugins installed by default yet it is still very fast because it uses Packer plugin maanager. Packer.nvim allows you lets you lazy load plugins, meaning they get loaded only when absoloutely required. Furthermore, you can disable plugins you don't use in `chardrc.lua`.
-
-<img src = "https://chadpaste.com/f/kdmxdabxbk.png">
 
 # TODO
 
-NvChad is focusing more on improving its already existing plugins and features instead of adding more plugins. Things you can do to help currently are:
+S_NVIM is focusing more on improving its already existing plugins and features instead of adding more plugins. Things you can do to help currently are:
 
 - Improving base plugins configurations
 - Debloating the config.
-- Adding more themes.
-
-## Try NvChad in a Docker container
-
-This will leave your current Neovim configuration untouched. Once you exit Neovim, the image is deleted.
-
-```zsh
-  docker run -w /root -it --rm alpine:edge sh -uelic '
-    apk add git nodejs neovim ripgrep alpine-sdk --update
-    git clone https://github.com/NvChad/NvChad ~/.config/nvim
-    nvim -c "autocmd User PackerComplete quitall" -c "PackerSync"
-    nvim
-    '
-```
-
-## Chadributors
-
-<a href="https://github.com/NvChad/NvChad/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=siduck76/NvChad"/>
-</a>
-
-## Warning
-
-If you have an issue with a plugin in NvChad, first you should report it to NvChad to see if it's an issue with it.
-
-## :gift_heart: Support
-
-I would happily accept donations but would feel awful since I'm not the only one who has worked on NvChad. The project has only been made possible by the many great contributors and plugin developers, thus taking the donations just for me feels unjustified. If you enjoy using NvChad and would like to show your support then try to be a better you! Help the people in need whenever possible and do charity work. Be nice to loved ones and strangers alike. Do not be rude, always try to be helpful and caring for one another. It's easy to hate but hard to care. Be respectful to any software/work done by other people rather than making fun of them. Do not compare software (In a bad way). I'm grateful to even be able to use NeoVim! But I still cannot be fully happy when I know that there are people who barely have any food to eat, starve for weeks, dont have access to proper education, comupters, basic health care facilities and more. Here are some charites and gofundme links you can donate to instead:
-
-- https://www.gofundme.com/f/WeCareAboutSyria
-- https://www.gofundme.com/f/Burundi-Nutrition
-- https://charity.gofundme.com/o/en/campaign/feedingyemen
-- https://www.gofundme.com/f/6p8ea-give-ghanaian-orphans-the-gift-of-a-ride-to-school

@@ -58,7 +58,7 @@ M.plug_map = {
    ["n|<Leader>ft"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
    ["n|<Leader>fo"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
    -- Plugin MarkdownPreview
-   ["n|<Leader>om"] = map_cu("MarkdownPreview"):with_noremap():with_silent(),
+   -- ["n|<Leader>om"] = map_cu("MarkdownPreview"):with_noremap():with_silent(),
    -- Plugin DadbodUI
    --    ["n|<Leader>od"] = map_cr("DBUIToggle"):with_noremap():with_silent(),
    -- Plugin Floaterm
@@ -83,6 +83,7 @@ M.plug_map = {
    ["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent(),
    ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
    ["n|<Leader>bp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
+   ["n|<Leader>bh"] = map_cr("Dashboard"):with_noremap():with_silent(),
    -- ["n|<C-[>"] = map_cu("bp"):with_noremap(),
    -- ["n|<C-]>"] = map_cu("bn"):with_noremap(),
    -- ["v|<C-[>"] = map_cu("bp"):with_noremap(),
@@ -98,10 +99,10 @@ M.plug_map = {
    ["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent(),
    ["n|<Leader>fgi"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
    ["n|<Leader>fgo"] = map_cu("Telescope gosource"):with_noremap():with_silent(),
-   ["n|<Leader>fl"] = map_cu("Telescope loclist"):with_noremap():with_silent(),
+   -- ["n|<Leader>fl"] = map_cu("Telescope loclist"):with_noremap():with_silent(),
    ["n|<Leader>fk"] = map_cu("Telescope keymaps"):with_noremap():with_silent(),
    ["n|<Leader>fp"] = map_cu("Telescope project project"):with_noremap():with_silent(),
-   ["n|<Leader>fq"] = map_cu("Telescope quickfix"):with_noremap():with_silent(),
+   -- ["n|<Leader>fq"] = map_cu("Telescope quickfix"):with_noremap():with_silent(),
    ["n|<Leader>fr"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
    ["n|<Leader>fw"] = map_cu("Telescope grep_string"):with_noremap():with_silent(),
    ["n|<Leader>pm"] = map_cu("Glow"):with_noremap():with_silent(),
@@ -143,7 +144,7 @@ M.plug_map = {
    ["n|<leader>tc"] = map_cr(
       "lua require('modules.themes').toggle_theme(require('core.utils').load_config().ui.theme_toggler.fav_themes)"
    ):with_silent(),
-   ["n|<leader>tt"] = map_cu("Telescope themes"):with_silent(),
+   ["n|<leader>tt"] = map_cu("Telescope themes themes"):with_silent(),
    ["n|<leader>zz"] = map_cu("TZAtaraxis"):with_silent(),
    ["n|<leader>zf"] = map_cu("TZFocus"):with_silent(),
    ["n|<leader>zm"] = map_cu("TZMinimalist"):with_silent(),
@@ -162,6 +163,8 @@ M.plug_map = {
    ["v|<M-A>c"] = map_cr('"+y'):with_noremap():with_silent(),
    ["n|<Leader>tg"] = map_cr("highlight Normal guibg=NONE ctermbg=None"):with_noremap():with_silent(),
    ["n|Q"] = map_cr "q",
+   ["n|<LocalLeader>fa"] = map_args "Far",
+   ["n|<LocalLeader>ff"] = map_args "Farf",
    ["n|<LocalLeader>q"] = map_cr "q",
    ["n|<LocalLeader>w"] = map_cu "set wrap!",
    ["n|q"] = map_cr "quit",
