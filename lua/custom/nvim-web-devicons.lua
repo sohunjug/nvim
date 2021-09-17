@@ -1,5 +1,5 @@
 local M = {
-	opt = true,
+   opt = true,
    after = "nvim-base16.lua",
 }
 
