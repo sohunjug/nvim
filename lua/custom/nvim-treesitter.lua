@@ -56,6 +56,26 @@ M.config = function()
       },
       highlight = { enable = true, additional_vim_regex_highlighting = false },
       textobjects = {
+         move = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
+               ["]m"] = "@function.outer",
+               ["]]"] = "@class.outer",
+            },
+            goto_next_end = {
+               ["]M"] = "@function.outer",
+               ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+               ["[m"] = "@function.outer",
+               ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+               ["[M"] = "@function.outer",
+               ["[]"] = "@class.outer",
+            },
+         },
          select = {
             enable = true,
             keymaps = {
@@ -67,6 +87,12 @@ M.config = function()
          },
       },
    }
+
+   -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+   -- parser_config.kkf2 = {
+   -- filetype = "lua", -- if filetype does not agrees with parser name
+   -- used_by = { "bar", "baz" }, -- additional filetypes that use this parser
+   -- }
 end
 
 return M

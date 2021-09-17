@@ -35,6 +35,8 @@ function M.load_autocmds()
          { "BufWritePre", "*.bak", "setlocal noundofile" },
          -- { "BufWritePre", "*.tsx", "lua vim.api.nvim_command('Format')" },
          -- { "BufWritePre", "*.go", "lua require('go.format').goimport()" },
+         { "BufReadPost", "*.go", [[set list lcs=tab:\|\ ]] },
+         { "BufReadPost", "*.kkf2", [[ set filetype=lua ]] },
          { "BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]] },
       },
       term = { { "TermOpen", "term://*", "setlocal nonumber norelativenumber | setfiletype terminal" } },

@@ -114,6 +114,9 @@ M.lsp_on_attach = function(client, bufnr)
    if client.resolved_capabilities.document_formatting then
       format.lsp_before_save()
    end
+   if client.name == "go" then
+      vim.cmd [[set list lcs=tab:\|\ ]]
+   end
    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
    vim.api.nvim_buf_set_option(bufnr, "expandtab", true)
    if client.resolved_capabilities.code_lens then

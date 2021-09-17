@@ -206,4 +206,15 @@ use("brooth/far.vim", {
    end,
 })
 
+use("lukas-reineke/headlines.nvim", {
+   opt = true,
+   ft = {
+      "vimwiki",
+      "markdown",
+   },
+   config = function()
+      require("headlines").setup()
+   end,
+})
+
 return M
