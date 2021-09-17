@@ -89,6 +89,8 @@ use "kyazdani42/nvim-web-devicons"
 use "glepnir/dashboard-nvim"
 
 -- use "lukas-reineke/indent-blankline.nvim"
+--
+use "Yggdroot/indentLine"
 
 use "akinsho/nvim-bufferline.lua"
 
@@ -96,8 +98,8 @@ use "kyazdani42/nvim-tree.lua"
 
 use("yamatsum/nvim-nonicons", {
    opt = true,
-   event = "BufRead",
-   after = "nvim-web-devicons",
+   event = "VimEnter",
+   module = "nvim-web-devicons",
    requires = { "kyazdani42/nvim-web-devicons" },
 })
 
@@ -108,9 +110,9 @@ use "folke/which-key.nvim"
 use "famiu/feline.nvim"
 
 use("NvChad/nvim-base16.lua", {
-   config = function()
-      require("colors").init()
-   end,
+	opt = true,
+	event = "VimEnter",
+   config = require("colors").init,
 })
 
 use("nacro90/numb.nvim", {

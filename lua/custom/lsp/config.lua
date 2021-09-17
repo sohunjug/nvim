@@ -71,17 +71,19 @@ M.on_publish_diagnostics = function(_, result, ctx, config)
    for i, v in pairs(diagnostics) do
       prefixed_diagnostics[i].message = string.format("%s: %s", v.source, v.message)
    end
+   -- print(vim.inspect(vim.lsp.diagnostic))
    vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, ctx.client_id, config)
 end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(M.on_publish_diagnostics, {
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(M.on_publish_diagnostics, {
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
    -- Enable underline, use default values
    underline = true,
    -- Enable virtual text, override spacing to 4
    virtual_text = true,
-   signs = { enable = true, priority = 20 },
+   signs = true,
    -- Disable a feature
-   update_in_insert = false,
+   update_in_insert = true,
 })
 vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
@@ -163,7 +165,7 @@ M.lsp_mappings = function(bufnr)
       ["n|gl"] = map_cr("lua require'lspsaga.diagnostic'.show_line_diagnostics()"):with_noremap():with_silent(),
       ["n|gw"] = map_cr("lua require'lspsaga.diagnostic'.show_cursor_diagnostics()"):with_noremap():with_silent(),
       ["n|g]"] = map_cr(
-         "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'custom.completion.lsp.config' .borders } }"
+         "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
       )
          :with_noremap()
          :with_silent(),

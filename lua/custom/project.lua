@@ -1,6 +1,6 @@
 local M = {
    opt = true,
-   event = "BufReadPre",
+   event = "BufReadPost",
 }
 
 M.config = function()

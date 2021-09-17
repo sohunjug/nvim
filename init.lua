@@ -5,8 +5,8 @@ _G.SNVIM_Loading = function(module)
    if not ok then
       error("Error loading " .. module .. "\n\n" .. m)
    end
-   local ok, err = pcall(m.setup)
-   if not ok then
+   local _ok, err = pcall(m.setup)
+   if not _ok then
       error("Error setup " .. module .. "\n\n" .. err)
    end
 end

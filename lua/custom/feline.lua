@@ -1,6 +1,8 @@
 local M = {
+	opt = true,
    requires = { "kyazdani42/nvim-web-devicons", "SmiteshP/nvim-gps" },
    after = "nvim-gps",
+	event = "VimEnter"
 }
 
 M.config = function()

@@ -1,6 +1,7 @@
 local M = {
-   -- event = "WinEnter",
-   after = "feline.nvim",
+   opt = true,
+   -- event = "VimEnter",
+   after = "nvim-nonicons",
 }
 
 M.config = function()
