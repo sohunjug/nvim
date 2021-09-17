@@ -1,9 +1,35 @@
-local M = { opt = true, event = "BufRead" }
+local M = {
+   opt = true,
+   after = "feline.nvim",
+   ft = {
+      "markdown",
+      "javascript",
+      "go",
+      "c",
+      "cpp",
+      "shell",
+      "vim",
+      "dockerfile",
+      "dot",
+      "vue",
+      "css",
+      "nix",
+      "python",
+      "json",
+      "yaml",
+      "graphql",
+      "rust",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "lua",
+   },
+}
 
 M.config = function()
    -- because lazy load indent-blankline so need readd this autocmd
    vim.opt.listchars = {
-      space = "⋅",
+      -- space = "⋅",
       eol = "↴",
    }
    require("indent_blankline").setup {
@@ -30,6 +56,7 @@ M.config = function()
          "flutterToolsOutline",
          "", -- for all buffers without a file type
       },
+      -- sdf
       buftype_exclude = { "terminal", "nofile" },
       context_patterns = {
          "class",
@@ -45,7 +72,9 @@ M.config = function()
          "for",
       },
       char = "┊",
+      char_highlight = "LineNr",
       space_char_blankline = " ",
+      use_treesitter = true,
       -- space_char = "·",
       space_char = " ",
       show_first_indent_level = false,

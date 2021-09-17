@@ -46,6 +46,7 @@ use("glepnir/lspsaga.nvim", {
    config = function()
       require("lspsaga").init_lsp_saga {
          -- code_action_icon = "💡",
+         code_action_icon = "",
       }
    end,
 })
@@ -87,7 +88,7 @@ use "kyazdani42/nvim-web-devicons"
 
 use "glepnir/dashboard-nvim"
 
-use "lukas-reineke/indent-blankline.nvim"
+-- use "lukas-reineke/indent-blankline.nvim"
 
 use "akinsho/nvim-bufferline.lua"
 
