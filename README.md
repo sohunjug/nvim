@@ -6,6 +6,11 @@
 	
 </div>
 
+## Credits
+
+- Use The @NvChad Code Template
+- Use The @glepnir Code Template
+
 ## Showcase
 
 <img src="https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/dashboard-nvim.png"><hr>
@@ -80,10 +85,6 @@ Without/with Treesitter:
 <kbd><img src="https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/woTree.png"></kbd>
 
 </details>
-
-## Credits
-
-- @NvChad I Used The NvChad with Template
 
 ## Features
 
