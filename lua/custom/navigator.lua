@@ -37,7 +37,26 @@ M.config = function()
          -- Diagnostics
          diagnostic_head = "🐛",
          diagnostic_head_severity_1 = "🈲",
-         -- refer to lua/navigator.lua for more icons setups
+         diagnostic_head_severity_2 = "☣️",
+         diagnostic_head_severity_3 = "👎",
+         diagnostic_head_description = "📛",
+         diagnostic_virtual_text = "🦊",
+         diagnostic_file = "🚑",
+         -- Values
+         value_changed = "📝",
+         value_definition = "🦕",
+         -- Treesitter
+         match_kinds = {
+            var = " ", -- "👹", -- Vampaire
+            method = "ƒ ", --  "🍔", -- mac
+            ["function"] = " ", -- "🤣", -- Fun
+            parameter = "  ", -- Pi
+            associated = "🤝",
+            namespace = "🚀",
+            type = " ",
+            field = "🏈",
+         },
+         treesitter_defult = "🌲",
       },
    }
 end

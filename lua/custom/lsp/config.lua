@@ -38,15 +38,6 @@ function _G.open_lsp_log()
    vim.cmd("edit " .. path)
 end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-   border = M.borders,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-   border = M.borders,
-})
-
-vim.cmd "command! -nargs=0 LspLog call v:lua.open_lsp_log()"
 vim.cmd "command! -nargs=0 LspRestart call v:lua.reload_lsp()"
 
 M.on_publish_diagnostics = function(_, result, ctx, config)
@@ -57,11 +48,11 @@ M.on_publish_diagnostics = function(_, result, ctx, config)
    end
 
    local diagnostics = result.diagnostics
-   vim.lsp.diagnostic.save(diagnostics, bufnr, ctx.client_id)
+   vim.lsp.diagnostic.set(diagnostics, bufnr, ctx.client_id)
    if not vim.api.nvim_buf_is_loaded(bufnr) then
       return
    end
-   vim.lsp.diagnostic.display(diagnostics, bufnr, ctx.client_id, config)
+   vim.lsp.diagnostic.show(diagnostics, bufnr, ctx.client_id, config)
 end
 
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(M.on_publish_diagnostics, {
@@ -69,18 +60,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
    -- Enable underline, use default values
    underline = true,
    -- Enable virtual text, override spacing to 4
-   virtual_text = {
+   --[[ virtual_text = {
       prefix = "> ",
       spacing = 0,
-   },
+   }, ]]
+   virtual_text = false,
    signs = true,
    -- Disable a feature
    update_in_insert = false,
 })
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", texthl = "LspDiagnosticsDefaultInformation" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", texthl = "LspDiagnosticsDefaultHint" })
 
 function M.show_line_diagnostics()
    local diagnostics = vim.lsp.diagnostic.get_line_diagnostics()
@@ -145,6 +133,11 @@ function M.show_line_diagnostics()
    vim.lsp.util.close_preview_autocmd(close_events, winnr)
 end
 
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
+vim.fn.sign_define("DiagnosticSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "LspDiagnosticsDefaultInformation" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "LspDiagnosticsDefaultHint" })
+
 M.lsp_on_init = function(client)
    vim.notify("Language Server Client successfully started!", "info", {
       title = client.name,
@@ -152,6 +145,12 @@ M.lsp_on_init = function(client)
 end
 
 M.lsp_on_attach = function(client, bufnr)
+   -- if not packer_plugins["lsp_signature"] or not packer_plugins["lsp_signature"].loaded then
+   -- vim.cmd [[packadd lsp_signature]]
+   -- end
+   if not packer_plugins["lsputil"] or not packer_plugins["lsputil"].loaded then
+      vim.cmd [[packadd lsputil]]
+   end
    if client.name == "vuels" then
       client.resolved_capabilities.document_formatting = false
    end
@@ -169,9 +168,9 @@ M.lsp_on_attach = function(client, bufnr)
    if client.resolved_capabilities.document_formatting then
       format.lsp_before_save()
    end
-   if client.name == "go" then
-      vim.cmd [[set list lcs=tab:\|\ ]]
-   end
+   -- if client.name == "go" then
+   -- vim.cmd [[au BufRead *.go set list lcs=tab:\|\  ]]
+   -- end
    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
    vim.api.nvim_buf_set_option(bufnr, "expandtab", true)
    if client.resolved_capabilities.code_lens then
@@ -183,6 +182,27 @@ M.lsp_on_attach = function(client, bufnr)
     ]]
    end
    M.add_mappings(bufnr)
+   vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
+   vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
+   vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
+   vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
+   vim.lsp.handlers["textDocument/typeDefinition"] = require("lsputil.locations").typeDefinition_handler
+   vim.lsp.handlers["textDocument/implementation"] = require("lsputil.locations").implementation_handler
+   vim.lsp.handlers["textDocument/documentSymbol"] = require("lsputil.symbols").document_handler
+   vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
+   --[[ local status_ok, lsign = pcall(require, "lsp_signature")
+   if not status_ok then
+      return
+   end
+   lsign.on_attach({
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      floating_window_above_cur_line = true,
+      transpancy = 10,
+      shadow_blend = 36,
+      handler_opts = {
+         border = "shadow",
+      },
+   }, bufnr) ]]
 end
 
 M.borders = {
@@ -197,6 +217,16 @@ M.borders = {
    { "▏", "FloatBorder" },
 }
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+   border = M.borders,
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+   border = M.borders,
+})
+
+vim.cmd "command! -nargs=0 LspLog call v:lua.open_lsp_log()"
+
 M.add_mappings = function(bufnr)
    local status_ok, wk = pcall(require, "which-key")
    if not status_ok then
@@ -208,6 +238,7 @@ M.add_mappings = function(bufnr)
       ["ga"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
       ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
       ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
+      ["gF"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto References Utils" },
       ["gr"] = { "<cmd>lua require'telescope.builtin.lsp'.references()<CR>", "Goto References" },
       ["gI"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
       ["gR"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
@@ -215,10 +246,10 @@ M.add_mappings = function(bufnr)
       ["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
       ["gp"] = { "<cmd>lua require'custom.lsp.peek'.Peek('definition')<CR>", "Peek definition" },
       ["gl"] = { "<cmd>lua require'custom.lsp.config'.show_line_diagnostics()<CR>", "Show Line Diagnostics" },
-      ["ep"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
-      ["en"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_next()<CR>", "Diagnostic Next" },
-      ["<Leader>ep"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
-      ["<Leader>en"] = { "<cmd>lua vim.lsp.buf.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+      ["ep"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
+      ["en"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+      ["<Leader>ep"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
+      ["<Leader>en"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Diagnostic Next" },
    }
    wk.register(keys, { mode = "n", buffer = bufnr })
 end

@@ -58,6 +58,7 @@ use("ray-x/lsp_signature.nvim", {
    config = function()
       require("lsp_signature").setup {
          bind = true, -- This is mandatory, otherwise border config won't get registered.
+         floating_window_above_cur_line = true,
          handler_opts = {
             border = "single",
          },
@@ -65,7 +66,8 @@ use("ray-x/lsp_signature.nvim", {
    end,
 })
 
-use "ray-x/navigator.lua"
+use "RishabhRD/nvim-lsputils"
+-- use "ray-x/navigator.lua"
 
 use "hrsh7th/nvim-cmp"
 
@@ -161,7 +163,14 @@ use("sindrets/diffview.nvim", {
 
 use "TimUntersberger/neogit"
 
-use("tversteeg/registers.nvim", { opt = true, cmd = "Registers", event = "InsertEnter" })
+use("tversteeg/registers.nvim", {
+   opt = true,
+   cmd = "Registers",
+   event = "InsertEnter",
+   setup = function()
+      vim.g.registers_window_border = "rounded"
+   end,
+})
 
 use "ahmedkhalf/project.nvim"
 

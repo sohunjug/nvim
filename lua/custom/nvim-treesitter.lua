@@ -31,6 +31,9 @@ M.config = function()
       context_commentstring = {
          enable = true,
       },
+      matchup = {
+         enable = true,
+      },
       ensure_installed = {
          "go",
          "c",
@@ -54,7 +57,7 @@ M.config = function()
          "graphql",
          "dot",
       },
-      highlight = { enable = true, additional_vim_regex_highlighting = false },
+      highlight = { enable = true, additional_vim_regex_highlighting = true },
       textobjects = {
          move = {
             enable = true,
