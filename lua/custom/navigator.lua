@@ -22,9 +22,10 @@ M.config = function()
       -- The attach code will apply to all LSP clients
 
       default_mapping = false, -- set to false if you will remap every key
-      keymaps = {{
-         key = "gK", func = "declaration()"
-      }},
+      keymaps = { {
+         key = "gK",
+         func = "declaration()",
+      } },
       -- this kepmap gK will override "gD" mapping function declaration()  in default kepmap
       -- please check mapping.lua for all keymaps
       treesitter_analysis = true, -- treesitter variable context
