@@ -70,7 +70,7 @@ function M.load_autocmds()
          { "BufNewFile,BufRead", "*.toml", " setf toml" },
       },
 
-      yank = { { "TextYankPost", [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]] } },
+      -- yank = { { "TextYankPost", [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]] } },
    }
 
    M.nvim_create_augroups(definitions)

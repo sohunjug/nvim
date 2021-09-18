@@ -28,7 +28,7 @@ M.load_options = function()
       encoding = "utf-8",
       viewoptions = "folds,cursor,curdir,slash,unix",
       sessionoptions = "blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos",
-      clipboard = "unnamedplus",
+      -- clipboard = "unnamedplus",
       wildignorecase = true,
       -- wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
       wildignore = {
@@ -173,12 +173,16 @@ M.load_options = function()
          paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
          cache_enabled = 0,
       }
+      vim.opt.clipboard = ""
+      -- vim.cmd [[set clipboard^=unnamed,unnamedplus]]
       local asdf = S_NVIM.home .. ".asdf/shims/python3"
       if vim.fn.executable(asdf) then
          vim.g.python3_host_prog = asdf
       else
          vim.g.python3_host_prog = "/usr/local/bin/python3"
       end
+      vim.g.loaded_perl_provider = true
+      vim.g.loaded_python2_provider = true
    end
    for name, value in pairs(global_local) do
       vim.opt[name] = value

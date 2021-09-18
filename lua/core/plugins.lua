@@ -161,6 +161,8 @@ use("sindrets/diffview.nvim", {
 
 use "TimUntersberger/neogit"
 
+use("tversteeg/registers.nvim", { opt = true, cmd = "Registers", event = "InsertEnter" })
+
 use "ahmedkhalf/project.nvim"
 
 use "Pocco81/TrueZen.nvim"

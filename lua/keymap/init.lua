@@ -162,7 +162,8 @@ M.plug_map = {
    ["x|I"] = map_cmd("v:lua.enhance_nice_block('I')"):with_expr(),
    ["x|gI"] = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),
    ["x|A"] = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
-   ["v|<M-A>c"] = map_cr('"+y'):with_noremap():with_silent(),
+   ["v|<M-A>c"] = map_cmd('"+y'):with_noremap():with_silent(),
+   ["v|<Leader>y"] = map_cmd('"+y'):with_noremap():with_silent(),
    ["n|<Leader>tg"] = map_cr("highlight Normal guibg=NONE ctermbg=None"):with_noremap():with_silent(),
    ["n|Q"] = map_cr "q",
    ["n|W"] = map_cu(":w!"):with_silent(),
@@ -170,13 +171,17 @@ M.plug_map = {
    ["n|<LocalLeader>ff"] = map_args "Farf",
    ["n|<LocalLeader>q"] = map_cr "q",
    ["n|<LocalLeader>w"] = map_cu "set wrap!",
+   ["n|<LocalLeader>c"] = map_cu "set paste!",
+   ["n|<LocalLeader>p"] = map_cmd '"+p',
    ["n|q"] = map_cr "quit",
    ["v|<M-[>2;5+"] = map_cmd "y",
    ["n|<C-S-Insert>"] = map_cmd "<ESC>ggVG",
+   ["n|<LocalLeader>a"] = map_cmd "<ESC>ggVG",
    ["i|<C-Insert>"] = map_cmd "<C-r>*",
    ["c|<C-Insert>"] = map_cmd "<C-r>*",
    ["n|<C-Insert>"] = map_cmd "P",
    ["v|<C-Insert>"] = map_cmd '"_dP',
+   --
 }
 
 M.setup = function()
