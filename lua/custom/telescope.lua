@@ -1,17 +1,19 @@
 local M = {
    cmd = "Telescope",
    requires = {
-      { "nvim-lua/popup.nvim" },
-      { "nvim-lua/plenary.nvim" },
+      { "nvim-lua/popup.nvim", opt = true },
+      { "nvim-lua/plenary.nvim", opt = true },
       -- { "jremmen/vim-ripgrep", opt = true },
-      { "nvim-telescope/telescope-fzy-native.nvim" },
-      { "nvim-telescope/telescope-project.nvim" },
+      { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
+      { "nvim-telescope/telescope-project.nvim", opt = true },
       {
          "nvim-telescope/telescope-frecency.nvim",
-         requires = { "tami5/sqlite.lua" },
+         opt = true,
+         requires = { "tami5/sqlite.lua", opt = true },
       },
       {
          "nvim-telescope/telescope-cheat.nvim",
+         opt = true,
          -- requires = { "tami5/sqlite.nvim", opt = true },
       },
    },
