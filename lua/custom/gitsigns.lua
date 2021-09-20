@@ -6,7 +6,6 @@ local M = {
 
 M.config = function()
    local present, gitsigns = pcall(require, "gitsigns")
-   print(present)
    if not present then
       return
    end
