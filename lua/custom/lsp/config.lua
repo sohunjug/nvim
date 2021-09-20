@@ -64,7 +64,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
       prefix = "> ",
       spacing = 0,
    }, ]]
-   virtual_text = false,
+   virtual_text = true,
    signs = true,
    -- Disable a feature
    update_in_insert = false,

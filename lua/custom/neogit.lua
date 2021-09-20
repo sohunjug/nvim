@@ -1,7 +1,7 @@
 local M = {
    opt = true,
    cmd = "Neogit",
-   after = { "plenary.nvim", opt = true },
+   after = { "plenary.nvim", opt = false },
 }
 
 M.config = function()

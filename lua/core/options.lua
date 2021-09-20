@@ -181,8 +181,9 @@ M.load_options = function()
       else
          vim.g.python3_host_prog = "/usr/local/bin/python3"
       end
-      vim.g.loaded_perl_provider = true
-      vim.g.loaded_python2_provider = true
+      vim.g.loaded_ruby_provider = 0
+      vim.g.loaded_perl_provider = 0
+      vim.g.loaded_python_provider = 0
    end
    for name, value in pairs(global_local) do
       vim.opt[name] = value

@@ -1,11 +1,12 @@
 local M = {
    opt = true,
    event = { "BufRead", "BufNewFile" },
-   requires = { "nvim-lua/plenary.nvim", opt = true },
+   requires = { "nvim-lua/plenary.nvim", opt = false },
 }
 
 M.config = function()
    local present, gitsigns = pcall(require, "gitsigns")
+   print(present)
    if not present then
       return
    end
