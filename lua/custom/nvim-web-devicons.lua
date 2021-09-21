@@ -4,6 +4,9 @@ local M = {
 }
 
 M.config = function()
+   if not packer_plugins["nvim-web-devicons"] or not packer_plugins["nvim-web-devicons"].loaded then
+      vim.cmd [[packadd nvim-web-devicons]]
+   end
    local present, icons = pcall(require, "nvim-web-devicons")
    if not present then
       return

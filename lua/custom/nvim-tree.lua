@@ -56,6 +56,7 @@ M.config = function()
       },
       buftype = {
          "terminal",
+         "nofile",
       },
    }
 

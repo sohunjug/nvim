@@ -34,6 +34,7 @@ use "neovim/nvim-lspconfig"
 
 use("onsails/lspkind-nvim", {
    opt = true,
+   event = "BufReadPost",
    after = "nvim-lspconfig",
 })
 
@@ -67,6 +68,7 @@ use("ray-x/lsp_signature.nvim", {
 })
 
 use "RishabhRD/nvim-lsputils"
+
 -- use "ray-x/navigator.lua"
 
 use "hrsh7th/nvim-cmp"
@@ -92,20 +94,20 @@ use "kyazdani42/nvim-web-devicons"
 
 use "glepnir/dashboard-nvim"
 
--- use "lukas-reineke/indent-blankline.nvim"
---
-use "Yggdroot/indentLine"
+use "lukas-reineke/indent-blankline.nvim"
+
+-- use "Yggdroot/indentLine"
 
 use "akinsho/nvim-bufferline.lua"
 
 use "kyazdani42/nvim-tree.lua"
 
-use("yamatsum/nvim-nonicons", {
+--[[ use("yamatsum/nvim-nonicons", {
    opt = true,
    event = "VimEnter",
    module = "nvim-web-devicons",
    requires = { "kyazdani42/nvim-web-devicons" },
-})
+}) ]]
 
 use "lewis6991/gitsigns.nvim"
 
