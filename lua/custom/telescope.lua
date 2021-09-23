@@ -1,5 +1,5 @@
 local M = {
-   cmd = "Telescope",
+   -- cmd = "Telescope",
    requires = {
       { "nvim-lua/popup.nvim", opt = true },
       { "nvim-lua/plenary.nvim", opt = false },
@@ -19,17 +19,13 @@ local M = {
    },
 }
 M.config = function()
-   local present, telescope = pcall(require, "telescope")
-   if not present then
-      return
-   end
-
    if
       not packer_plugins["plenary.nvim"]
       or not packer_plugins["telescope-cheat"]
       or not packer_plugins["plenary.nvim"].loaded
       or not packer_plugins["telescope-cheat"].loaded
    then
+      vim.cmd [[packadd telescope.nvim]]
       vim.cmd [[packadd plenary.nvim]]
       vim.cmd [[packadd popup.nvim]]
       vim.cmd [[packadd telescope-fzy-native.nvim]]
@@ -37,6 +33,12 @@ M.config = function()
       vim.cmd [[packadd telescope-frecency.nvim]]
       vim.cmd [[packadd telescope-cheat.nvim]]
       vim.cmd [[packadd sqlite.lua]]
+   end
+
+   local present, telescope = pcall(require, "telescope")
+   if not present then
+      print(present)
+      return
    end
 
    telescope.setup {
@@ -138,6 +140,7 @@ M.config = function()
 
    pcall(function()
       for _, ext in ipairs(extensions) do
+         print(ext)
          telescope.load_extension(ext)
       end
    end)

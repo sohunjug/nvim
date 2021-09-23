@@ -186,6 +186,8 @@ use "rcarriga/nvim-notify"
 
 use("jdhao/better-escape.vim", { opt = true, event = "InsertEnter" })
 
+use("PHSix/faster.nvim", { opt = true, event = "VimEnter" })
+
 use "norcalli/nvim-colorizer.lua"
 
 use("editorconfig/editorconfig-vim", {

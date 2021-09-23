@@ -57,7 +57,7 @@ M.config = function()
          "", -- for all buffers without a file type
       },
       -- sdf
-      buftype_exclude = { "terminal", "nofile" },
+      buftype_exclude = { "terminal", "nofile", "" },
       context_patterns = {
          "class",
          "function",

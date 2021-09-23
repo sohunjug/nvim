@@ -21,6 +21,7 @@ function M.load_autocmds()
       packer = { { "BufWritePost", "plugin.lua", "lua require('core.plugins').auto_compile()" } },
 
       bufs = {
+         { "DirChanged", "*", "let &titlestring=v:event['cwd']" },
          -- Reload vim config automatically
          { "BufWritePost", [[$VIM_PATH/{*.vim,*.yaml,vimrc,*.lua} nested source $MYVIMRC | redraw]] },
          -- Reload Vim script atomatically if setlocal autoread

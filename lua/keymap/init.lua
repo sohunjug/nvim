@@ -20,8 +20,10 @@ M.plug_map = {
    -- ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap(),
    -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
    -- Packer
-   ["n|k"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "k"'):with_noremap():with_expr(),
-   ["n|j"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "j"'):with_noremap():with_expr(),
+   -- ["n|k"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "k"'):with_noremap():with_expr(),
+   -- ["n|j"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "j"'):with_noremap():with_expr(),
+   ["n|j"] = map_cu("lua require('faster').move_j()"):with_silent(),
+   ["n|k"] = map_cu("lua require('faster').move_k()"):with_silent(),
    ["n|<leader>pu"] = map_cr("PackerSync"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pi"] = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pc"] = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
@@ -142,7 +144,9 @@ M.plug_map = {
    -- ["n|<leader>sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
 
    ["n|<leader>cs"] = map_cmd("<Plug>Lightspeed_s"):with_silent(),
-   ["n|<leader>cb"] = map_cmd("<Plug>Lightspeed_S"):with_silent(),
+   ["n|<leader>cS"] = map_cmd("<Plug>Lightspeed_S"):with_silent(),
+   ["v|<leader>cs"] = map_cmd("<Plug>Lightspeed_s"):with_silent(),
+   ["v|<leader>cS"] = map_cmd("<Plug>Lightspeed_S"):with_silent(),
    ["n|<leader>tc"] = map_cr(
       "lua require('modules.themes').toggle_theme(require('core.utils').load_config().ui.theme_toggler.fav_themes)"
    ):with_silent(),
@@ -151,6 +155,9 @@ M.plug_map = {
    ["n|<leader>zf"] = map_cu("TZFocus"):with_silent(),
    ["n|<leader>zm"] = map_cu("TZMinimalist"):with_silent(),
    ["n|<leader>Q"] = map_cr "quitall",
+
+   ["n|*"] = map_cmd("*<Cmd>lua require('hlslens').start()<CR>"):with_silent(),
+   ["n|#"] = map_cmd("#<Cmd>lua require('hlslens').start()<CR>"):with_silent(),
    -- Plugin hrsh7th/vim-eft
    -- ["n|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
    -- ["x|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
@@ -180,7 +187,7 @@ M.plug_map = {
    ["n|<LocalLeader>a"] = map_cmd "<ESC>ggVG",
    ["i|<C-Insert>"] = map_cmd "<C-r>*",
    ["c|<C-Insert>"] = map_cmd "<C-r>*",
-   ["n|<C-Insert>"] = map_cmd "P",
+   ["n|<C-Insert>"] = map_cmd '"_dP',
    ["v|<C-Insert>"] = map_cmd '"_dP',
    --
 }

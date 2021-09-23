@@ -25,6 +25,8 @@ M.config = function()
    }
    vim.api.nvim_set_keymap("n", "s", "s", { noremap = true })
    vim.api.nvim_set_keymap("n", "S", "S", { noremap = true })
+   vim.api.nvim_set_keymap("v", "s", "s", { noremap = true })
+   vim.api.nvim_set_keymap("v", "S", "S", { noremap = true })
 end
 
 return M

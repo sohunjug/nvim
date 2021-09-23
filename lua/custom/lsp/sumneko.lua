@@ -62,6 +62,8 @@ M.config = {
                "P",
                "hs",
                "spoon",
+               "S_NVIM",
+               "S_HS_CONFIG",
             },
          },
          workspace = {
