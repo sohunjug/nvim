@@ -175,12 +175,28 @@ M.load_options = function()
       }
       vim.opt.clipboard = ""
       -- vim.cmd [[set clipboard^=unnamed,unnamedplus]]
-      local asdf = S_NVIM.home .. ".asdf/shims/python3"
-      if vim.fn.executable(asdf) then
-         vim.g.python3_host_prog = asdf
-      else
+      local python3 = S_NVIM.home .. ".asdf/shims/python3"
+      if vim.fn.executable(python3) then
+         vim.g.python3_host_prog = python3
+      elseif vim.fn.executable "/usr/local/bin/python3" then
          vim.g.python3_host_prog = "/usr/local/bin/python3"
+      elseif vim.fn.executable "/opt/local/bin/python3" then
+         vim.g.python3_host_prog = "/opt/local/bin/python3"
+      else
+         vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
       end
+
+      local nodejs = S_NVIM.home .. ".asdf/shims/node"
+      if vim.fn.executable(nodejs) then
+         vim.g.node_host_prog = nodejs
+      elseif vim.fn.executable "/usr/local/bin/node" then
+         vim.g.node_host_prog = "/usr/local/bin/node"
+      elseif vim.fn.executable "/opt/local/bin/node" then
+         vim.g.node_host_prog = "/opt/local/bin/node"
+      else
+         vim.g.node_host_prog = "/opt/homebrew/bin/node"
+      end
+
       vim.g.loaded_ruby_provider = 0
       vim.g.loaded_perl_provider = 0
       vim.g.loaded_python_provider = 0
