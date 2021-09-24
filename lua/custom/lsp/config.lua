@@ -23,7 +23,7 @@ M.capabilities.textDocument.completion.completionItem.tagSupport = {
 M.capabilities.textDocument.completion.completionItem.resolveSupport = {
    properties = {
       "documentation",
-      "detail",
+      -- "detail",
       "additionalTextEdits",
    },
 }
@@ -64,7 +64,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
       prefix = "> ",
       spacing = 0,
    }, ]]
-   virtual_text = true,
+   virtual_text = false,
    signs = true,
    -- Disable a feature
    update_in_insert = false,
@@ -133,6 +133,10 @@ function M.show_line_diagnostics()
    vim.lsp.util.close_preview_autocmd(close_events, winnr)
 end
 
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", texthl = "LspDiagnosticsDefaultInformation" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", texthl = "LspDiagnosticsDefaultHint" })
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("DiagnosticSignWarning", { text = "", texthl = "LspDiagnosticsDefaultWarning" })
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "LspDiagnosticsDefaultInformation" })

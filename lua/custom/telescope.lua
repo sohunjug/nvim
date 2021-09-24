@@ -37,7 +37,6 @@ M.config = function()
 
    local present, telescope = pcall(require, "telescope")
    if not present then
-      print(present)
       return
    end
 
@@ -140,7 +139,6 @@ M.config = function()
 
    pcall(function()
       for _, ext in ipairs(extensions) do
-         print(ext)
          telescope.load_extension(ext)
       end
    end)
