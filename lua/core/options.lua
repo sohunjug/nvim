@@ -12,7 +12,7 @@ end
 
 M.load_options = function()
    local global_local = {
-      -- font = "Fira Code Mono:h13",
+      -- font = "Fira Code:h11",
       -- guifont = "FiraCode Nerd Font:h12",
       -- font = "FiraCode Nerd Font:h12",
       -- macligatures = "",
@@ -186,16 +186,16 @@ M.load_options = function()
          vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
       end
 
-      local nodejs = S_NVIM.home .. ".asdf/shims/node"
+      --[[ local nodejs = S_NVIM.home .. ".asdf/shims/neovim-node-host"
       if vim.fn.executable(nodejs) then
          vim.g.node_host_prog = nodejs
-      elseif vim.fn.executable "/usr/local/bin/node" then
-         vim.g.node_host_prog = "/usr/local/bin/node"
-      elseif vim.fn.executable "/opt/local/bin/node" then
-         vim.g.node_host_prog = "/opt/local/bin/node"
+      elseif vim.fn.executable "/usr/local/bin/neovim-node-host" then
+         vim.g.node_host_prog = "/usr/local/bin/neovim-node-host"
+      elseif vim.fn.executable "/opt/local/bin/neovim-node-host" then
+         vim.g.node_host_prog = "/opt/local/bin/neovim-node-host"
       else
-         vim.g.node_host_prog = "/opt/homebrew/bin/node"
-      end
+         vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
+      end ]]
 
       vim.g.loaded_ruby_provider = 0
       vim.g.loaded_perl_provider = 0

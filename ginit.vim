@@ -1,6 +1,7 @@
 " Enable Mouse
 set mouse=a
 
+set guifont=FiraCode\ Nerd\ Font\ Mono:h12
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
@@ -36,3 +37,20 @@ inoremap <silent><D-c> "+y
 nnoremap <silent><D-c> "+y
 vnoremap <silent><D-c> "+y
 tnoremap <silent><D-c> "+y
+
+if exists('g:fvim_loaded')
+    " good old 'set guifont' compatibility with HiDPI hints...
+      
+    " Ctrl-ScrollWheel for zooming in/out
+    nnoremap <silent> <C-ScrollWheelUp> :set guifont=+<CR>
+    nnoremap <silent> <C-ScrollWheelDown> :set guifont=-<CR>
+    nnoremap <A-CR> :FVimToggleFullScreen<CR>
+    " FVimBackgroundComposition 'transparent'   " 'none', 'transparent', 'blur' or 'acrylic'
+    " FVimBackgroundOpacity 0.85
+endif
+
+let g:neovide_transparency=0.92
+let g:neovide_no_idle=v:true
+let g:neovide_input_use_logo=v:true
+let g:neovide_cursor_vfx_mode = "ripple"
+

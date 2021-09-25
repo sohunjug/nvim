@@ -206,7 +206,7 @@ use "simrat39/symbols-outline.nvim"
 
 use "b3nj5m1n/kommentary"
 
-use "edluffy/specs.nvim"
+-- use "edluffy/specs.nvim"
 
 use "ggandor/lightspeed.nvim"
 
