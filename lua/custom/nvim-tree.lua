@@ -16,29 +16,6 @@ M.config = function()
 
    local tree_cb = tree_c.nvim_tree_callback
 
-   require("nvim-tree").setup {
-
-      open_on_setup = false,
-      auto_close = true, -- closes tree when it's the last window
-      follow = true,
-      auto_open = true,
-      disable_netrw = true,
-      hijack_netrw = true,
-      hijack_cursor = true,
-      open_on_tab = false,
-      update_cwd = true,
-      ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
-      update_focused_file = {
-         -- enables the feature
-         enable = true,
-         -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
-         -- only relevant when `update_focused_file.enable` is true
-         update_cwd = true,
-         -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
-         -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
-         ignore_list = {},
-      },
-   }
    vim.g.nvim_tree_bindings = {
       { key = { "l", "o", "<2-LeftMouse>", "<CR>" }, cb = tree_cb "edit" },
       { key = { "i", "<2-RightMouse>" }, cb = tree_cb "cd" },
@@ -71,6 +48,30 @@ M.config = function()
       { key = "O", cb = tree_cb "system_open" },
       { key = "q", cb = tree_cb "close" },
       { key = "g?", cb = tree_cb "toggle_help" },
+   }
+
+   require("nvim-tree").setup {
+
+      open_on_setup = false,
+      auto_close = true, -- closes tree when it's the last window
+      follow = true,
+      auto_open = true,
+      disable_netrw = true,
+      hijack_netrw = true,
+      hijack_cursor = true,
+      open_on_tab = false,
+      update_cwd = true,
+      ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
+      update_focused_file = {
+         -- enables the feature
+         enable = true,
+         -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
+         -- only relevant when `update_focused_file.enable` is true
+         update_cwd = true,
+         -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
+         -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
+         ignore_list = {},
+      },
    }
 end
 
