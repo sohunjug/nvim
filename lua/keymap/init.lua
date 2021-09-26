@@ -59,8 +59,8 @@ M.plug_map = {
    ["n|<Leader>ct"] = map_args "Template",
    ["n|<Leader>N"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
    -- Plugin nvim-tree
-   ["n|<Leader>ft"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
-   ["n|<Leader>fo"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
+   ["n|<Leader>fo"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
+   ["n|<Leader>ft"] = map_cr("NvimTreeFocus"):with_noremap():with_silent(),
    -- Plugin MarkdownPreview
    -- ["n|<Leader>om"] = map_cu("MarkdownPreview"):with_noremap():with_silent(),
    -- Plugin DadbodUI
