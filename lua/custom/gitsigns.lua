@@ -59,7 +59,7 @@ M.config = function()
       },
 
       status_formatter = nil, -- Use default
-      watch_index = { interval = 100 },
+      watch_gitdir = { interval = 100, follow_files = true },
    }
 end
 

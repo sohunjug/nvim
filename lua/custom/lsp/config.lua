@@ -23,7 +23,7 @@ M.capabilities.textDocument.completion.completionItem.tagSupport = {
 M.capabilities.textDocument.completion.completionItem.resolveSupport = {
    properties = {
       "documentation",
-      -- "detail",
+      "detail",
       "additionalTextEdits",
    },
 }

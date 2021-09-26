@@ -89,7 +89,7 @@ M.config = function()
       },
       extensions = {
          fzy_native = { override_generic_sorter = false, override_file_sorter = true },
-         project = { hidden_files = true },
+         project = { hidden_files = false },
          frecency = {
             db_root = S_NVIM.data_dir,
             ignore_patterns = { "*.git/*", "*/tmp/*", "*/bin/*", "*/build/*" },

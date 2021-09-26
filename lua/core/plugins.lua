@@ -98,16 +98,22 @@ use "lukas-reineke/indent-blankline.nvim"
 
 -- use "Yggdroot/indentLine"
 
+--[[ use("glepnir/indent-guides.nvim", {
+   opt = true,
+   event = "BufReadPost",
+   exclude_filetypes = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
+}) ]]
+
 use "akinsho/nvim-bufferline.lua"
 
 use "kyazdani42/nvim-tree.lua"
 
---[[ use("yamatsum/nvim-nonicons", {
+use("yamatsum/nvim-nonicons", {
    opt = true,
    event = "VimEnter",
    module = "nvim-web-devicons",
    requires = { "kyazdani42/nvim-web-devicons" },
-}) ]]
+})
 
 use "lewis6991/gitsigns.nvim"
 
@@ -190,10 +196,10 @@ use("PHSix/faster.nvim", { opt = true, event = "VimEnter" })
 
 use "norcalli/nvim-colorizer.lua"
 
-use("editorconfig/editorconfig-vim", {
+--[[ use("editorconfig/editorconfig-vim", {
    opt = true,
    ft = { "go", "typescript", "javascript", "vim", "rust", "c", "cpp", "lua", "vue", "rust" },
-})
+}) ]]
 
 use("yamatsum/nvim-cursorline", {
    opt = true,
@@ -208,7 +214,7 @@ use "b3nj5m1n/kommentary"
 
 -- use "edluffy/specs.nvim"
 
-use "ggandor/lightspeed.nvim"
+-- use "ggandor/lightspeed.nvim"
 
 use("kana/vim-niceblock", { opt = true, event = "VimEnter" })
 

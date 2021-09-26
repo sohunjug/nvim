@@ -74,6 +74,7 @@ M.config = {
                [S_NVIM.data_dir .. "/pack/packer/opt/packer.nvim/lua"] = true,
                [vim.fn.expand "$VIMRUNTIME/vim/lsp"] = true,
                -- [S_NVIM.vim_path .. "/lsp/lua-language-server/lua"] = true
+               ["/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/?/?.lua"] = true,
                ["/opt/homebrew/share/luajit-2.1.0-beta3/jit"] = true,
             },
             checkThirdParty = true,
@@ -83,5 +84,9 @@ M.config = {
       },
    },
 }
+
+M.config.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.config.capabilities.textDocument.semanticTokens = {}
+M.config.capabilities.textDocument.semanticTokens.dynamicRegistration = false
 
 return M
