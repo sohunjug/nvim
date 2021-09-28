@@ -97,8 +97,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: Fira Code
-    family: Hack Nerd Font Mono
+    family: FiraCode Nerd Font Mono
+    # family: Hack Nerd Font Mono
     # family: Iosevka
     # family: monospace mono
     # style: Retina
