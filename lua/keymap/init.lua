@@ -157,7 +157,7 @@ M.plug_map = {
    ["n|<leader>Q"] = map_cr "quitall",
 
    ["n|n"] = map_cu("execute('normal! ' . v:count1 . 'n')<CR> <Cmd>lua require('hlslens').start()"):with_silent(),
-   ["n|N"] = map_cu("execute('normal! ' . v:count1 . 'N')<CR> <Cmd>lua require('hlslens').start()"):with_silent(),
+   ["n|N"] = map_cu("execute('normal! ' . v:count1 . 'NN')<CR> <Cmd>lua require('hlslens').start()"):with_silent(),
    ["n|*"] = map_cmd("*<Cmd>lua require('hlslens').start()<CR>"):with_silent(),
    ["n|#"] = map_cmd("#<Cmd>lua require('hlslens').start()<CR>"):with_silent(),
    -- Plugin hrsh7th/vim-eft

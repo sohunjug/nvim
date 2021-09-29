@@ -11,6 +11,7 @@ M.config = function()
    require("hlslens").setup {
       auto_enable = true,
       calm_down = true,
+      enable_incsearch = false,
       nearest_only = false,
       nearest_float_when = "always",
       override_lens = function(render, plist, nearest, idx, r_idx)

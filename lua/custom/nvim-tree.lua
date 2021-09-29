@@ -19,7 +19,7 @@ M.config = function()
    require("nvim-tree").setup {
 
       open_on_setup = false,
-      auto_close = true, -- closes tree when it's the last window
+      auto_close = false, -- closes tree when it's the last window
       follow = true,
       auto_open = true,
       disable_netrw = true,

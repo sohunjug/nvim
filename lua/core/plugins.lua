@@ -214,7 +214,7 @@ use "b3nj5m1n/kommentary"
 
 -- use "edluffy/specs.nvim"
 
--- use "ggandor/lightspeed.nvim"
+use "ggandor/lightspeed.nvim"
 
 use("kana/vim-niceblock", { opt = true, event = "VimEnter" })
 
