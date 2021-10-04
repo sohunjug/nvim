@@ -18,16 +18,21 @@ M.config = function()
 
    require("nvim-tree").setup {
 
-      open_on_setup = false,
-      auto_close = false, -- closes tree when it's the last window
-      follow = true,
-      auto_open = true,
       disable_netrw = true,
       hijack_netrw = true,
-      hijack_cursor = true,
-      open_on_tab = false,
-      update_cwd = true,
+      open_on_setup = false,
       ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
+      auto_close = false, -- closes tree when it's the last window
+      open_on_tab = false,
+      update_to_buf_dir = {
+         -- enable the feature
+         enable = true,
+         -- allow to open the tree if it was previously closed
+         auto_open = true,
+      },
+      hijack_cursor = true,
+      update_cwd = true,
+      lsp_diagnostics = true,
       update_focused_file = {
          -- enables the feature
          enable = true,
@@ -38,7 +43,6 @@ M.config = function()
          -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
          ignore_list = {},
       },
-      lsp_diagnostics = true,
       view = {
          side = "left",
          width = 30,
@@ -100,7 +104,7 @@ M.setup = function()
    g.nvim_tree_quit_on_open = 0 -- closes tree when file's opened
    g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
    g.nvim_tree_git_hl = 1
-   g.nvim_tree_gitignore = 0
+   g.nvim_tree_gitignore = 1
    g.nvim_tree_hide_dotfiles = 0
    g.nvim_tree_highlight_opened_files = 1
    g.nvim_tree_allow_resize = 1
@@ -149,6 +153,14 @@ M.setup = function()
          symlink = "",
          symlink_open = "",
       },
+      lsp = {
+         hint = "",
+         info = "",
+         warning = "",
+         error = "",
+      },
    }
+
+   vim.cmd [[highlight NvimTreeFolderIcon guibg=blue]]
 end
 return M

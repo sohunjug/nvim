@@ -32,14 +32,14 @@ M.plug_map = {
    ["n|<leader>ll"] = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
    ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
    ["n|<leader>lu"] = map_cr("LspUpdate"):with_noremap():with_silent():with_nowait(),
-   ["n|<C-f>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)")
+   --[[ ["n|<C-f>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)")
       :with_silent()
       :with_noremap()
       :with_nowait(),
    ["n|<C-b>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(-1)")
       :with_silent()
       :with_noremap()
-      :with_nowait(),
+      :with_nowait(), ]]
    --[[ ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
    ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
    ["n|[e"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
@@ -69,10 +69,10 @@ M.plug_map = {
    -- ["n|<Leader>lt"] = map_cr("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
    -- :with_noremap()
    -- :with_silent(),
-   ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
-   ["t|<Leader>gc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
-      :with_noremap()
-      :with_silent(),
+   -- ["n|<Leader>gt"] = map_cu("lua require('lspsaga.floaterm').open_float_terminal()"):with_noremap():with_silent(),
+   -- ["t|<Leader>gc"] = map_cmd([[<C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
+   -- :with_noremap()
+   -- :with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
    -- Far.vim
    --    ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
@@ -82,7 +82,8 @@ M.plug_map = {
    ["n|<Leader>bo"] = map_cr("lua require('custom.bufonly').buf_only()"):with_noremap():with_silent(),
    ["n|<Localleader>n"] = map_cr("set number! relativenumber!"):with_noremap():with_silent(),
    ["n|<Leader>bc"] = map_cu("Telescope neoclip neoclip"):with_noremap():with_silent(),
-   ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
+   -- ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
+   ["n|<Leader>bd"] = map_cr("Bdelete"):with_noremap():with_silent(),
    --    ["n|<Leader>bd"] = map_cmd("lua require('core.utils').close_buffer()"):with_noremap():with_silent(),
    ["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent(),
    ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
