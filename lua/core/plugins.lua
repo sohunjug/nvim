@@ -24,6 +24,8 @@ end
 
 use "kabouzeid/nvim-lspinstall"
 
+use("famiu/nvim-reload", { opt = true, cmd = { "Restart", "Reload" } })
+
 use("famiu/bufdelete.nvim", { opt = true, cmd = { "Bdelete", "Bwipeout" } })
 
 use("alexaandru/nvim-lspupdate", {

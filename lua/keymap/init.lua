@@ -110,6 +110,9 @@ M.plug_map = {
    -- ["n|<Leader>fq"] = map_cu("Telescope quickfix"):with_noremap():with_silent(),
    ["n|<Leader>fr"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
    ["n|<Leader>fw"] = map_cu("Telescope grep_string"):with_noremap():with_silent(),
+   ["n|<Leader>fve"] = map_cu("e " .. S_NVIM.vim_path .. "init.lua"):with_noremap():with_silent(),
+   ["n|<Leader>fvl"] = map_cu("Reload"):with_noremap():with_silent(),
+   ["n|<Leader>fvr"] = map_cu("Restart"):with_noremap():with_silent(),
    ["n|<Leader>pm"] = map_cu("Glow"):with_noremap():with_silent(),
    ["n|<Leader><Leader>"] = map_cu("Telescope frecency frecency"):with_noremap():with_silent(),
    -- Plugin trouble
