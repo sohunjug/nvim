@@ -24,7 +24,17 @@ end
 
 use "kabouzeid/nvim-lspinstall"
 
-use("famiu/nvim-reload", { opt = true, cmd = { "Restart", "Reload" } })
+use("famiu/nvim-reload", {
+   opt = true,
+   cmd = { "Restart", "Reload" },
+   config = function()
+      local reload = require "nvim-reload"
+      reload.post_reload_hook = function()
+         require("colors").init(vim.g.custom_theme)
+         require("feline").reset_highlights()
+      end
+   end,
+})
 
 use("famiu/bufdelete.nvim", { opt = true, cmd = { "Bdelete", "Bwipeout" } })
 

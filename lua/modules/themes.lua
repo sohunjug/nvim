@@ -155,6 +155,8 @@ M.reload_theme = function(theme_name)
    -- reload the base16 theme and highlights
    require("colors").init(theme_name)
 
+   require("feline").reset_highlights()
+
    if
       not reload_plugin {
          -- "custom.bufferline",
