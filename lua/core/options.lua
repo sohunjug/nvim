@@ -26,8 +26,8 @@ M.load_options = function()
       magic = true,
       virtualedit = "block",
       encoding = "utf-8",
-      viewoptions = "folds,cursor,curdir,slash,unix",
-      sessionoptions = "blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos",
+      viewoptions = { "folds", "cursor", "curdir", "slash", "unix" },
+      sessionoptions = { "blank", "buffers", "curdir", "folds", "tabpages", "winsize", "resize", "winpos" },
       -- clipboard = "unnamedplus",
       wildignorecase = true,
       -- wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
@@ -64,8 +64,8 @@ M.load_options = function()
          "composer.lock",
          "DS_Store",
       },
-      backup = false,
-      writebackup = false,
+      backup = true,
+      writebackup = true,
       swapfile = false,
       directory = S_NVIM.cache_dir .. "swag/",
       undodir = S_NVIM.cache_dir .. "undo/",
@@ -141,7 +141,7 @@ M.load_options = function()
       - "2" -- I'm not in gradeschool anymore ]]
 
    if vim.fn.has "gui" then
-      vim.g.guifont = "FiraCode Nerd Mono:h12"
+      vim.g.guifont = "FiraCode Nerd Font Mono:h12"
    end
 
    local bw_local = {
