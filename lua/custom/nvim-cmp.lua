@@ -3,8 +3,11 @@ local M = {
    -- config = conf.cmp,
    event = "InsertEnter",
    requires = {
-      { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
-      { "hrsh7th/cmp-buffer", after = "cmp_luasnip" },
+      -- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+      {
+         "hrsh7th/cmp-buffer",
+         -- after = "cmp_luasnip"
+      },
       { "hrsh7th/cmp-nvim-lsp", after = "cmp-buffer" },
       { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
       -- { "andersevenrud/compe-tmux", branch = "cmp", after = "cmp-nvim-lua" },
@@ -13,7 +16,8 @@ local M = {
          --after = "compe-tmux"
       },
       { "f3fora/cmp-spell", after = "cmp-path" },
-      -- { "hrsh7th/vim-vsnip", after = "cmp-spell" },
+      { "hrsh7th/cmp-vsnip", after = "cmp-spell" },
+      { "hrsh7th/vim-vsnip", after = "cmp-vsnip" },
       -- {
       --     'tzachar/cmp-tabnine',
       --     run = './install.sh',
@@ -24,15 +28,15 @@ local M = {
 }
 
 M.config = function()
-   local t = function(str)
+   --[[ local t = function(str)
       return vim.api.nvim_replace_termcodes(str, true, true, true)
-   end
+   end ]]
 
    local cmp = require "cmp"
    cmp.setup {
       formatting = {
-         format = function(entry, vim_item)
-            --[[ local lspkind_icons = {
+         -- format = function(entry, vim_item)
+         --[[ local lspkind_icons = {
                  Text = "",
                  Method = "",
                  Function = "",
@@ -61,7 +65,7 @@ M.config = function()
               }
               -- load lspkind icons
               vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind) ]]
-            vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. "" .. vim_item.kind
+         --[[ vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. "" .. vim_item.kind
 
             vim_item.menu = ({
                -- cmp_tabnine = "[TN]",
@@ -76,16 +80,19 @@ M.config = function()
             })[entry.source.name]
 
             return vim_item
-         end,
+         end, ]]
+         format = require("lspkind").cmp_format(),
       },
       -- You can set mappings if you want
       mapping = {
-         ["<C-k>"] = cmp.mapping.select_prev_item(),
-         ["<C-j>"] = cmp.mapping.select_next_item(),
+         ["<C-k>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+         ["<C-j>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+         ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+         ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
          ["<C-f>"] = cmp.mapping.scroll_docs(4),
          ["<C-e>"] = cmp.mapping.close(),
-         ["<Tab>"] = function(fallback)
+         --[[ ["<Tab>"] = function(fallback)
             if vim.fn.pumvisible() == 1 then
                vim.fn.feedkeys(t "<C-n>", "n")
             elseif require("luasnip").expand_or_jumpable() then
@@ -102,12 +109,26 @@ M.config = function()
             else
                fallback()
             end
+         end, ]]
+         ["<Tab>"] = function(fallback)
+            if cmp.visible() then
+               cmp.select_next_item()
+            else
+               fallback()
+            end
+         end,
+         ["<S-Tab>"] = function(fallback)
+            if cmp.visible() then
+               cmp.select_prev_item()
+            else
+               fallback()
+            end
          end,
          ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
          },
-         ["<C-h>"] = function(fallback)
+         --[[ ["<C-h>"] = function(fallback)
             if require("luasnip").jumpable(-1) then
                vim.fn.feedkeys(t "<Plug>luasnip-jump-prev", "")
             else
@@ -120,7 +141,16 @@ M.config = function()
             else
                fallback()
             end
-         end,
+         end, ]]
+         ["<C-space>"] = cmp.mapping.complete(),
+         -- ["<ESC>"] = cmp.mapping.close(),
+         -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+         -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+      },
+
+      completion = {
+         -- with this false completion is triggered only manually
+         -- autocomplete = true,
       },
 
       documentation = {
@@ -129,21 +159,35 @@ M.config = function()
 
       snippet = {
          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            -- require("luasnip").lsp_expand(args.body)
+            vim.fn["vsnip#anonymous"](args.body)
          end,
+      },
+
+      sorting = {
+         comparators = {
+            cmp.config.compare.kind,
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+         },
       },
 
       -- You should specify your *installed* sources.
       sources = {
-         { name = "nvim_lsp" },
-         { name = "nvim_lua" },
-         { name = "luasnip" },
-         { name = "buffer" },
-         { name = "path" },
-         { name = "spell" },
-         { name = "tmux" },
-         { name = "orgmode" },
-         { name = "treesitter" },
+         { name = "nvim_lsp", priority = 8 },
+         -- { name = "treesitter", priority = 8 },
+         { name = "vsnip", priority = 7 },
+         -- { name = "luasnip", priority = 7 },
+         { name = "nvim_lua", priority = 6 },
+         { name = "buffer", priority = 5 },
+         { name = "path", priority = 4 },
+         { name = "spell", priority = 3 },
+         { name = "tmux", priority = 2 },
+         -- { name = "orgmode", priority = 1 },
          -- {name = 'cmp_tabnine'},
       },
    }

@@ -31,7 +31,7 @@ use("famiu/nvim-reload", {
       local reload = require "nvim-reload"
       reload.post_reload_hook = function()
          require("colors").init(vim.g.custom_theme)
-         require("feline").reset_highlights()
+         -- require("feline").reset_highlights()
       end
    end,
 })
@@ -102,7 +102,7 @@ use("mattn/vim-sonictemplate", {
    ft = { "go", "typescript", "lua", "javascript", "vim", "rust", "markdown" },
 })
 
-use "L3MON4D3/LuaSnip"
+-- use "L3MON4D3/LuaSnip"
 
 use "kyazdani42/nvim-web-devicons"
 

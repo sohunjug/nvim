@@ -55,7 +55,7 @@ function open_gui() {
     if [[ -z "$command" ]]; then
       echo 'Alacritty is already open. Check the window.'
     else
-      GEOVIM=1 nohup /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory="`pwd`" --config-file="$GEOVIM_PATH/conf/alacritty.yml" -e sh -c "$command" >/dev/null 2>&1 &
+      GEOVIM=1 nohup /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory="`pwd`" --config-file="$GEOVIM_PATH/conf/alacritty.yml" -t GVim -e sh -c "$command" >/dev/null 2>&1 &
     fi
   elif [[ "$terminal_app" == "wezterm" ]]; then
     if [[ -z "$command" ]]; then

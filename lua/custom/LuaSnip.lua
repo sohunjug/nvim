@@ -7,10 +7,10 @@ local M = {
 
 M.config = function()
    require("luasnip").config.set_config {
-      history = true,
+      history = false,
       updateevents = "TextChanged,TextChangedI",
    }
-   require("luasnip.loaders.from_vscode").load()
+   -- require("luasnip.loaders.from_vscode").load()
 end
 
 return M
