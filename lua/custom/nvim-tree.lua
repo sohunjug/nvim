@@ -32,7 +32,15 @@ M.config = function()
       },
       hijack_cursor = true,
       update_cwd = true,
-      lsp_diagnostics = true,
+      diagnostics = {
+         enable = true,
+         lsp = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+         },
+      },
       update_focused_file = {
          -- enables the feature
          enable = true,
@@ -109,6 +117,7 @@ M.setup = function()
    g.nvim_tree_highlight_opened_files = 1
    g.nvim_tree_allow_resize = 1
    g.nvim_tree_add_trailing = 1 -- append a trailing slash to folder names
+   g.nvim_tree_group_empty = 1
    g.nvim_tree_window_picker_exclude = {
       filetype = {
          "notify",
@@ -152,12 +161,6 @@ M.setup = function()
          open = "",
          symlink = "",
          symlink_open = "",
-      },
-      lsp = {
-         hint = "",
-         info = "",
-         warning = "",
-         error = "",
       },
    }
 
