@@ -5,4 +5,5 @@ if exists("$XDG_CONFIG_HOME")
 else
   autocmd! BufNewFile,BufRead ~/.config/kitty/*.conf    set ft=kitty syntax=kitty
   autocmd! BufNewFile,BufRead ~/.config/kitty/*.session set ft=kitty-session syntax=kitty-session
+  autocmd! BufNewFile,BufRead ~/.config/nvim/geovim/conf/kitty/*.conf    set ft=kitty syntax=kitty
 endif

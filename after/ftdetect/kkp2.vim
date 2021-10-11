@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.kkf2 set filetype=lua
+au BufRead,BufNewFile *.kkp2 set filetype=lua
