@@ -67,9 +67,7 @@ M.servers.graphql = {
 
 M.servers["null-ls"] = {}
 
-M.servers.clangd = {
-   cmd = { "clangd", "--background-index", "--suggest-missing-includes", "--clang-tidy", "--header-insertion=iwyu" },
-}
+M.servers.clangd = require("custom.lsp.clangd").config
 
 M.servers.rust_analyzer = { capabilities = config.capabilities }
 
