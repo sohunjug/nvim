@@ -33,9 +33,9 @@ M.config = function()
       },
       numhl = true,
 
-      sign_priority = 5,
+      sign_priority = 6,
       signs = {
-         add = { hl = "DiffAdd", text = "▋", numhl = "GitSignsAddNr" },
+         add = { hl = "DiffAdd", text = "+", numhl = "GitSignsAddNr" },
          change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
          -- changedelete = { hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr" },
          changedelete = { hl = "GitGutterChange", text = "▎", numhl = "GitSignsChangeNr" },
@@ -45,7 +45,7 @@ M.config = function()
 
       current_line_blame = true,
       current_line_blame_opts = {
-         delay = 100,
+         delay = 1000,
          virt_text_pos = "right_align",
       },
 

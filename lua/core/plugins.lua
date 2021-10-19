@@ -74,9 +74,11 @@ use("ray-x/lsp_signature.nvim", {
       require("lsp_signature").setup {
          bind = true, -- This is mandatory, otherwise border config won't get registered.
          floating_window_above_cur_line = true,
+         transparency = 50,
          handler_opts = {
             border = "single",
          },
+         toggle_key = "<C-x>",
       }
    end,
 })
@@ -118,7 +120,7 @@ use "lukas-reineke/indent-blankline.nvim"
    exclude_filetypes = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
 }) ]]
 
-use "akinsho/nvim-bufferline.lua"
+use "akinsho/bufferline.nvim"
 
 use "kyazdani42/nvim-tree.lua"
 
