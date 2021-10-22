@@ -74,6 +74,7 @@ M.plug_map = {
    -- :with_noremap()
    -- :with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
+   ["n|<Leader>gg"] = map_cr("Gitsigns toggle_current_line_blame"):with_noremap():with_silent(),
    -- Far.vim
    --    ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
    --    ["v|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
