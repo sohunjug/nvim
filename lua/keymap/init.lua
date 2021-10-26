@@ -22,8 +22,8 @@ M.plug_map = {
    -- Packer
    -- ["n|k"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "k"'):with_noremap():with_expr(),
    -- ["n|j"] = map_cmd('(v:count > 5 ? "m\'" . v:count : "") . "j"'):with_noremap():with_expr(),
-   ["n|j"] = map_cu("lua require('faster').move_j()"):with_silent(),
-   ["n|k"] = map_cu("lua require('faster').move_k()"):with_silent(),
+   ["n|j"] = map_cu("lua require('faster').move('j')"):with_silent(),
+   ["n|k"] = map_cu("lua require('faster').move('k')"):with_silent(),
    ["n|<leader>pu"] = map_cr("PackerSync"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pi"] = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
    ["n|<leader>pc"] = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
