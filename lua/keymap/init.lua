@@ -115,6 +115,8 @@ M.plug_map = {
    ["n|<Leader>fvl"] = map_cu("Reload"):with_noremap():with_silent(),
    ["n|<Leader>fvr"] = map_cu("Restart"):with_noremap():with_silent(),
    ["n|<Leader>pm"] = map_cu("Glow"):with_noremap():with_silent(),
+   ["n|<Leader>hh"] = map_cu("%!xxd"):with_noremap():with_silent(),
+   ["n|<Leader>he"] = map_cu("%!xxd -r"):with_noremap():with_silent(),
    ["n|<Leader><Leader>"] = map_cu("Telescope frecency frecency"):with_noremap():with_silent(),
    -- Plugin trouble
    ["n|<Leader>tf"] = map_cr("TroubleToggle"):with_noremap():with_silent(),

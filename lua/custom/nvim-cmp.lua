@@ -32,6 +32,10 @@ M.config = function()
       return vim.api.nvim_replace_termcodes(str, true, true, true)
    end ]]
 
+   if not packer_plugins["nvim-autopairs"].loaded then
+      vim.cmd [[packadd nvim-autopairs]]
+   end
+   local cmp_autopairs = require "nvim-autopairs.completion.cmp"
    local cmp = require "cmp"
    cmp.setup {
       formatting = {
@@ -191,6 +195,7 @@ M.config = function()
          -- {name = 'cmp_tabnine'},
       },
    }
+   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
    vim.cmd [[autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }]]
 end
 
