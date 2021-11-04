@@ -18,12 +18,21 @@ local M = {
       { "f3fora/cmp-spell", after = "cmp-path" },
       { "hrsh7th/cmp-vsnip", after = "cmp-spell" },
       { "hrsh7th/vim-vsnip", after = "cmp-vsnip" },
-      -- {
-      --     'tzachar/cmp-tabnine',
-      --     run = './install.sh',
-      --     after = 'cmp-spell',
-      --     config = conf.tabnine
-      -- }
+      {
+         "tzachar/cmp-tabnine",
+         run = "./install.sh",
+         after = "vim-vsnip",
+         config = function()
+            local tabnine = require "cmp_tabnine.config"
+            tabnine:setup {
+               max_lines = 1000,
+               max_num_results = 20,
+               sort = true,
+               run_on_every_keystroke = true,
+               snippet_placeholder = "..",
+            }
+         end,
+      },
    },
 }
 
@@ -85,7 +94,20 @@ M.config = function()
 
             return vim_item
          end, ]]
-         format = require("lspkind").cmp_format(),
+         format = require("lspkind").cmp_format {
+            with_text = true,
+            menu = {
+               buffer = "[Buffer]",
+               cmp_tabnine = "[TN]",
+               nvim_lsp = "[LSP]",
+               luasnip = "[LuaSnip]",
+               vsnip = "[Snip]",
+               nvim_lua = "[Lua]",
+               path = "[PATH]",
+               spell = "[SPELL]",
+               latex_symbols = "[Latex]",
+            },
+         },
       },
       -- You can set mappings if you want
       mapping = {
@@ -184,17 +206,33 @@ M.config = function()
       sources = {
          { name = "nvim_lsp", priority = 8 },
          -- { name = "treesitter", priority = 8 },
-         { name = "vsnip", priority = 7 },
+         { name = "cmp_tabnine", priority = 7 },
+         { name = "vsnip", priority = 6 },
          -- { name = "luasnip", priority = 7 },
-         { name = "nvim_lua", priority = 6 },
-         { name = "buffer", priority = 5 },
-         { name = "path", priority = 4 },
-         { name = "spell", priority = 3 },
-         { name = "tmux", priority = 2 },
+         { name = "nvim_lua", priority = 5 },
+         { name = "buffer", priority = 4 },
+         { name = "path", priority = 3 },
+         { name = "spell", priority = 2 },
+         { name = "tmux", priority = 1 },
          -- { name = "orgmode", priority = 1 },
-         -- {name = 'cmp_tabnine'},
       },
    }
+
+   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+   cmp.setup.cmdline("/", {
+      sources = {
+         { name = "buffer" },
+      },
+   })
+
+   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+   cmp.setup.cmdline(":", {
+      sources = cmp.config.sources({
+         { name = "path" },
+      }, {
+         { name = "cmdline" },
+      }),
+   })
    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
    vim.cmd [[autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }]]
 end
