@@ -110,6 +110,8 @@ use "kyazdani42/nvim-web-devicons"
 
 use "glepnir/dashboard-nvim"
 
+use "blackCauldron7/surround.nvim"
+
 use "lukas-reineke/indent-blankline.nvim"
 
 -- use "Yggdroot/indentLine"
