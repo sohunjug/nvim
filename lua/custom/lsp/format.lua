@@ -20,6 +20,7 @@ function M.lsp_before_save()
    else
       table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.formatting_sync(nil,1000)" })
    end
+   table.insert(defs, { "BufWritePre", "<buffer>", "retab" })
    -- table.insert(defs, { "BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()" })
    M.nvim_create_augroup("lsp_before_save", defs)
 end

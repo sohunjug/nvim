@@ -28,10 +28,10 @@ local M = {
 
 M.config = function()
    -- because lazy load indent-blankline so need readd this autocmd
-   vim.opt.listchars = {
-      -- space = "⋅",
-      eol = "↴",
-   }
+   -- vim.opt.listchars = {
+   -- space = "⋅",
+   -- eol = "↴",
+   -- }
    require("indent_blankline").setup {
       filetype_exclude = {
          "startify",
