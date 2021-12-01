@@ -3,7 +3,7 @@ if not present then
    return
 end
 
-local colors = require("colors").get()
+local colors = require("gruvbox.colors").get()
 
 icons.setup {
    override = {

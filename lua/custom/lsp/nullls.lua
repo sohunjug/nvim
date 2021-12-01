@@ -23,7 +23,8 @@ M.setup = function()
             },
          },
          b.formatting.nixfmt,
-         b.formatting.yarf,
+         b.formatting.yapf,
+         b.formatting.clang_format,
          b.formatting.black,
          b.formatting.shfmt.with {
             extra_args = { "-i", "2", "-ci" },

@@ -1,18 +1,12 @@
 local M = {
    opt = true,
-   after = "nvim-base16.lua",
+   event = "VimEnter",
 }
 
 M.config = function()
-   if not packer_plugins["nvim-web-devicons"] or not packer_plugins["nvim-web-devicons"].loaded then
-      vim.cmd [[packadd nvim-web-devicons]]
-   end
-   local present, icons = pcall(require, "nvim-web-devicons")
-   if not present then
-      return
-   end
+   require("nvim-web-devicons").setup { default = true }
 
-   local colors = require("colors").get()
+   --[[ local colors = require "gruvbox.colors"
 
    icons.setup {
       override = {
@@ -131,8 +125,7 @@ M.config = function()
             color = colors.sun,
             name = "zip",
          },
-      },
-   }
+      }, ]]
 end
 
 return M

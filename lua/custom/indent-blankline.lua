@@ -1,6 +1,6 @@
 local M = {
    opt = true,
-   after = "feline.nvim",
+   -- after = "feline.nvim",
    ft = {
       "markdown",
       "javascript",

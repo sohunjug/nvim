@@ -6,7 +6,7 @@ local M = {
 }
 
 M.config = function()
-   local colors = require("colors").get()
+   local colors = require "gruvbox.colors"
    local lsp = require "feline.providers.lsp"
 
    local icon_styles = {

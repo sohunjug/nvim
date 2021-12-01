@@ -1,7 +1,6 @@
 local M = {
    opt = true,
-   -- event = "VimEnter",
-   after = "nvim-base16.lua",
+   event = "VimEnter",
 }
 
 M.config = function()

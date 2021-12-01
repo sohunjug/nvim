@@ -1,11 +1,11 @@
 local M = {
    opt = true,
    event = "BufRead",
-   requires = "kyazdani42/nvim-web-devicons",
+   requires = "nvim-web-devicons",
 }
 
 M.config = function()
-   local colors = require("colors").get()
+   -- local colors = require "gruvbox.colors"
 
    local present, bufferline = pcall(require, "bufferline")
    if not present then
@@ -74,7 +74,7 @@ M.config = function()
          end,
       },
 
-      highlights = {
+      --[[ highlights = {
          background = {
             guifg = colors.grey_fg,
             guibg = colors.black2,
@@ -163,7 +163,7 @@ M.config = function()
             guifg = colors.red,
             guibg = colors.black,
          },
-      },
+      }, ]]
    }
 end
 return M

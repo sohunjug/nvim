@@ -24,7 +24,7 @@ end
 
 use "kabouzeid/nvim-lspinstall"
 
-use("famiu/nvim-reload", {
+--[[ use("famiu/nvim-reload", {
    opt = true,
    cmd = { "Restart", "Reload" },
    config = function()
@@ -34,7 +34,7 @@ use("famiu/nvim-reload", {
          -- require("feline").reset_highlights()
       end
    end,
-})
+}) ]]
 
 use("famiu/bufdelete.nvim", { opt = true, cmd = { "Bdelete", "Bwipeout" } })
 
@@ -137,19 +137,53 @@ use "lewis6991/gitsigns.nvim"
 
 use "folke/which-key.nvim"
 
-use "famiu/feline.nvim"
+-- use "famiu/feline.nvim"
 
-use("NvChad/nvim-base16.lua", {
-   opt = true,
+use "nvim-lualine/lualine.nvim"
+
+--[[ use("NvChad/nvim-base16.lua", {
    event = "VimEnter",
    config = require("colors").init,
-})
+}) ]]
 
 use("nacro90/numb.nvim", {
    opt = true,
    event = "CmdlineEnter",
    config = function()
       require("numb").setup { show_numbers = true, show_currorline = true, number_only = false }
+   end,
+})
+
+--[[ use("ellisonleao/gruvbox.nvim", {
+   requires = { "rktjmp/lush.nvim" },
+   config = function()
+      -- require("gruvbox").setup()
+      vim.o.background = "dark" -- or "light" for light mode
+      vim.cmd "colorscheme gruvbox"
+   end,
+}) ]]
+
+--[[ use("rose-pine/neovim", {
+   as = "rose-pine",
+   config = function()
+      -- Options (see available options below)
+      vim.g.rose_pine_variant = "base"
+
+      -- Load colorscheme after options
+      vim.cmd "colorscheme rose-pine"
+   end,
+}) ]]
+
+use("sainnhe/sonokai", {
+   as = "sonokai",
+   config = function()
+      vim.g.sonokai_style = "shusia"
+      vim.g.sonokai_enable_italic = 1
+      vim.g.sonokai_disable_italic_comment = 1
+      vim.g.sonokai_diagnostic_text_highlight = 1
+      vim.g.sonokai_diagnostic_line_highlight = 1
+      vim.g.sonokai_current_word = "bold"
+      vim.cmd "colorscheme sonokai"
    end,
 })
 
@@ -210,7 +244,7 @@ use "rcarriga/nvim-notify"
 
 use("jdhao/better-escape.vim", { opt = true, event = "InsertEnter" })
 
-use("PHSix/faster.nvim", { opt = false, event = "VimEnter" })
+use("PHSix/faster.nvim", { event = "VimEnter" })
 
 use "norcalli/nvim-colorizer.lua"
 

@@ -1,6 +1,6 @@
 local M = {
    opt = true,
-   requires = "feline.nvim",
+   -- requires = "feline.nvim",
 }
 
 M.setup = function()
