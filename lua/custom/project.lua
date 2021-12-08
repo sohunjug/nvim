@@ -19,15 +19,16 @@ M.config = function()
       -- detection_methods
       patterns = {
          ".git",
+         ".gitlab-ci.yml",
          "_darcs",
          ".hg",
          ".bzr",
          ".svn",
-         "Makefile",
-         "go.mod",
-         "pom.xml",
-         "CMakeLists.txt",
-         "package.json",
+         -- "Makefile",
+         -- "go.mod",
+         -- "pom.xml",
+         -- "CMakeLists.txt",
+         -- "package.json",
       },
 
       -- Table of lsp clients to ignore by name
