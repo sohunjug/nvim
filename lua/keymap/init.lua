@@ -97,6 +97,7 @@ M.plug_map = {
    -- ["n|<Leader>bn"] = map_cr("bnext"):with_noremap():with_silent(),
    -- ["n|<Leader>bp"] = map_cr("bprev"):with_noremap():with_silent(),
    ["n|<Leader>fa"] = map_cu("DashboardFindWord"):with_noremap():with_silent(),
+   ["n|<Leader>fn"] = map_cu("DashboardNewFile"):with_noremap():with_silent(),
    ["n|<Leader>fb"] = map_cu("Telescope git_bcommits"):with_noremap():with_silent(),
    ["n|<Leader>fc"] = map_cu("Telescope git_commits"):with_noremap():with_silent(),
    ["n|<Leader>fd"] = map_cu("Telescope commands"):with_noremap():with_silent(),

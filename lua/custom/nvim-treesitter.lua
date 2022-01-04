@@ -17,7 +17,8 @@ M.config = function()
       -- local compile = "/usr/local/bin/gcc-11"
       -- if vim.loop.os_uname().machine == "arm64" then
       -- compile = "/opt/homebrew/bin/gcc-11"
-      local compile = "/Library/Developer/CommandLineTools/usr/bin/gcc"
+      -- local compile = "/Library/Developer/CommandLineTools/usr/bin/gcc"
+      local compile = "/Applications/Xcode.app/Contents/Developer/usr/bin/gcc"
       -- end
       require("nvim-treesitter.install").compilers = { compile }
    end
