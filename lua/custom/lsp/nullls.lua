@@ -9,22 +9,22 @@ M.setup = function()
 
    local b = null_ls.builtins
 
-   null_ls.config {
-      debounce = 150,
+   null_ls.setup {
+      -- debounce = 150,
       sources = {
          b.diagnostics.eslint.with {
             command = "eslint_d",
          },
          b.formatting.stylua.with {
-            args = {
+            extra_args = {
                "--config-path",
                vim.fn.stdpath "config" .. "/.stylua.toml",
-               "-",
+               -- "-",
             },
          },
          b.formatting.nixfmt,
          -- b.formatting.yapf,
-         b.formatting.clang_format,
+         -- b.formatting.clang_format,
          b.formatting.black,
          b.formatting.shfmt.with {
             extra_args = { "-i", "2", "-ci" },

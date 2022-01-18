@@ -16,6 +16,10 @@ end
 function M.load_autocmds()
    local definitions = {
 
+      syntaxset = {
+         { "FileType", "*", "exe", '"set syntax="', ".", "expand('<amatch>')" },
+      },
+
       color = { { "ColorScheme", "*", "highlight NotifyBG guibg=#3d3d3d guifg=#3e4451" } },
 
       packer = { { "BufWritePost", "plugin.lua", "lua require('core.plugins').auto_compile()" } },

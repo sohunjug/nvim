@@ -2,8 +2,8 @@ local M = {}
 
 M.core_modules = {
    "core.options",
-   "core.packer",
    "core.events",
+   "core.packer",
    -- "core.filetype",
    "keymap",
 }

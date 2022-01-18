@@ -65,7 +65,7 @@ M.servers.graphql = {
    root_dir = require("lspconfig.util").root_pattern(".graphqlrc.yml", ".qraphqlrc"),
 }
 
-M.servers["null-ls"] = {}
+-- M.servers["null-ls"] = {}
 
 M.servers.clangd = require("custom.lsp.clangd").config
 
