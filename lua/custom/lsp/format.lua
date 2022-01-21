@@ -44,10 +44,12 @@ function M.go_imports_sync(timeout_ms)
    -- imports is indexed with clientid so we cannot rely on index always is 1
    local idx = next(resp)
    local result = resp[idx].result
-   if not result then return end
+   if not result then
+      return
+   end
    idx = next(result)
    local edit = result[idx].edit
-   vim.lsp.util.apply_workspace_edit(edit, 'utf-8')
+   vim.lsp.util.apply_workspace_edit(edit, "utf-8")
    -- Always do formating
    vim.lsp.buf.formatting()
 end
