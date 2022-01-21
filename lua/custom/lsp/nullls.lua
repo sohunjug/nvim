@@ -26,6 +26,7 @@ M.setup = function()
          -- b.formatting.yapf,
          -- b.formatting.clang_format,
          b.formatting.black,
+         -- b.formatting.goimports,
          b.formatting.shfmt.with {
             extra_args = { "-i", "2", "-ci" },
          },
