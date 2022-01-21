@@ -250,8 +250,8 @@ M.add_mappings = function(bufnr)
       ["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
       ["gp"] = { "<cmd>lua require'custom.lsp.peek'.Peek('definition')<CR>", "Peek definition" },
       ["gl"] = { "<cmd>lua require'custom.lsp.config'.show_line_diagnostics()<CR>", "Show Line Diagnostics" },
-      ["ep"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
-      ["en"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+      ["ep"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
+      ["en"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Diagnostic Next" },
       ["<Leader>ep"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
       ["<Leader>en"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Diagnostic Next" },
    }
