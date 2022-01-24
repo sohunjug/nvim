@@ -176,7 +176,12 @@ M.lsp_on_attach = function(client, bufnr)
    -- vim.cmd [[au BufRead *.go set list lcs=tab:\|\  ]]
    -- end
    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-   vim.api.nvim_buf_set_option(bufnr, "expandtab", true)
+   local ext = vim.fn.expand "%:e"
+   if ext == "go" then
+      vim.api.nvim_buf_set_option(bufnr, "expandtab", false)
+   else
+      vim.api.nvim_buf_set_option(bufnr, "expandtab", true)
+   end
    if client.resolved_capabilities.code_lens then
       vim.cmd [[
     augroup CodeLens
