@@ -49,6 +49,7 @@ M.setup = function()
          },
       },
    }
+   require("custom.lsp.format").lsp_before_save()
 end
 
 return M

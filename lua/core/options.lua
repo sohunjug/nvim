@@ -216,6 +216,7 @@ M.load_options = function()
 
    vim.g.mapleader = " "
    vim.g.maplocalleader = ";"
+   vim.g.autoformat = true
 
    vim.g.vsnip_snippet_dir = S_NVIM.home .. ".config/nvim/snippets"
 

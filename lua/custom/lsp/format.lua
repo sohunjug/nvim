@@ -15,13 +15,17 @@ end
 
 function M.lsp_before_save()
    local defs = {}
+   if not vim.g.autoformat then
+      M.nvim_create_augroup("lsp_before_save", defs)
+      return
+   end
    local ext = vim.fn.expand "%:e"
    if ext == "go" then
       -- table.insert(defs, { "BufWritePre", "*.go", "lua require('custom.lsp.format').go_organize_imports_sync(1000)" })
       table.insert(defs, { "BufWritePre", "*.go", "lua require('custom.lsp.format').go_imports_sync(1000)" })
    else
       -- table.insert(defs, { "BufWritePre", "*." .. ext, "lua require('custom.lsp.format').formatting_chain_sync(nil,1000)" })
-      table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.formatting_sync(nil,1000)" })
+      table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.formatting_sync()" })
    end
    table.insert(defs, { "BufWritePre", "<buffer>", "retab" })
    -- table.insert(defs, { "BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()" })
@@ -51,7 +55,7 @@ function M.go_imports_sync(timeout_ms)
    local edit = result[idx].edit
    vim.lsp.util.apply_workspace_edit(edit, "utf-8")
    -- Always do formating
-   vim.lsp.buf.formatting()
+   vim.lsp.buf.formatting_sync()
 end
 -- Synchronously organise (Go) imports. Taken from
 -- https://github.com/neovim/nvim-lsp/issues/115#issuecomment-654427197.

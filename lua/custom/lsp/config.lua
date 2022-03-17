@@ -158,6 +158,9 @@ M.lsp_on_attach = function(client, bufnr)
    if client.name == "vuels" then
       client.resolved_capabilities.document_formatting = false
    end
+   if client.name == "nullls" then
+      client.resolved_capabilities.document_formatting = true
+   end
    if client.name == "svelte" then
       client.resolved_capabilities.document_formatting = false
    end
@@ -175,6 +178,8 @@ M.lsp_on_attach = function(client, bufnr)
    -- if client.name == "go" then
    -- vim.cmd [[au BufRead *.go set list lcs=tab:\|\  ]]
    -- end
+   -- print(client.name)
+   -- print(vim.inspect(client.resolved_capabilities))
    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
    local ext = vim.fn.expand "%:e"
    if ext == "go" then
@@ -257,8 +262,18 @@ M.add_mappings = function(bufnr)
       ["gl"] = { "<cmd>lua require'custom.lsp.config'.show_line_diagnostics()<CR>", "Show Line Diagnostics" },
       ["ep"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
       ["en"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+      ["et"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "AutoFormat" },
+      ["ef"] = {
+         "<cmd>lua vim.g.autoformat = not vim.g.autoformat<CR><cmd>lua require'custom.lsp.format'.lsp_before_save()<CR>",
+         "AutoFormat",
+      },
       ["<Leader>ep"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Diagnostic Prev" },
       ["<Leader>en"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Diagnostic Next" },
+      ["<Leader>et"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostic Float" },
+      ["<Leader>ef"] = {
+         "<cmd>lua vim.g.autoformat = not vim.g.autoformat<CR><cmd>lua require'custom.lsp.format'.lsp_before_save()<CR>",
+         "AutoFormat",
+      },
    }
    wk.register(keys, { mode = "n", buffer = bufnr })
 end

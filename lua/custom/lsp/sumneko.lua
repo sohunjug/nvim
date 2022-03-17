@@ -2,22 +2,23 @@
 local M = {}
 local config = require "custom.lsp.config"
 
-M.argv = S_NVIM.vim_path .. "/lsp/lua-language-server/main.lua"
-M.enable = false
-if vim.fn.executable(S_NVIM.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server") == 1 then
-   M.enable = true
-   M.cmd = S_NVIM.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server"
-elseif vim.fn.executable(S_NVIM.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server") == 1 then
-   M.enable = true
-   M.cmd = S_NVIM.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server"
-end
+-- M.argv = S_NVIM.vim_path .. "/lsp/lua-language-server/main.lua"
+M.enable = true
+-- if vim.fn.executable(S_NVIM.vim_path .. "/lsp/lua-language-server/bin/macOS/lua-language-server") == 1 then
+-- M.enable = true
+-- M.cmd = S_NVIM.vim_path .. "/lsp/lua-language-server/bin/lua-language-server"
+-- elseif vim.fn.executable(S_NVIM.vim_path .. "/lsp/lua-language-server/bin/linux/lua-language-server") == 1 then
+-- M.enable = true
+M.cmd = S_NVIM.vim_path .. "/lsp/lua-language-server/bin/lua-language-server"
+-- end
+
+-- print(M.enable)
 
 M.config = {
    cmd = {
       M.cmd,
-      "-E",
-      M.argv,
    },
+   capabilities = config.capabilities,
    on_attach = config.lsp_on_attach,
    on_init = config.lsp_on_init,
    settings = {
@@ -25,6 +26,9 @@ M.config = {
          completion = {
             enable = true,
             callSnippet = "Replace",
+         },
+         telemetry = {
+            enable = false,
          },
          runtime = {
             version = "LuaJIT",
@@ -35,6 +39,7 @@ M.config = {
                table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/opt/*/?.lua")
                table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/start/*/?.lua")
                table.insert(runtime_path, S_NVIM.vim_path .. "/lua/?.lua")
+               print(vim.inspect(runtime_path))
                -- table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/opt/packer.nvim/lua/?.lua")
                -- table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/opt/packer.nvim/lua/packer/?.lua")
                if
@@ -85,7 +90,7 @@ M.config = {
    },
 }
 
-M.config.capabilities = vim.lsp.protocol.make_client_capabilities()
+-- M.config.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.config.capabilities.textDocument.semanticTokens = {}
 M.config.capabilities.textDocument.semanticTokens.dynamicRegistration = false
 

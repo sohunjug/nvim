@@ -166,10 +166,12 @@ M.plug_map = {
    ["n|<leader>zm"] = map_cu("TZMinimalist"):with_silent(),
    ["n|<leader>Q"] = map_cr "quitall",
 
-   ["n|n"] = map_cu("execute('normal! ' . v:count1 . 'n')<CR> <Cmd>lua require('hlslens').start()"):with_silent(),
-   ["n|N"] = map_cu("execute('normal! ' . v:count1 . 'NN')<CR> <Cmd>lua require('hlslens').start()"):with_silent(),
-   ["n|*"] = map_cmd("*<Cmd>lua require('hlslens').start()<CR>"):with_silent(),
-   ["n|#"] = map_cmd("#<Cmd>lua require('hlslens').start()<CR>"):with_silent(),
+   ["n|n"] = map_cu("execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()"):with_silent():with_noremap(),
+   ["n|N"] = map_cu("execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()"):with_silent():with_noremap(),
+   ["n|*"] = map_cmd("*<Cmd>lua require('hlslens').start()<CR>"):with_silent():with_noremap(),
+   ["n|#"] = map_cmd("#<Cmd>lua require('hlslens').start()<CR>"):with_silent():with_noremap(),
+   ["x|*"] = map_cmd("*<Cmd>lua require('hlslens').start()<CR>"):with_silent():with_noremap(),
+   ["x|#"] = map_cmd("#<Cmd>lua require('hlslens').start()<CR>"):with_silent():with_noremap(),
    -- Plugin hrsh7th/vim-eft
    -- ["n|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
    -- ["x|f"] = map_cmd("v:lua.enhance_ft_move('f')"):with_expr(),
