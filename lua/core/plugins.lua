@@ -108,9 +108,16 @@ use("mattn/vim-sonictemplate", {
 
 use "kyazdani42/nvim-web-devicons"
 
-use "glepnir/dashboard-nvim"
+-- use "glepnir/dashboard-nvim"
 
-use "blackCauldron7/surround.nvim"
+use("goolord/alpha-nvim", {
+   opt = false,
+   config = function()
+      require("alpha").setup(require("alpha.themes.startify").config)
+   end,
+})
+
+use "ur4ltz/surround.nvim"
 
 use "lukas-reineke/indent-blankline.nvim"
 
@@ -134,6 +141,18 @@ use("yamatsum/nvim-nonicons", {
 })
 
 use "lewis6991/gitsigns.nvim"
+
+use("kdheepak/lazygit.nvim", {
+   opt = true,
+   cmd = { "LazyGit", "LazyGitConfig" },
+   setup = function()
+      vim.g.lazygit_floating_window_winblend = 0 --" transparency of floating window
+      vim.g.lazygit_floating_window_scaling_factor = 0.9 --" scaling factor for floating window
+      vim.g.lazygit_floating_window_corner_chars = { "╭", "╮", "╰", "╯" } --" customize lazygit popup window corner characters
+      vim.g.lazygit_floating_window_use_plenary = 0 --" use plenary.nvim to manage floating window if available
+      vim.g.lazygit_use_neovim_remote = 0 --" fallback to 0 if neovim-remote is not installed
+   end,
+})
 
 use "folke/which-key.nvim"
 

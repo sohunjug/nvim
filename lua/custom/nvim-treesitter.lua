@@ -7,6 +7,7 @@ local M = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "p00f/nvim-ts-rainbow" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
+      { "RRethy/nvim-treesitter-textsubjects" },
    },
 }
 
@@ -30,6 +31,7 @@ M.config = function()
       rainbow = {
          enable = true,
          extended_mode = true,
+         max_file_lines = nil,
       },
       context_commentstring = {
          enable = true,
@@ -62,6 +64,14 @@ M.config = function()
       },
       highlight = { enable = true, additional_vim_regex_highlighting = true },
       textobjects = {
+         lsp_interop = {
+            enable = true,
+            border = "none",
+            peek_definition_code = {
+               ["<leader>df"] = "@function.outer",
+               ["<leader>dF"] = "@class.outer",
+            },
+         },
          move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
@@ -84,12 +94,22 @@ M.config = function()
          },
          select = {
             enable = true,
+            lookahead = true,
             keymaps = {
                ["af"] = "@function.outer",
                ["if"] = "@function.inner",
                ["ac"] = "@class.outer",
                ["ic"] = "@class.inner",
             },
+         },
+      },
+      textsubjects = {
+         enable = true,
+         prev_selection = ",", -- (Optional) keymap to select the previous selection
+         keymaps = {
+            ["."] = "textsubjects-smart",
+            [";"] = "textsubjects-container-outer",
+            ["i;"] = "textsubjects-container-inner",
          },
       },
    }

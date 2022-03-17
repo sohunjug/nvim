@@ -74,7 +74,9 @@ M.plug_map = {
    -- :with_noremap()
    -- :with_silent(),
    ["n|<Leader>gn"] = map_cu("Neogit"):with_noremap():with_silent(),
-   ["n|<Leader>gg"] = map_cr("Gitsigns toggle_current_line_blame"):with_noremap():with_silent(),
+   ["n|<Leader>gb"] = map_cr("Gitsigns toggle_current_line_blame"):with_noremap():with_silent(),
+   ["n|<Leader>gg"] = map_cr("LazyGit"):with_noremap():with_silent(),
+   ["n|<Leader>gc"] = map_cr("LazyGitConfig"):with_noremap():with_silent(),
    -- Far.vim
    --    ["n|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
    --    ["v|<Leader>fz"] = map_cr("Farf"):with_noremap():with_silent(),
@@ -204,9 +206,9 @@ M.plug_map = {
 
 M.setup = function()
    bind.nvim_load_mapping(M.plug_map)
-   local wk = require "which-key"
+   --[[ local wk = require "which-key"
    local keys = { ["<Leader>sr"] = { ":%s/\\<<c-r><c-w>\\>/", "Replace Cursor Word" } }
-   wk.register(keys, { mode = "n" })
+   wk.register(keys, { mode = "n" }) ]]
 end
 
 return M

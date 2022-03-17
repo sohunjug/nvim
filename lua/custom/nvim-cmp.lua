@@ -33,6 +33,8 @@ local M = {
             }
          end,
       },
+      { "petertriho/cmp-git", after = "cmp-tabnine" },
+      { "saadparwaiz1/cmp_luasnip", after = "cmp-git" },
    },
 }
 

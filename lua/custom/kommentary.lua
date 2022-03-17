@@ -8,6 +8,14 @@ M.config = function()
       single_line_comment_string = "//",
       multi_line_comment_strings = { "/*", "*/" },
    })
+   require("kommentary.config").configure_language("shell", {
+      prefer_single_line_comments = true,
+      single_line_comment_string = "#",
+   })
+   require("kommentary.config").configure_language("sh", {
+      prefer_single_line_comments = true,
+      single_line_comment_string = "#",
+   })
    require("kommentary.config").configure_language("zsh", {
       prefer_single_line_comments = true,
       single_line_comment_string = "#",

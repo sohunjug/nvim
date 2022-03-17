@@ -23,6 +23,7 @@ M.config = function()
       open_on_setup = false,
       ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
       auto_close = false, -- closes tree when it's the last window
+      auto_reload_on_write = true,
       open_on_tab = false,
       update_to_buf_dir = {
          -- enable the feature
@@ -31,6 +32,11 @@ M.config = function()
          auto_open = true,
       },
       hijack_cursor = true,
+      hijack_unnamed_buffer_when_opening = false,
+      hijack_directories = {
+         enable = true,
+         auto_open = true,
+      },
       update_cwd = true,
       diagnostics = {
          enable = true,
@@ -59,6 +65,8 @@ M.config = function()
          auto_resize = true,
          number = false,
          relativenumber = false,
+         preserve_window_proportions = false,
+         signcolumn = "yes",
          mappings = {
             custom_only = true,
             list = {
@@ -96,10 +104,40 @@ M.config = function()
             },
          },
       },
+      system_open = {
+         cmd = nil,
+         args = {},
+      },
+      filters = {
+         dotfiles = false,
+         custom = {},
+      },
+      trash = {
+         cmd = "trash",
+         require_confirm = true,
+      },
       git = {
          enable = true,
          ignore = false,
          timeout = 400,
+      },
+      actions = {
+         change_dir = {
+            enable = true,
+            global = false,
+         },
+         open_file = {
+            quit_on_open = false,
+            resize_window = false,
+            window_picker = {
+               enable = true,
+               chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+               exclude = {
+                  filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", "Outline", "Trouble" },
+                  buftype = { "nofile", "terminal", "help" },
+               },
+            },
+         },
       },
    }
 end
@@ -118,7 +156,6 @@ M.setup = function()
    g.nvim_tree_respect_buf_cwd = 1
    g.nvim_tree_indent_markers = 1
    -- g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
-   g.nvim_tree_quit_on_open = 0 -- closes tree when file's opened
    g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
    -- g.nvim_tree_git_hl = 1
    -- g.nvim_tree_gitignore = 0
@@ -127,19 +164,6 @@ M.setup = function()
    g.nvim_tree_allow_resize = 1
    g.nvim_tree_add_trailing = 1 -- append a trailing slash to folder names
    g.nvim_tree_group_empty = 1
-   g.nvim_tree_window_picker_exclude = {
-      filetype = {
-         "notify",
-         "Outline",
-         "Trouble",
-         "packer",
-         "qf",
-      },
-      buftype = {
-         "terminal",
-         "nofile",
-      },
-   }
 
    g.nvim_tree_show_icons = {
       git = 1,
