@@ -98,7 +98,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FiraCode Nerd Font Mono
+    # family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     # family: Hack Nerd Font Mono
     # family: Iosevka
     # family: monospace mono
@@ -119,7 +120,8 @@ font:
     # value specified for the normal font.
     # family: Fira Code
     # family: Hack Nerd Font Mono
-    family: FiraCode Nerd Font Mono
+    # family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -133,7 +135,8 @@ font:
     # value specified for the normal font.
     # family: Fira Code
     # family: Hack Nerd Font Mono
-    family: FiraCode Nerd Font Mono
+    # family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     # style: Light Italic
@@ -151,7 +154,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -577,7 +580,7 @@ key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste }
   - { key: C,        mods: Control|Shift, action: Copy }
   # Bonus key mappings follow this pattern in Vim bindings
-  #		<C-S-Enter> becomes C-S<Enter>
+  #   <C-S-Enter> becomes C-S<Enter>
   # This is due to terminals not being able to distinguish between certain Modifer+Key combos
   # --------
   - { key: Return,        mods: Control, chars: "C\x0d" }

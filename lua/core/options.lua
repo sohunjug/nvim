@@ -30,8 +30,8 @@ M.load_options = function()
       sessionoptions = { "blank", "buffers", "curdir", "folds", "tabpages", "winsize", "resize", "winpos" },
       fencs = {
          "utf-8",
-         "ucs-bom",
-         "shift-jis",
+         -- "ucs-bom",
+         -- "shift-jis",
          "gb18030",
          "gbk",
          "gb2312",
@@ -100,7 +100,7 @@ M.load_options = function()
       inccommand = "nosplit",
       grepformat = "%f:%l:%c:%m",
       grepprg = "rg --hidden --vimgrep --smart-case --",
-      breakat = [[\ \	;:,!?]],
+      breakat = [[\ \   ;:,!?]],
       startofline = false,
       whichwrap = "h,l,<,>,[,],~",
       splitbelow = true,
@@ -149,7 +149,8 @@ M.load_options = function()
       - "2" -- I'm not in gradeschool anymore ]]
 
    if vim.fn.has "gui" then
-      vim.g.guifont = "FiraCode Nerd Font Mono:h12"
+      -- vim.g.guifont = "FiraCode Nerd Font Mono:h12"
+      vim.g.guifont = "JetBrainsMono Nerd Font Mono:h12"
    end
 
    local bw_local = {
