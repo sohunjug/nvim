@@ -69,7 +69,7 @@ M.servers.graphql = {
 
 M.servers.clangd = require("custom.lsp.clangd").config
 
-M.servers.rust_analyzer = { capabilities = config.capabilities }
+-- M.servers.rust_analyzer = require("custom.lsp.rust").config
 
 -- M.servers.denols = {
 --    filetypes = { "javascript", "typescript", "typescriptreact" },
@@ -84,6 +84,7 @@ M.servers.rust_analyzer = { capabilities = config.capabilities }
 
 M.setup = function()
    require("custom.lsp.nullls").setup()
+   require("custom.lsp.rust").setup()
    if M.enable then
       return
    end

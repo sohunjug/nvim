@@ -2,6 +2,7 @@ local M = {
    opt = true,
    requires = {
       "onsails/lspkind-nvim",
+      "simrat39/rust-tools.nvim",
       "jose-elias-alvarez/null-ls.nvim",
       {
          "jose-elias-alvarez/nvim-lsp-ts-utils",
