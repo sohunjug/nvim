@@ -203,6 +203,7 @@ M.plug_map = {
    ["v|<M-[>2;5+"] = map_cmd('"+y'):with_noremap():with_silent(),
    ["n|<C-S-Insert>"] = map_cmd "<ESC>ggVG",
    ["n|<LocalLeader>a"] = map_cmd "<ESC>ggVG",
+   ["i|<C-G>"] = map_cmd('copilot#Accept("\\<CR>")'):with_silent():with_expr(),
    ["i|<C-Insert>"] = map_cmd "<C-r>*",
    ["c|<C-Insert>"] = map_cmd "<C-r>*",
    ["n|<C-Insert>"] = map_cmd '"_dP',
