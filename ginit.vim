@@ -49,8 +49,8 @@ if exists('g:fvim_loaded')
     " FVimBackgroundOpacity 0.85
 endif
 
-let g:neovide_transparency=0.92
-let g:neovide_no_idle=v:true
-let g:neovide_input_use_logo=v:true
-let g:neovide_cursor_vfx_mode = "ripple"
+" let g:neovide_transparency=0.92
+" let g:neovide_no_idle=v:true
+" let g:neovide_input_use_logo=v:true
+" let g:neovide_cursor_vfx_mode = "ripple"
 

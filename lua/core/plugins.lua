@@ -38,7 +38,7 @@ use "kabouzeid/nvim-lspinstall"
 
 use("famiu/bufdelete.nvim", { opt = true, cmd = { "Bdelete", "Bwipeout" } })
 
--- use "github/copilot.vim"
+use "github/copilot.vim"
 
 use("alexaandru/nvim-lspupdate", {
    opt = true,

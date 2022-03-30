@@ -22,7 +22,7 @@ M.setup = function()
                -- "-",
             },
          },
-         b.formatting.nixfmt,
+         -- b.formatting.nixfmt,
          -- b.formatting.yapf,
          -- b.formatting.clang_format,
          b.formatting.black,
