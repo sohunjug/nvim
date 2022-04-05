@@ -24,6 +24,8 @@ M.config = function()
          ".hg",
          ".bzr",
          ".svn",
+         ".github",
+         "flake.nix",
          -- "Makefile",
          -- "go.mod",
          -- "pom.xml",

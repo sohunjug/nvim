@@ -4,6 +4,7 @@ if not present1 then
    return
 end
 
+local util = require "lspconfig.util"
 local M = {}
 
 M.enable = false
@@ -18,7 +19,9 @@ M.servers.cssls = {}
 M.servers.dockerls = {}
 M.servers.bashls = {}
 M.servers.pyright = {}
-M.servers.rnix = {}
+M.servers.rnix = {
+   root_dir = util.root_pattern("flake.nix", ".git"),
+}
 
 function _G.reload_lsp()
    vim.lsp.stop_client(vim.lsp.get_active_clients())
