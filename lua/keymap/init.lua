@@ -139,7 +139,7 @@ M.plug_map = {
    ["n|<leader>cc"] = map_cmd("<Plug>kommentary_motion_default"):with_silent(),
    ["x|<leader>cl"] = map_cmd("<Plug>kommentary_visual_default"):with_silent(),
    ["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
-   ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent():with_silent(),
+   ["n|<Leader>cj"] = map_cu("ProDoc"):with_silent(),
    -- Plugin acceleratedjk
    -- ["n|j"] = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
    -- ["n|k"] = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
@@ -204,6 +204,8 @@ M.plug_map = {
    ["n|<C-S-Insert>"] = map_cmd "<ESC>ggVG",
    ["n|<LocalLeader>a"] = map_cmd "<ESC>ggVG",
    ["i|<C-G>"] = map_cmd('copilot#Accept("\\<CR>")'):with_silent():with_expr(),
+   ["i|<C-O>"] = map_cmd("<Plug>(copilot-previous)"):with_silent(),
+   ["i|<C-L>"] = map_cmd("<Plug>(copilot-next)"):with_silent(),
    ["i|<C-Insert>"] = map_cmd "<C-r>*",
    ["c|<C-Insert>"] = map_cmd "<C-r>*",
    ["n|<C-Insert>"] = map_cmd '"_dP',
