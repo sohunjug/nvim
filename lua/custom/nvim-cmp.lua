@@ -49,6 +49,19 @@ M.config = function()
    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
    local cmp = require "cmp"
    cmp.setup {
+      window = {
+         completion = cmp.config.window.bordered(),
+         --[[ completion = {
+         -- with this false completion is triggered only manually
+         -- autocomplete = true,
+      }, ]]
+
+         documentation = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+         },
+
+         -- documentation = cmp.config.window.bordered(),
+      },
       formatting = {
          -- format = function(entry, vim_item)
          --[[ local lspkind_icons = {
@@ -176,15 +189,6 @@ M.config = function()
          -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
       },
 
-      completion = {
-         -- with this false completion is triggered only manually
-         -- autocomplete = true,
-      },
-
-      documentation = {
-         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      },
-
       snippet = {
          expand = function(args)
             -- require("luasnip").lsp_expand(args.body)
@@ -222,6 +226,7 @@ M.config = function()
 
    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
       sources = {
          { name = "buffer" },
       },
@@ -229,6 +234,7 @@ M.config = function()
 
    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
          { name = "path" },
       }, {

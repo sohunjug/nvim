@@ -111,6 +111,7 @@ M.config = function()
       filters = {
          dotfiles = false,
          custom = {},
+         exclude = {},
       },
       trash = {
          cmd = "trash",
@@ -121,7 +122,18 @@ M.config = function()
          ignore = false,
          timeout = 400,
       },
+      renderer = {
+         indent_markers = {
+            enable = true,
+            icons = {
+               corner = "└ ",
+               edge = "│ ",
+               none = "  ",
+            },
+         },
+      },
       actions = {
+         use_system_clipboard = true,
          change_dir = {
             enable = true,
             global = false,
@@ -139,6 +151,17 @@ M.config = function()
             },
          },
       },
+      log = {
+         enable = false,
+         truncate = false,
+         types = {
+            all = false,
+            config = false,
+            copy_paste = false,
+            git = false,
+            profile = false,
+         },
+      },
    }
 end
 
@@ -154,7 +177,7 @@ M.setup = function()
       ["cargo.toml"] = 1,
    }
    g.nvim_tree_respect_buf_cwd = 1
-   g.nvim_tree_indent_markers = 1
+   -- g.nvim_tree_indent_markers = 1
    -- g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
    g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
    -- g.nvim_tree_git_hl = 1
