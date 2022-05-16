@@ -21,16 +21,17 @@ M.config = function()
       disable_netrw = true,
       hijack_netrw = true,
       open_on_setup = false,
-      ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
-      auto_close = false, -- closes tree when it's the last window
-      auto_reload_on_write = true,
+      open_on_setup_file = false,
       open_on_tab = false,
+      ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
+      auto_reload_on_write = true,
       update_to_buf_dir = {
          -- enable the feature
          enable = true,
          -- allow to open the tree if it was previously closed
          auto_open = true,
       },
+      sort_by = "name",
       hijack_cursor = true,
       hijack_unnamed_buffer_when_opening = false,
       hijack_directories = {
@@ -158,6 +159,7 @@ M.config = function()
             all = false,
             config = false,
             copy_paste = false,
+            diagnostics = false,
             git = false,
             profile = false,
          },

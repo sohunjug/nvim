@@ -16,6 +16,10 @@ local M = {
          opt = true,
          -- requires = { "tami5/sqlite.nvim", opt = true },
       },
+      {
+         "gbrlsnchs/telescope-lsp-handlers.nvim",
+         otp = true,
+      },
    },
 }
 M.config = function()
@@ -32,6 +36,7 @@ M.config = function()
       vim.cmd [[packadd telescope-project.nvim]]
       vim.cmd [[packadd telescope-frecency.nvim]]
       vim.cmd [[packadd telescope-cheat.nvim]]
+      vim.cmd [[packadd telescope-lsp-handlers.nvim]]
       vim.cmd [[packadd sqlite.lua]]
    end
 
@@ -96,6 +101,26 @@ M.config = function()
             workspaces = {
                dotfiles = S_NVIM.home .. "Code/dotfiles",
                nvim = S_NVIM.vim_path,
+            },
+         },
+         lsp_handlers = {
+            disable = {},
+            location = {
+               telescope = {},
+               no_results_message = "No references found",
+            },
+            symbol = {
+               telescope = {},
+               no_results_message = "No symbols found",
+            },
+            call_hierarchy = {
+               telescope = {},
+               no_results_message = "No calls found",
+            },
+            code_action = {
+               telescope = {},
+               no_results_message = "No code actions available",
+               prefix = "",
             },
          },
          --         fzf = {

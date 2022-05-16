@@ -196,8 +196,10 @@ M.lsp_on_attach = function(client, bufnr)
     ]]
    end
    M.add_mappings(bufnr)
-   vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
-   vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
+   if client.name ~= "rnix" then
+      vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
+   end
+   vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references -- require("lsputil.locations").references_handler
    vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
    vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
    vim.lsp.handlers["textDocument/typeDefinition"] = require("lsputil.locations").typeDefinition_handler
@@ -253,7 +255,8 @@ M.add_mappings = function(bufnr)
       ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
       ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
       ["gF"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto References Utils" },
-      ["gr"] = { "<cmd>lua require'telescope.builtin.lsp'.references()<CR>", "Goto References" },
+      -- ["gr"] = { "<cmd>lua require'telescope.builtin.lsp'.references()<CR>", "Goto References" },
+      ["gr"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Goto References" },
       ["gI"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
       ["gR"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
       ["gs"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show Signature Help" },

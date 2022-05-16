@@ -56,7 +56,7 @@ use("onsails/lspkind-nvim", {
 
 use("mg979/vim-visual-multi", { opt = true, event = "InsertEnter" })
 
---[[ use("glepnir/lspsaga.nvim", {
+use("glepnir/lspsaga.nvim", {
    opt = true,
    cmd = "Lspsaga",
    after = "nvim-lspconfig",
@@ -66,7 +66,7 @@ use("mg979/vim-visual-multi", { opt = true, event = "InsertEnter" })
          code_action_icon = "",
       }
    end,
-}) ]]
+})
 
 use("ray-x/lsp_signature.nvim", {
    opt = true,
