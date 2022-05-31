@@ -26,11 +26,11 @@ M.config = function()
          ".svn",
          ".github",
          "flake.nix",
-         -- "Makefile",
-         -- "go.mod",
-         -- "pom.xml",
+         "Makefile",
+         "go.mod",
+         "pom.xml",
          -- "CMakeLists.txt",
-         -- "package.json",
+         "package.json",
       },
 
       -- Table of lsp clients to ignore by name

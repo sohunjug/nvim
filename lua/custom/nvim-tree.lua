@@ -17,30 +17,95 @@ M.config = function()
    local tree_cb = tree_c.nvim_tree_callback
 
    require("nvim-tree").setup {
-
+      auto_reload_on_write = true,
+      create_in_closed_folder = false,
       disable_netrw = true,
+      hijack_cursor = true,
       hijack_netrw = true,
+      hijack_unnamed_buffer_when_opening = false,
+      ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
       open_on_setup = false,
       open_on_setup_file = false,
       open_on_tab = false,
-      ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
-      auto_reload_on_write = true,
+      sort_by = "name",
+      update_cwd = true,
+      reload_on_bufenter = false,
+      respect_buf_cwd = false,
+      renderer = {
+         add_trailing = false,
+         group_empty = false,
+         highlight_git = false,
+         highlight_opened_files = "none",
+         root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
+         --":~",
+         indent_markers = {
+            enable = true,
+            icons = {
+               corner = "└ ",
+               edge = "│ ",
+               none = "  ",
+            },
+         },
+         icons = {
+            webdev_colors = true,
+            git_placement = "before",
+            padding = " ",
+            symlink_arrow = " ➛ ",
+            show = {
+               file = true,
+               folder = true,
+               folder_arrow = true,
+               git = true,
+            },
+            glyphs = {
+               default = "",
+               symlink = "",
+               folder = {
+                  arrow_closed = "",
+                  arrow_open = "",
+                  default = "",
+                  open = "",
+                  empty = "",
+                  empty_open = "",
+                  symlink = "",
+                  symlink_open = "",
+               },
+               git = {
+                  unstaged = "✗",
+                  staged = "✓",
+                  unmerged = "",
+                  renamed = "➜",
+                  untracked = "★",
+                  deleted = "",
+                  ignored = "◌",
+               },
+            },
+         },
+         special_files = {
+            "Cargo.toml",
+            "cargo.toml",
+            "Makefile",
+            "README.md",
+            "readme.md",
+            "makefile",
+            "Makefile",
+            "MAKEFILE",
+            "go.mod",
+         },
+      },
       update_to_buf_dir = {
          -- enable the feature
          enable = true,
          -- allow to open the tree if it was previously closed
          auto_open = true,
       },
-      sort_by = "name",
-      hijack_cursor = true,
-      hijack_unnamed_buffer_when_opening = false,
       hijack_directories = {
          enable = true,
          auto_open = true,
       },
-      update_cwd = true,
       diagnostics = {
          enable = true,
+         show_on_dirs = true,
          icons = {
             hint = "",
             info = "",
@@ -106,7 +171,7 @@ M.config = function()
          },
       },
       system_open = {
-         cmd = nil,
+         cmd = "",
          args = {},
       },
       filters = {
@@ -123,16 +188,6 @@ M.config = function()
          ignore = false,
          timeout = 400,
       },
-      renderer = {
-         indent_markers = {
-            enable = true,
-            icons = {
-               corner = "└ ",
-               edge = "│ ",
-               none = "  ",
-            },
-         },
-      },
       actions = {
          use_system_clipboard = true,
          change_dir = {
@@ -141,7 +196,7 @@ M.config = function()
          },
          open_file = {
             quit_on_open = false,
-            resize_window = false,
+            resize_window = true,
             window_picker = {
                enable = true,
                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
@@ -151,6 +206,13 @@ M.config = function()
                },
             },
          },
+         remove_file = {
+            close_window = true,
+         },
+      },
+      live_filter = {
+         prefix = "[FILTER]: ",
+         always_show_folders = true,
       },
       log = {
          enable = false,
@@ -167,61 +229,7 @@ M.config = function()
    }
 end
 
-M.setup = function()
-   local g = vim.g
-
-   g.nvim_tree_special_files = {
-      ["README.md"] = 1,
-      ["makefile"] = 1,
-      ["Makefile"] = 1,
-      ["MAKEFILE"] = 1,
-      ["go.mod"] = 1,
-      ["cargo.toml"] = 1,
-   }
-   g.nvim_tree_respect_buf_cwd = 1
-   -- g.nvim_tree_indent_markers = 1
-   -- g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
-   g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
-   -- g.nvim_tree_git_hl = 1
-   -- g.nvim_tree_gitignore = 0
-   -- g.nvim_tree_hide_dotfiles = 0
-   g.nvim_tree_highlight_opened_files = 1
-   g.nvim_tree_allow_resize = 1
-   g.nvim_tree_add_trailing = 1 -- append a trailing slash to folder names
-   g.nvim_tree_group_empty = 1
-
-   g.nvim_tree_show_icons = {
-      git = 1,
-      folders = 1,
-      folder_arrows = 1,
-      files = 1,
-   }
-
-   g.nvim_tree_icons = {
-      default = "",
-      symlink = "",
-      git = {
-         deleted = "",
-         ignored = "◌",
-         renamed = "≫", --➜
-         staged = "✓",
-         unmerged = "",
-         unstaged = "✗",
-         untracked = "★",
-      },
-      folder = {
-         -- disable indent_markers option to get arrows working or if you want both arrows and indent then just add the arrow icons in front            ofthe default and opened folders below!
-         arrow_open = "",
-         arrow_closed = "",
-         default = "",
-         empty = "", -- 
-         empty_open = "",
-         open = "",
-         symlink = "",
-         symlink_open = "",
-      },
-   }
-
-   vim.cmd [[highlight NvimTreeFolderIcon guibg=blue]]
-end
+--M.setup = function()
+--vim.cmd [[highlight NvimTreeFolderIcon guibg=blue]]
+--end
 return M
