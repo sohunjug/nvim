@@ -39,7 +39,7 @@ M.config = {
                table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/opt/*/?.lua")
                table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/start/*/?.lua")
                table.insert(runtime_path, S_NVIM.vim_path .. "/lua/?.lua")
-               print(vim.inspect(runtime_path))
+               -- print(vim.inspect(runtime_path))
                -- table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/opt/packer.nvim/lua/?.lua")
                -- table.insert(runtime_path, S_NVIM.data_dir .. "pack/packer/opt/packer.nvim/lua/packer/?.lua")
                if

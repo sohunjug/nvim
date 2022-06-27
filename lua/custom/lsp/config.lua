@@ -156,15 +156,34 @@ M.lsp_on_attach = function(client, bufnr)
       vim.cmd [[packadd lsputil]]
    end
    if client.name == "vuels" then
-      client.resolved_capabilities.document_formatting = false
+      client.server_capabilities.document_formatting = false
+   elseif client.name == "vuels" then
+      client.server_capabilities.document_formatting = false
+   elseif client.name == "nullls" then
+      client.server_capabilities.document_formatting = true
+   elseif client.name == "sumneko_lua" then
+      client.server_capabilities.document_formatting = false
+   elseif client.name == "svelte" then
+      client.server_capabilities.document_formatting = false
+   elseif client.name == "tsserver" then
+      client.server_capabilities.document_formatting = false
+      local ts_utils = require "nvim-lsp-ts-utils"
+      ts_utils.setup {
+         enable_import_on_completion = true,
+      }
+      ts_utils.setup_client(client)
    end
-   if client.name == "nullls" then
+   if client.name == "vuels" then
+      client.resolved_capabilities.document_formatting = false
+   elseif client.name == "vuels" then
+      client.resolved_capabilities.document_formatting = false
+   elseif client.name == "nullls" then
       client.resolved_capabilities.document_formatting = true
-   end
-   if client.name == "svelte" then
+   elseif client.name == "sumneko_lua" then
       client.resolved_capabilities.document_formatting = false
-   end
-   if client.name == "tsserver" then
+   elseif client.name == "svelte" then
+      client.resolved_capabilities.document_formatting = false
+   elseif client.name == "tsserver" then
       client.resolved_capabilities.document_formatting = false
       local ts_utils = require "nvim-lsp-ts-utils"
       ts_utils.setup {
@@ -196,9 +215,9 @@ M.lsp_on_attach = function(client, bufnr)
     ]]
    end
    M.add_mappings(bufnr)
-   if client.name ~= "rnix" then
+   --[[if client.name ~= "rnix" then
       vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
-   end
+   end]]
    vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references -- require("lsputil.locations").references_handler
    vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
    vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
@@ -286,11 +305,11 @@ M.lsp_mappings = function(bufnr)
    local map_cu = bind.map_cu
    local mappings = {
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
-         :with_noremap()
-         :with_silent(),
+          :with_noremap()
+          :with_silent(),
       ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()")
-         :with_noremap()
-         :with_silent(),
+          :with_noremap()
+          :with_silent(),
       ["n|ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
       ["n|en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
@@ -309,13 +328,13 @@ M.lsp_mappings = function(bufnr)
       ["n|g]"] = map_cr(
          "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
       )
-         :with_noremap()
-         :with_silent(),
+          :with_noremap()
+          :with_silent(),
       ["n|g["] = map_cr(
          "lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
       )
-         :with_noremap()
-         :with_silent(),
+          :with_noremap()
+          :with_silent(),
       --[[ ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")

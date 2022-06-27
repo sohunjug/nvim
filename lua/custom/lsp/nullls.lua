@@ -4,8 +4,8 @@ M.setup = function()
    local present, null_ls = pcall(require, "null-ls")
    if not present then
       vim.cmd [[packadd null-ls.nvim]]
-      null_ls = require "null-ls"
    end
+   null_ls = require "null-ls"
 
    local b = null_ls.builtins
 
