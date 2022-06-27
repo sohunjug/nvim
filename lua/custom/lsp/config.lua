@@ -305,11 +305,11 @@ M.lsp_mappings = function(bufnr)
    local map_cu = bind.map_cu
    local mappings = {
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
-          :with_noremap()
-          :with_silent(),
+         :with_noremap()
+         :with_silent(),
       ["n|<Leader>ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()")
-          :with_noremap()
-          :with_silent(),
+         :with_noremap()
+         :with_silent(),
       ["n|ep"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()"):with_noremap():with_silent(),
       ["n|en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
@@ -328,13 +328,13 @@ M.lsp_mappings = function(bufnr)
       ["n|g]"] = map_cr(
          "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
       )
-          :with_noremap()
-          :with_silent(),
+         :with_noremap()
+         :with_silent(),
       ["n|g["] = map_cr(
          "lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
       )
-          :with_noremap()
-          :with_silent(),
+         :with_noremap()
+         :with_silent(),
       --[[ ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
       ["n|K"] = map_cr("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
       ["n|<Leader>en"] = map_cr("lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()")
