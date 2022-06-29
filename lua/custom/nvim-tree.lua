@@ -93,12 +93,12 @@ M.config = function()
             "go.mod",
          },
       },
-      update_to_buf_dir = {
+      --[[ update_to_buf_dir = {
          -- enable the feature
          enable = true,
          -- allow to open the tree if it was previously closed
          auto_open = true,
-      },
+      }, ]]
       hijack_directories = {
          enable = true,
          auto_open = true,
@@ -128,7 +128,7 @@ M.config = function()
          width = 30,
          height = 30,
          hide_root_folder = false,
-         auto_resize = true,
+         adaptive_size = true,
          number = false,
          relativenumber = false,
          preserve_window_proportions = false,
