@@ -98,8 +98,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: FiraCode Nerd Font Mono
-    family: JetBrainsMono Nerd Font Mono
+    family: FiraCode Nerd Font Mono
+    # family: JetBrainsMono Nerd Font Mono
     # family: Hack Nerd Font Mono
     # family: Iosevka
     # family: monospace mono
@@ -120,8 +120,8 @@ font:
     # value specified for the normal font.
     # family: Fira Code
     # family: Hack Nerd Font Mono
-    # family: FiraCode Nerd Font Mono
-    family: JetBrainsMono Nerd Font Mono
+    family: FiraCode Nerd Font Mono
+    # family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -135,8 +135,8 @@ font:
     # value specified for the normal font.
     # family: Fira Code
     # family: Hack Nerd Font Mono
-    # family: FiraCode Nerd Font Mono
-    family: JetBrainsMono Nerd Font Mono
+    family: FiraCode Nerd Font Mono
+    # family: JetBrainsMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     # style: Light Italic

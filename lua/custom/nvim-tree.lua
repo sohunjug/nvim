@@ -19,31 +19,34 @@ M.config = function()
    require("nvim-tree").setup {
       auto_reload_on_write = true,
       create_in_closed_folder = false,
-      disable_netrw = true,
-      hijack_cursor = true,
+      disable_netrw = false,
+      hijack_cursor = false,
       hijack_netrw = true,
       hijack_unnamed_buffer_when_opening = false,
       ignore_ft_on_setup = { "dashboard" }, -- don't open tree on specific fiypes.
+      ignore_buffer_on_setup = false,
       open_on_setup = false,
       open_on_setup_file = false,
       open_on_tab = false,
       sort_by = "name",
-      update_cwd = true,
+      prefer_startup_root = false,
+      sync_root_with_cwd = true,
       reload_on_bufenter = false,
       respect_buf_cwd = false,
       renderer = {
-         add_trailing = false,
-         group_empty = false,
-         highlight_git = false,
-         highlight_opened_files = "none",
+         add_trailing = true,
+         group_empty = true,
+         highlight_git = true,
+         full_name = false,
+         highlight_opened_files = "all",
          root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
          --":~",
          indent_markers = {
             enable = true,
             icons = {
-               corner = "└ ",
-               edge = "│ ",
-               none = "  ",
+               corner = "└",
+               edge = "│",
+               none = " ",
             },
          },
          icons = {
@@ -92,6 +95,7 @@ M.config = function()
             "MAKEFILE",
             "go.mod",
          },
+         symlink_destination = true,
       },
       --[[ update_to_buf_dir = {
          -- enable the feature
@@ -118,7 +122,7 @@ M.config = function()
          enable = true,
          -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
          -- only relevant when `update_focused_file.enable` is true
-         update_cwd = false,
+         update_root = true,
          -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
          -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
          ignore_list = { ".git", "node_modules", ".cache" },
@@ -163,7 +167,7 @@ M.config = function()
                { key = "gy", cb = tree_cb "copy_absolute_path" },
                { key = "[c", cb = tree_cb "prev_git_item" },
                { key = "}c", cb = tree_cb "next_git_item" },
-               { key = { "-", "BS" }, cb = tree_cb "dir_up" },
+               { key = { "-", "BS", "u" }, cb = tree_cb "dir_up" },
                { key = "O", cb = tree_cb "system_open" },
                { key = "q", cb = tree_cb "close" },
                { key = "g?", cb = tree_cb "toggle_help" },
@@ -179,6 +183,11 @@ M.config = function()
          custom = {},
          exclude = {},
       },
+      filesystem_watchers = {
+         enable = false,
+         interval = 100,
+         debounce_delay = 50,
+      },
       trash = {
          cmd = "trash",
          require_confirm = true,
@@ -186,6 +195,7 @@ M.config = function()
       git = {
          enable = true,
          ignore = false,
+         show_on_dirs = true,
          timeout = 400,
       },
       actions = {
@@ -193,6 +203,11 @@ M.config = function()
          change_dir = {
             enable = true,
             global = false,
+            restrict_above_cwd = false,
+         },
+         expand_all = {
+            max_folder_discovery = 300,
+            exclude = {},
          },
          open_file = {
             quit_on_open = false,
@@ -224,6 +239,7 @@ M.config = function()
             diagnostics = false,
             git = false,
             profile = false,
+            watcher = false,
          },
       },
    }
