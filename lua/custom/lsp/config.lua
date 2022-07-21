@@ -346,13 +346,13 @@ M.lsp_mappings = function(bufnr)
       ["n|gl"] = map_cr("lua require'lspsaga.diagnostic'.show_line_diagnostics()"):with_noremap():with_silent(),
       ["n|gw"] = map_cr("lua require'lspsaga.diagnostic'.show_cursor_diagnostics()"):with_noremap():with_silent(),
       ["n|g]"] = map_cr(
-         "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
-      )
+            "lua vim.lsp.diagnostic.goto_next { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
+         )
          :with_noremap()
          :with_silent(),
       ["n|g["] = map_cr(
-         "lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
-      )
+            "lua vim.lsp.diagnostic.goto_prev { popup_opts = { show_header = false, border = require 'custom.lsp.config' .borders } }"
+         )
          :with_noremap()
          :with_silent(),
       --[[ ["i|<C-s>"] = map_cr("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
