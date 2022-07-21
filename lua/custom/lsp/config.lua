@@ -155,45 +155,54 @@ M.lsp_on_attach = function(client, bufnr)
    if not packer_plugins["lsputil"] or not packer_plugins["lsputil"].loaded then
       vim.cmd [[packadd lsputil]]
    end
-   if client.name == "vuels" then
-      client.server_capabilities.document_formatting = false
-   elseif client.name == "vuels" then
-      client.server_capabilities.document_formatting = false
-   elseif client.name == "nullls" then
-      client.server_capabilities.document_formatting = true
-   elseif client.name == "sumneko_lua" then
-      client.server_capabilities.document_formatting = false
-   elseif client.name == "svelte" then
-      client.server_capabilities.document_formatting = false
-   elseif client.name == "tsserver" then
-      client.server_capabilities.document_formatting = false
-      local ts_utils = require "nvim-lsp-ts-utils"
-      ts_utils.setup {
-         enable_import_on_completion = true,
-      }
-      ts_utils.setup_client(client)
+   if vim.version().minor == 8 then
+      if client.name == "vuels" then
+         client.server_capabilities.documentFormattingProvider = false
+      elseif client.name == "vuels" then
+         client.server_capabilities.documentFormattingProvider = false
+      elseif client.name == "nullls" then
+         client.server_capabilities.documentFormattingProvider = true
+      elseif client.name == "sumneko_lua" then
+         client.server_capabilities.documentFormattingProvider = false
+      elseif client.name == "svelte" then
+         client.server_capabilities.documentFormattingProvider = false
+      elseif client.name == "tsserver" then
+         client.server_capabilities.documentFormattingProvider = false
+         local ts_utils = require "nvim-lsp-ts-utils"
+         ts_utils.setup {
+            enable_import_on_completion = true,
+         }
+         ts_utils.setup_client(client)
+      end
+      if client.server_capabilities.documentFormattingProvider then
+         format.lsp_before_save()
+      end
+   else
+      if client.name == "vuels" then
+         client.resolved_capabilities.document_formatting = false
+      elseif client.name == "vuels" then
+         client.resolved_capabilities.document_formatting = false
+      elseif client.name == "nullls" then
+         client.resolved_capabilities.document_formatting = true
+      elseif client.name == "sumneko_lua" then
+         client.resolved_capabilities.document_formatting = false
+      elseif client.name == "svelte" then
+         client.resolved_capabilities.document_formatting = false
+      elseif client.name == "gopls" then
+         client.resolved_capabilities.document_formatting = false
+      elseif client.name == "tsserver" then
+         client.resolved_capabilities.document_formatting = false
+         local ts_utils = require "nvim-lsp-ts-utils"
+         ts_utils.setup {
+            enable_import_on_completion = true,
+         }
+         ts_utils.setup_client(client)
+      end
+      if client.resolved_capabilities.document_formatting then
+         format.lsp_before_save()
+      end
    end
-   if client.name == "vuels" then
-      client.resolved_capabilities.document_formatting = false
-   elseif client.name == "vuels" then
-      client.resolved_capabilities.document_formatting = false
-   elseif client.name == "nullls" then
-      client.resolved_capabilities.document_formatting = true
-   elseif client.name == "sumneko_lua" then
-      client.resolved_capabilities.document_formatting = false
-   elseif client.name == "svelte" then
-      client.resolved_capabilities.document_formatting = false
-   elseif client.name == "tsserver" then
-      client.resolved_capabilities.document_formatting = false
-      local ts_utils = require "nvim-lsp-ts-utils"
-      ts_utils.setup {
-         enable_import_on_completion = true,
-      }
-      ts_utils.setup_client(client)
-   end
-   if client.resolved_capabilities.document_formatting then
-      format.lsp_before_save()
-   end
+   print(vim.inspect(client))
    -- if client.name == "go" then
    -- vim.cmd [[au BufRead *.go set list lcs=tab:\|\  ]]
    -- end
@@ -206,13 +215,24 @@ M.lsp_on_attach = function(client, bufnr)
    else
       vim.api.nvim_buf_set_option(bufnr, "expandtab", true)
    end
-   if client.resolved_capabilities.code_lens then
-      vim.cmd [[
+   if vim.version().minor ~= 8 then
+      if client.resolved_capabilities.codeLensProvider then
+         vim.cmd [[
     augroup CodeLens
       au!
       au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
     augroup END
     ]]
+      end
+   else
+      if client.server_capabilities.code_lens then
+         vim.cmd [[
+    augroup CodeLens
+      au!
+      au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
+    augroup END
+    ]]
+      end
    end
    M.add_mappings(bufnr)
    --[[if client.name ~= "rnix" then

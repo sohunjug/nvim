@@ -48,8 +48,11 @@ function Packer:load_packer()
       git = { depth = 1, clone_timeout = 120 }, --, default_url_format = "git@github.com:%s"},
       auto_clean = true,
       max_jobs = 15,
+      transitive_opt = true,
+      transitive_disable = true,
       compile_on_sync = true,
       disable_commands = true,
+      auto_reload_compiled = true,
       log = { level = "warn" },
       profile = { enable = false },
    }
@@ -121,8 +124,10 @@ function plugins.convert_compile_file()
    end
 
    local file = io.open(compile_to_lua, "w")
-   for _, line in ipairs(lines) do
-      file:write(line)
+   if file ~= nil then
+      for _, line in ipairs(lines) do
+         file:write(line)
+      end
    end
    file:close()
 

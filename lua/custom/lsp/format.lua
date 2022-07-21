@@ -17,17 +17,17 @@ function M.lsp_before_save()
    local defs = {}
    if vim.g.autoformat then
       local ext = vim.fn.expand "%:e"
-      if ext == "go" then
-         -- table.insert(defs, { "BufWritePre", "*.go", "lua require('custom.lsp.format').go_organize_imports_sync(1000)" })
-         table.insert(defs, { "BufWritePre", "*.go", "lua require('custom.lsp.format').go_imports_sync(1000)" })
+      -- if ext == "go" then
+      -- table.insert(defs, { "BufWritePre", "*.go", "lua require('custom.lsp.format').go_organize_imports_sync(1000)" })
+      -- table.insert(defs, { "BufWritePre", "*.go", "lua require('custom.lsp.format').go_imports_sync(1000)" })
+      -- else
+      -- table.insert(defs, { "BufWritePre", "*." .. ext, "lua require('custom.lsp.format').formatting_chain_sync(nil,1000)" })
+      if vim.version().minor == 8 then
+         table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.format { async=true, timeout_ms=2000 }" })
       else
-         -- table.insert(defs, { "BufWritePre", "*." .. ext, "lua require('custom.lsp.format').formatting_chain_sync(nil,1000)" })
-         if vim.version().minor == 8 then
-            table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.format { async=true }" })
-         else
-            table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.formatting_sync()" })
-         end
+         table.insert(defs, { "BufWritePre", "*." .. ext, "lua vim.lsp.buf.formatting_sync(nil, 2000)" })
       end
+      -- end
       table.insert(defs, { "BufWritePre", "<buffer>", "retab" })
       -- table.insert(defs, { "BufWritePre", "<buffer>", "lua vim.lsp.buf.formatting_sync()" })
    end
@@ -58,7 +58,7 @@ function M.go_imports_sync(timeout_ms)
    vim.lsp.util.apply_workspace_edit(edit, "utf-8")
    -- Always do formating
    if vim.version().minor == 8 then
-      vim.lsp.buf.format { async = true }
+      vim.lsp.buf.format { timeout_ms = 2000, async = true }
    else
       vim.lsp.buf.formatting_sync()
    end

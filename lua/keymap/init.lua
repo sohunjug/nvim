@@ -88,7 +88,6 @@ M.plug_map = {
    -- ["n|<Leader>bd"] = map_cr("bdelete"):with_noremap():with_silent(),
    ["n|<Leader>bd"] = map_cr("Bdelete"):with_noremap():with_silent(),
    --    ["n|<Leader>bd"] = map_cmd("lua require('core.utils').close_buffer()"):with_noremap():with_silent(),
-   ["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent(),
    ["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
    ["n|<Leader>bp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
    ["n|<Leader>bh"] = map_cr("Dashboard"):with_noremap():with_silent(),
@@ -212,6 +211,12 @@ M.plug_map = {
    ["v|<C-Insert>"] = map_cmd '"_dP',
    --
 }
+
+if vim.version().minor == 8 then
+   M.plug_map["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.format({ async = true })"):with_noremap():with_silent()
+else
+   M.plug_map["n|<Leader>bf"] = map_cr("lua vim.lsp.buf.formatting()"):with_noremap():with_silent()
+end
 
 M.setup = function()
    bind.nvim_load_mapping(M.plug_map)

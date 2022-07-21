@@ -70,7 +70,7 @@ M.servers.graphql = {
 
 -- M.servers["null-ls"] = {}
 
-M.servers.clangd = require("custom.lsp.clangd").config
+-- M.servers.clangd = require("custom.lsp.clangd").config
 
 -- M.servers.rust_analyzer = require("custom.lsp.rust").config
 

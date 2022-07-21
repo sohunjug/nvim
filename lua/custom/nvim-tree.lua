@@ -185,7 +185,6 @@ M.config = function()
       },
       filesystem_watchers = {
          enable = false,
-         interval = 100,
          debounce_delay = 50,
       },
       trash = {
